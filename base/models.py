@@ -8,10 +8,10 @@ class Tag(models.Model):
 
 class Problem(models.Model):
     problem_name = models.CharField(default="",max_length=200)
-    link = models.charfield(default="",max_length=250)
+    link = models.CharField(default="",max_length=250)
     elo = models.IntegerField(default=0)
     tags = models.ManyToManyField(Tag)
-    editorial = models.charfield(default="",max_length=250)
+    editorial = models.CharField(default="",max_length=250)
     def __str__(self):
         return self.problem_name
 

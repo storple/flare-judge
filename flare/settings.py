@@ -30,6 +30,16 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG")
 
+if SECRET_KEY is None and DEBUG is None:
+    print("SECRET_KEY and DEBUG not set in .env file")
+    exit()
+if SECRET_KEY is None:
+    print("SECRET_KEY not set in .env file")
+    exit()
+if DEBUG is None:
+    print("DEBUG not set in .env file")
+    exit()
+
 
 ALLOWED_HOSTS = []
 
@@ -37,6 +47,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'base.apps.BaseConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
