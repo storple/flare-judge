@@ -12,7 +12,7 @@ cd flare-judge
 
 Install dependencies
 ```bash
-python -m pip -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 To run this project, you will need to add the following environment variables to your .env file
 
