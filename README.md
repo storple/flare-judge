@@ -1,3 +1,8 @@
+![HTML](https://img.shields.io/badge/html-F55600?style=for-the-badge&logo=HTML5&logoColor=white)
+![CSS](https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=CSS3&logoColor=white)
+![PYTHON](https://img.shields.io/badge/python-0000CC?style=for-the-badge&logo=Python&logoColor=white)
+
+
 # Flare Judge
 A competitive programming roadmap for aspiring high school students who want to succeed.
 ## Run Locally
