@@ -6,6 +6,12 @@
     <title>Document</title>
     <link rel="stylesheet" href="problems.css">
     <link rel="stylesheet" href="base_navbar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="container" id="nav_container">
@@ -34,8 +40,16 @@
         <div class="container" id="top_bar_section">
             <h1>Problems</h1>
         </div>
-        <div class="container" id="problems_table_container">
-            <table id="problems_table">
+        <div class="container" id="informationText">
+            <p>
+                Here, you will be able to find a list of problems that are ranked by their difficulty, which is great if you are trying to look for 
+                problems that will challenge you. Some recommendations to make the maximum use of this problem list are to do problems that are 
+                around or higher than your overall skill level or work on topics (Strings, Math, etc.) that you are you struggling on. We use problems
+                from LMCodeQuest, Codeforces, and AtCoder (make accounts for these so you will be able to submit your problems and check your answers).
+            <p>
+        </div>
+        <div class="container" id="problems_body_container">
+            <table class="container" id="problems_table">
                 <thead>
                     <th>Problem Name</th>
                     <th>ELO</th>
@@ -70,10 +84,20 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="container" id="filter_container">
+                <h1>Filter</h1>
+                <label for="ELO">ELO:</label>
+                <input type="text" name="elo" id="elo">
+                <label for="ELO">Tags:</label>
+                <input type="text" name="tags" id="tags">
+                <label for="ELO">Uncompleted:</label>
+                <input type="checkbox" name="uncompleted" id="uncompleted">
+                <input type="submit" name="submit_button" id="submit_button">
+            </div>
         </div>
-        <div class="container" id="footer">
+        <footer class="container" id="footer">
             <p><u>©Flare, 2024. Property of Timber Creek Programming Team®</u></p>
-        </div>
+        </footer>
     </div>
 </body>
 </html>

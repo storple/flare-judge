@@ -2,11 +2,10 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 300px;
+    width: 250px;
     height: 100%;
     background-color: #F5F5F5;
     flex-direction: column;
-
 }
 
 #website_name {
@@ -25,7 +24,7 @@
     width: 100px;
     height: 100px;
     margin-right: 10px;
-    margin-left: 40px;
+    margin-left: 15px;
 }
 
 #website_name h1 {
@@ -49,7 +48,7 @@
 
 #menu_items li {
     font-family: 'Epilogue', sans-serif;
-    font-size: 40px;
+    font-size: 28px;
     position: relative;
     flex-grow: 1;
 }
@@ -71,7 +70,7 @@
 }
 
 #log_in {
-    margin-top: 150px;
+    margin-top: 0px;
     margin-bottom: 50px;
     flex-grow: 1;
 }
@@ -87,7 +86,7 @@
 
 #log_in li {
     font-family: 'Epilogue', sans-serif;
-    font-size: 40px;
+    font-size: 28px;
     position: relative;
     flex-grow: 1;
 }

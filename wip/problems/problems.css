@@ -1,6 +1,6 @@
 html, body {
     background-color: white;
-    font-family: 'Epilogue';
+    font-family: "Poppins", sans-serif;
     height: 100%;
 }
 
@@ -26,52 +26,73 @@ a {
     font-weight: 600;
     font-size: 50px;
     text-align: center;
+    margin-bottom: 0;
 }
 
 #main_area{
     position: inline-flex;
     margin: 0;
     padding: 0;
-    width: calc(100%-300px);
+    width: calc(100%-250px);
     height: 100%;
-    margin-left: 300px;
+    margin-left: 250px;
     background-color: white;
     flex-direction: column;
     overflow-y: auto;
     min-height: calc(100% - 50px);
 }
 
-#problems_table_container {
-    height: 100%;
-    flex-direction: column;
-    float: left;
+#informationText {
+    margin: 10px 20px 50px;
+}
+
+#problems_body_container {
+    flex-direction: row;
+    flex: 1;
 }
 
 #problems_table {
+    display: table;
     background-color: white;
     width: 60%;
     margin: auto 2;
     border-collapse: collapse;
     text-align: center;
+    flex: 1;
+    overflow-y: auto;
 }
 
 #problems_table thead th {
     font-size: 25px;
+    border: 2px solid black;
 }
 
 #problems_table td {
     border-spacing: 8px;
     padding: 12px;
+    border: 2px solid black;
 }
 
-#problems_table tr:not(:last-child) {
-    border-bottom: 1px solid black;
-    padding: 20px;
+#problems_table tbody tr {
+    height: 20px;
 }
 
-#footer{ /*might need fixing cuz footer overlaps other stuff if windows is made smaller */
+#filter_container {
+    flex-shrink: 0;
+    border: 2px solid black;
+    padding: 20px 30px;
+    margin-left: 20%;
+    flex-direction: column;
+    height: 500px;
+}
+
+#filter_container input {
+    margin-bottom: 20px;
+}
+
+#footer{
+    font-size: 12px;
     width: 100%;
-    position: fixed;
-    bottom: 0;
-    left: 50%;
+    justify-content: center;
+    left: 250px;
 }
