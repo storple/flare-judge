@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views
 from . import views
 urlpatterns = [
     path("profile/",views.profile, name="profile"),
-    path("createProfile/", views.createProfile, name="createProfile"),
+    path("create_profile/", views.create_profile, name="create_profile"),
     path("login/",
          auth_views.LoginView.as_view(
              template_name = "accounts/login.html",
@@ -17,4 +17,10 @@ urlpatterns = [
              next_page = "home"
              ),
          name = "logout"),
+    path("change_password/",
+         auth_views.PasswordChangeView.as_view(
+             template_name = "accounts/change_password.html",
+             success_url = "login",
+             ),
+         name = "change_password"),
 ]
