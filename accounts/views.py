@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 def profile(request):
     return render(request, "accounts/profile.html")
 
-def createProfile(request):
+def create_profile(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -12,4 +12,5 @@ def createProfile(request):
             return redirect("profile")
     else:
         form = UserCreationForm()
-    return render(request,"accounts/createProfile.html" ,{"form":form})
+    return render(request,"accounts/create_profile.html" ,{"form":form})
+
