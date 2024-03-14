@@ -18,9 +18,3 @@ def contests(request):
 
 def learn(request):
     return render(request, "base/learn.html")
-
-def signup(request):
-    return render(request, "base/signup.html")
-
-def login(request):
-    return render(request, "base/login.html")

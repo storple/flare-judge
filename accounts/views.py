@@ -12,7 +12,7 @@ def create_profile(request):
             user = form.save()
             p = Profile(user=user)
             p.save()
-            return redirect("profile")
+            return redirect("login")
     else:
         form = UserCreationForm()
     context = {
