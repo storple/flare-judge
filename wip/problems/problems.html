@@ -52,10 +52,10 @@
             <table class="container" id="problems_table">
                 <colgroup>
                     <col style="width: 400px">
-                    <col style="width: 50px">
-                    <col style="width: 200px">
+                    <col style="width: 70px">
+                    <col style="width: 180px">
+                    <col style="width: 130px">
                     <col style="width: 100px">
-                    <col style="width: 50px">
                 </colgroup>
                 <thead>
                     <th>Problem Name</th>
@@ -77,12 +77,23 @@
             </table>
             <div class="container" id="filter_container">
                 <h1>Filter</h1>
-                <label for="ELO">ELO:</label>
-                <input type="text" name="elo" id="elo">
-                <label for="ELO">Tags:</label>
-                <input type="text" name="tags" id="tags">
-                <label for="ELO">Uncompleted:</label>
-                <input type="checkbox" name="uncompleted" id="uncompleted">
+                <label for="elo">
+                    ELO: 
+                    <input type="text" name="elo_low" id="elo_low" value="MIN" class="faded-text">
+                    - 
+                    <input type="text" name="elo_high" id="elo_high" value="MAX" class="faded-text">
+                </label>
+
+                <label for="Tags">
+                    Tags:
+                    <input type="text" name="tags" id="tags">
+                </label>
+
+                <label for="checkbox">
+                    Uncompleted:
+                    <input type="checkbox" name="uncompleted" id="uncompleted">
+                </label>
+
                 <input type="submit" name="submit_button" id="submit_button">
             </div>
         </div>
