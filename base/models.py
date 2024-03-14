@@ -11,7 +11,7 @@ class Problem(models.Model):
     link = models.CharField(default="",max_length=250)
     elo = models.IntegerField(default=0)
     tags = models.ManyToManyField(Tag,blank=True)
-    editorial = models.CharField(default="",max_length=250)
+    editorial = models.CharField(default="",blank=True,max_length=250)
     def __str__(self):
         return self.problem_name
 
