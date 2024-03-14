@@ -80,7 +80,7 @@ a {
 
 #problems_table td:not(:last-child) {
     height: 20px;
-    text-align: right;
+    text-align: center;
 }
 
 #filter_container {
@@ -90,9 +90,35 @@ a {
     margin-left: 5%;
     margin-right: 5%;
     flex-direction: column;
-    height: 350px;
+    height: 325px;
+    text-align: center;
+}
+
+#filter_container label{
+    margin-right: 12px;
+    margin-left: 12px;
 }
 
 #filter_container input {
     margin-bottom: 20px;
+}
+
+#elo_low {
+    width: 40px;
+    margin-left: 10px;
+    margin-right: 2px;
+}
+
+#elo_high {
+    width: 40px;
+    margin-left: 2px;
+}
+
+#tags {
+    width: 120px;
+}
+
+.faded-text {
+    opacity: 0.6;
+    text-align: center;
 }
