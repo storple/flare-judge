@@ -2,20 +2,11 @@
 <p>Your username and password didn't match. Please try again.</p>
 {% endif %}
 
-{% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
-    <p>Please login to see this page.</p>
-    {% endif %}
-{% endif %}
-
+{% if user.is_authenticated %}
 <form method="post" action="{% url 'logout' %}">
 {% csrf_token %}
 <input type="submit" value="logout">
-<input type="hidden" name="next" value="{{ next }}">
 </form>
-
-{# Assumes you set up the password_reset view in your URLconf #}
-
+{% else %}
+<p>Please login to see this page.</p>
+{% endif %}

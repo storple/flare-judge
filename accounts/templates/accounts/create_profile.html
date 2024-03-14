@@ -1,9 +1,10 @@
-{% if user.is_authenticated %}
-<p>Your account doesn't have access to this page. To proceed,
-{% endif %}
-please login with an account that has access.</p>
-{% else %}
-<p>Please login to see this page.</p>
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
+    {% endif %}
 {% endif %}
 
 <form method="post" action="{% url 'create_profile' %}">
