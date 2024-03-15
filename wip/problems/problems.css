@@ -78,9 +78,13 @@ a {
     height: 20px;
 }
 
-#problems_table td:not(:last-child) {
+#problems_table td:not(:first-child) {
     height: 20px;
     text-align: center;
+}
+
+#problems_table td:first-child{
+    text-align: left;
 }
 
 #filter_container {
