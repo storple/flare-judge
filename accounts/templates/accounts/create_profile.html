@@ -1,6 +1,25 @@
+{% extends "base/base.html" %}
+{% block content %}
 <form method="post" action="{% url 'create_profile' %}">
 {% csrf_token %}
-{{form}}
+<div>
+	{{ form.username.label_tag }}
+<div class="helptext" id="id_username_helptext">{{ form.username.help_text }}</div>
+	{{ form.errors.username }}
+	{{ form.username }}
+</div>
+  <div>
+	{{ form.password1.label_tag }}
+	{{ form.password1.help_text }}
+	{{ form.errors.password1 }}
+	{{ form.password1 }}
+</div>
+  <div>
+	{{ form.password2.label_tag }}
+	<div class="helptext" id="id_password2_helptext">{{ form.password2.help_text }} </div>
+	{{ form.errors.password2 }}
+	{{ form.password2 }}
+</div>
 <input type="submit" value="Sign Up">
 </form>
-
+{% endblock %}

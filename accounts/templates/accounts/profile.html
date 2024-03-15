@@ -1,5 +1,7 @@
+{% extends "base/base.html" %}
+{% block content %}
 {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
+{{ form.errors }}
 {% endif %}
 
 {% if user.is_authenticated %}
@@ -14,3 +16,5 @@
 <a href="{% url 'login' %}"> Log in<p>
 <a href="{% url 'home' %}"> Go Home<p>
 {% endif %}
+
+{% endblock %}
