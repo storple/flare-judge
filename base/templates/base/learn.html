@@ -4,7 +4,14 @@
 
 {% block title %}Learn{% endblock %}
 
-{% block style %}{% static 'base/learn/style.css' %}{% endblock %}
+{% block styles %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'base/learn/style.css' %}">
+{% endblock %}
 
 {% block content %}
+	{{block.super}}
+	<div id="content">
+		<p> learn </p>
+	</div>
 {% endblock %}

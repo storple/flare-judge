@@ -1,0 +1,31 @@
+{% load static %}
+<nav class="container" id="nav_container">
+	<div class="container" id="website_name">
+		<a href="{% url 'home' %}">
+			<img src="{% static 'base/flarelogo.png' %}" alt="Flare Logo">
+		</a>
+		<h1>Flare</h1>
+	</div>
+	<div class="container" id="menu_items">
+		<ul>
+			<li><a href="{% url 'home' %}">Home</a></li>
+			<li><a href="{% url 'problems' %}">Problems</a></li>
+			<li><a href="{% url 'learn' %}">Learn</a></li>
+			<li><a href="{% url 'contests' %}">Contests</a></li>
+		</ul>
+	</div>
+	{% if user.is_authenticated %}
+	<div class="container" id="log_in">
+		<ul>
+				<li><a href="{% url 'profile' %}">{{ user.username }}</a></li>
+		</ul>
+	</div>
+	{% else %}
+	<div class="container" id="log_in">
+		<ul>
+			<li><a href="{% url 'create_profile' %}">Sign Up</a></li>
+			<li><a href="{% url 'login'  %}">Log In</a></li>
+		</ul>
+	</div>
+	{% endif %}
+</nav>

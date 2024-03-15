@@ -4,8 +4,14 @@
 
 {% block title %}Home{% endblock %}
 
-{% block style %}{% static 'base/home/style.css' %}{% endblock %}
+{% block styles %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'base/home/style.css' %}">
+{% endblock %}
 
 {% block content %}
-	<p> custom content </p>
+	{{block.super}}
+	<div id="content">
+		<p> home </p>
+	</div>
 {% endblock %}

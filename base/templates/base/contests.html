@@ -4,7 +4,14 @@
 
 {% block title %}Contests{% endblock %}
 
-{% block style %}{% static 'base/contests/style.css' %}{% endblock %}
+{% block styles %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'base/contests/style.css' %}">
+{% endblock %}
 
 {% block content %}
+	{{block.super}}
+	<div id="content">
+		<p> contests </p>
+	</div>
 {% endblock %}

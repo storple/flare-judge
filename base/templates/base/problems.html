@@ -4,7 +4,14 @@
 
 {% block title %}Problems{% endblock %}
 
-{% block style %}{% static 'base/problems/style.css' %}{% endblock %}
+{% block styles %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'base/problems/style.css' %}">
+{% endblock %}
 
 {% block content %}
+	{{block.super}}
+	<div id="content">
+		<p> problems </p>
+	</div>
 {% endblock %}
