@@ -67,7 +67,7 @@ a {
     flex-direction: column;
     margin-top: 30px;
     margin-left: 30px;
-    width: 550px;
+    width: 500px;
     height: 160px;
     border: 2px solid black;
 }
@@ -75,6 +75,7 @@ a {
 #learn_container {
     flex-shrink: 0;
     flex-direction: column;
+    margin-left: 50px;
     width: 420px;
     height: 310px;
     border: 2px solid black;
@@ -85,7 +86,7 @@ a {
     flex-direction: column;
     margin-top: 30px;
     margin-left: 50px;
-    width: 370px;
+    width: 420px;
     height: 300px;
     border: 2px solid black;
 }
