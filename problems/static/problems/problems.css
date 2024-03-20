@@ -103,6 +103,11 @@ a {
     margin-left: 12px;
 }
 
+#filter_container label[for="elo"] {
+    display: flex;
+    flex-direction: row;
+}
+
 #filter_container input {
     margin-bottom: 20px;
 }

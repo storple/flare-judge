@@ -55,11 +55,11 @@
 			<td>{{problem.editorial}}</td>
                         <td><input type="checkbox"></td>
                     </tr>
-		    {% endfor %}
+            {% endfor %}
 		{% endif %}
                 </tbody>
             </table>
-	    <form method="GET" action"{% url 'problems' %}">
+        <form method="GET" action="{% url 'problems' %}">
             <div class="container" id="filter_container">
                 <h1>Filter</h1>
                 <label for="elo">
