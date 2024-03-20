@@ -9,6 +9,11 @@
 {{block.super}}
 {% endblock %}
 
+{% block javascript %}
+<script src="{% static 'problems/problems.js' %}"></script>
+{{block.super}}
+{% endblock %}
+
 {% block content %}
     {{block.super}}
     <div class="container" id="main_area">
@@ -41,47 +46,79 @@
                 </thead>
                 <tbody>
 		{% if problems %}
-            {% for problem in problems %}
+		    {% for problem in problems %}
                     <tr>
-			<td><a href="{{problem.link}}">{{problem.problem_name}}</a></td>
+			<td><a target="_blank" href="{{problem.link}}">{{problem.problem_name}}</a></td>
+
 			<td>{{problem.elo}}</td>
+
 			<td>
 				{% with tags=problem.tags.all %}
-				{% if tags %}
-                    <p>{{ tags|join:" " }}</p>
-				{% endif %}
+					{% if tags %}
+					    {{ tags|join:", " }}
+					{% endif %}
 				{% endwith %}
 			</td>
-			<td>{{problem.editorial}}</td>
-                        <td><input type="checkbox"></td>
+
+			{% if problem.editorial %}
+				<td><a target="_blank" href="{{problem.editorial}}">Editorial</a></td>
+			{% else %}
+				<td></td>
+			{% endif %}
+
+			{% if user.is_authenticated %}
+				{% if problem in user.profile.problems_solved.all %}
+					<td><input type="checkbox" checked></td>
+				{% else %}
+					<td><input type="checkbox"></td>
+				{% endif %}
+			{% else %}
+				<td></td>
+			{% endif %}
                     </tr>
-            {% endfor %}
+		    {% endfor %}
 		{% endif %}
                 </tbody>
             </table>
-        <form method="GET" action="{% url 'problems' %}">
+        <form method="GET" action="{% url 'problems' %}" id="filterForm">
             <div class="container" id="filter_container">
                 <h1>Filter</h1>
                 <label for="elo">
                     ELO: 
-                    <input type="text" name="elo_low" id="elo_low" placeholder="MIN" class="faded-text">
+		    {% if min_elo and min_elo != 0 %}
+		    <input type="text" name="elo_low" id="elo_low" placeholder="MIN" class="faded-text" value="{{min_elo}}">
+		    {% else %}
+			    <input type="text" name="elo_low" id="elo_low" placeholder="MIN" class="faded-text">
+		    {% endif %}
                     - 
-                    <input type="text" name="elo_high" id="elo_high" placeholder="MAX" class="faded-text">
+		    {% if max_elo and max_elo != 100000 %}
+			    <input type="text" name="elo_high" id="elo_high" placeholder="MAX" class="faded-text" value="{{max_elo}}">
+		    {% else %}
+			    <input type="text" name="elo_high" id="elo_high" placeholder="MAX" class="faded-text">
+		    {% endif %}
                 </label>
 
                 <label for="Tags">
                     Tags:
-                    <input type="text" name="tags" id="tags">
+		    {% if tags %}
+			    <input type="text" name="tags" id="tags" value="{{tags}}">
+		    {% else %}
+			    <input type="text" name="tags" id="tags">
+		    {% endif %}
                 </label>
 
                 <label for="checkbox">
-                    Uncompleted:
-                    <input type="checkbox" name="uncompleted" id="uncompleted">
+                    Completed:
+		    {% if completed and completed == 1 %}
+			    <input type="checkbox" name="completed" id="completed" checked>
+		    {% else %}
+			    <input type="checkbox" name="completed" id="completed">
+		    {% endif %}
                 </label>
 
-                <input type="submit" name="submit_button" id="submit_button" value="Search">
+                <input type="submit" name="submit_filter_button" id="submit_filter_button" value="Filter">
             </div>
-		</form>
+	</form>
         </div>
     </div>
 {% endblock %}
