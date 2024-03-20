@@ -21,6 +21,6 @@ def problems(request,min_elo=None,max_elo=None,tags=None,completed=None):
         problems = Problem.objects.filter(tags__tag_name__contains=tags)
     context = {
         "problems": problems,
-        # "tags":tags
+        # "tags": tags
     }
     return render(request, "problems/problems.html", context)

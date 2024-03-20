@@ -16,7 +16,7 @@ def create_profile(request):
     else:
         form = UserCreationForm()
     context = {
-                "form":form
-              }
+        "form": form
+    }
     return render(request,"accounts/create_profile.html", context)
 

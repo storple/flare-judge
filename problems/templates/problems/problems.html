@@ -41,14 +41,14 @@
                 </thead>
                 <tbody>
 		{% if problems %}
-		    {% for problem in problems %}
+            {% for problem in problems %}
                     <tr>
 			<td><a href="{{problem.link}}">{{problem.problem_name}}</a></td>
 			<td>{{problem.elo}}</td>
 			<td>
 				{% with tags=problem.tags.all %}
 				{% if tags %}
-				    <p>{{ tags|join:" " }}</p>
+                    <p>{{ tags|join:" " }}</p>
 				{% endif %}
 				{% endwith %}
 			</td>
