@@ -1,0 +1,87 @@
+{% extends "base/base_navbar.html" %}
+
+{% load static %}
+
+{% block title %}Problems{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'problems/problems.css' %}">
+{{block.super}}
+{% endblock %}
+
+{% block content %}
+    {{block.super}}
+    <div class="container" id="main_area">
+        <div class="container" id="top_bar_section">
+            <h1>Problems</h1>
+        </div>
+        <div class="container" id="informationText">
+            <p>
+                Here, you will be able to find a list of problems that are ranked by their difficulty, which is great if you are trying to look for 
+                problems that will challenge you. Some recommendations to make the maximum use of this problem list are to do problems that are 
+                around or higher than your overall skill level or work on topics (Strings, Math, etc.) that you are you struggling on. We use problems
+                from LMCodeQuest, Codeforces, and AtCoder (make accounts for these so you will be able to submit your problems and check your answers).
+            <p>
+        </div>
+        <div class="container" id="problems_body_container">
+            <table class="container" id="problems_table">
+                <colgroup>
+                    <col style="width: 400px">
+                    <col style="width: 70px">
+                    <col style="width: 180px">
+                    <col style="width: 130px">
+                    <col style="width: 100px">
+                </colgroup>
+                <thead>
+                    <th>Problem Name</th>
+                    <th>ELO</th>
+                    <th>Tags</th>
+                    <th>Editorial</th>
+                    <th>Status</th>
+                </thead>
+                <tbody>
+		{% if problems %}
+		    {% for problem in problems %}
+                    <tr>
+			<td><a href="{{problem.link}}">{{problem.problem_name}}</a></td>
+			<td>{{problem.elo}}</td>
+			<td>
+				{% with tags=problem.tags.all %}
+				{% if tags %}
+				    <p>{{ tags|join:" " }}</p>
+				{% endif %}
+				{% endwith %}
+			</td>
+			<td>{{problem.editorial}}</td>
+                        <td><input type="checkbox"></td>
+                    </tr>
+		    {% endfor %}
+		{% endif %}
+                </tbody>
+            </table>
+	    <form method="GET" action"{% url 'problems' %}">
+            <div class="container" id="filter_container">
+                <h1>Filter</h1>
+                <label for="elo">
+                    ELO: 
+                    <input type="text" name="elo_low" id="elo_low" placeholder="MIN" class="faded-text">
+                    - 
+                    <input type="text" name="elo_high" id="elo_high" placeholder="MAX" class="faded-text">
+                </label>
+
+                <label for="Tags">
+                    Tags:
+                    <input type="text" name="tags" id="tags">
+                </label>
+
+                <label for="checkbox">
+                    Uncompleted:
+                    <input type="checkbox" name="uncompleted" id="uncompleted">
+                </label>
+
+                <input type="submit" name="submit_button" id="submit_button" value="Search">
+            </div>
+		</form>
+        </div>
+    </div>
+{% endblock %}
