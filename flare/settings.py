@@ -30,6 +30,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG")
 
+# Test that checks if SECRET_KEY and DEBUG are not set in .env file
 if SECRET_KEY is None and DEBUG is None:
     print("SECRET_KEY and DEBUG not set in .env file")
     exit()

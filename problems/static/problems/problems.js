@@ -1,4 +1,4 @@
-// handles the filter form to redirect user to proper filter url
+// Handles the filter form to redirect user to proper filter url
 document.addEventListener("readystatechange", (event) => {
 	if (event.target.readyState === "interactive" || event.target.readyState === "complete") {
 		document.getElementById('filterForm').addEventListener('submit', function(event) {
