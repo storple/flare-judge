@@ -1,6 +1,9 @@
 html, body {
     background-color: white;
     font-family: 'Poppins', sans-serif;
+	height: 100%;
+	overflow: hidden;
+	margin: 0;
 }
 
 a {

@@ -1,13 +1,23 @@
+#main_container {
+	height: 100%;
+	display: grid;
+	grid-template-columns: 250px auto;
+	overflow: hidden;
+	margin: 0;
+}
 #nav_container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px;
     height: 100%;
     background-color: #F5F5F5;
     flex-direction: column;
+    overflow-y: auto;
+	grid-column: 1;
 }
-
+#content{
+    height: 100%;
+    background-color: white;
+    flex-direction: column;
+    overflow-y: auto;
+}
 #website_name {
     margin-top: 30px;
     width: 100%;
@@ -34,13 +44,12 @@
 }
 
 #menu_items {
-    height: 600px;
+	margin-bottom: auto;
 }
 
 #menu_items ul {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     width: 100%;
     padding: 0;
     margin: 0;
@@ -50,7 +59,7 @@
     font-family: 'Epilogue', sans-serif;
     font-size: 28px;
     position: relative;
-    flex-grow: 1;
+    height: 100px;
 }
 
 #menu_items li a {
@@ -70,9 +79,11 @@
 }
 
 #log_in {
-    margin-top: 0px;
-    margin-bottom: 50px;
-    flex-grow: 1;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	height: 100px;
+	flex-shrink: 0;
+    
 }
 
 #log_in ul {

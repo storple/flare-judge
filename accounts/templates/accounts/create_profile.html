@@ -1,4 +1,4 @@
-{% extends "base/base.html" %}
+{% extends "base/base_navbar.html" %}
 {% block content %}
 <form method="post" action="{% url 'create_profile' %}">
 {% csrf_token %}
