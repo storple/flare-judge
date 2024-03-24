@@ -5,6 +5,7 @@
 	overflow: hidden;
 	margin: 0;
 }
+
 #nav_container {
     height: 100%;
     background-color: #F5F5F5;
@@ -12,12 +13,14 @@
     overflow-y: auto;
 	grid-column: 1;
 }
+
 #content{
     height: 100%;
     background-color: white;
     flex-direction: column;
     overflow-y: auto;
 }
+
 #website_name {
     margin-top: 30px;
     width: 100%;
