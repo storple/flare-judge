@@ -21,29 +21,28 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG")
-
-# Test that checks if SECRET_KEY and DEBUG are not set in .env file
-if SECRET_KEY is None and DEBUG is None:
-    print("SECRET_KEY and DEBUG not set in .env file")
-    exit()
-if SECRET_KEY is None:
+if os.getenv("SECRET_KEY") is not None:
+    SECRET_KEY = os.getenv("SECRET_KEY")
+else:
     print("SECRET_KEY not set in .env file")
     exit()
-if DEBUG is None:
+
+# SECURITY WARNING: don't run with debug turned on in production!
+ENV_DEBUG = os.getenv("DEBUG")
+
+if ENV_DEBUG == "True" or ENV_DEBUG == "true":
+    DEBUG = True
+elif ENV_DEBUG == "False" or ENV_DEBUG == "false":
+    DEBUG = False
+elif ENV_DEBUG is None:
     print("DEBUG not set in .env file")
     exit()
+else:
+    print("Bad DEBUG value in .env file:",ENV_DEBUG)
+    exit()
 
-
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
