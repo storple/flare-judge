@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 
 from .models import Problem
 
@@ -26,3 +26,21 @@ def problems(request,min_elo=None,max_elo=None,tags=None,completed=None):
         "completed": completed,
     }
     return render(request, "problems/problems.html", context)
+
+def save_progress(request):
+    if request.method == "POST":
+        data = request.POST
+        user = request.user
+        if user.is_authenticated:
+            currentProfile = user.profile
+
+            problemsDict = data.copy()
+            problemsDict.pop("csrfmiddlewaretoken")
+            problemsDict.pop("save_button")
+
+            for problem in Problem.objects.all():
+                if problem.problem_name in problemsDict:
+                    currentProfile.problems_solved.add(problem)
+                else:
+                    currentProfile.problems_solved.remove(problem)
+    return redirect(problems)

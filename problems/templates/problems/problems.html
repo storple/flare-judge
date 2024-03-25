@@ -15,108 +15,97 @@
 {% endblock %}
 
 {% block content %}
-    {{block.super}}
-        <div class="container" id="top_bar_section">
-            <h1>Problems</h1>
-        </div>
-        <div class="container" id="informationText">
-            <p>
-                Here, you will be able to find a list of problems that are ranked by their difficulty, which is great if you are trying to look for 
-                problems that will challenge you. Some recommendations to make the maximum use of this problem list are to do problems that are 
-                around or higher than your overall skill level or work on topics (Strings, Math, etc.) that you are you struggling on. We use problems
-                from LMCodeQuest, Codeforces, and AtCoder (make accounts for these so you will be able to submit your problems and check your answers).
-            <p>
-        </div>
-        <div class="container" id="problems_body_container">
-            <table class="container" id="problems_table">
-                <colgroup>
-                    <col style="width: 400px">
-                    <col style="width: 70px">
-                    <col style="width: 180px">
-                    <col style="width: 130px">
-                    <col style="width: 100px">
-                </colgroup>
-                <thead>
-                    <th>Problem Name</th>
-                    <th>ELO</th>
-                    <th>Tags</th>
-                    <th>Editorial</th>
-                    <th>Status</th>
-                </thead>
-                <tbody>
-		{% if problems %}
-		    {% for problem in problems %}
-                    <tr>
-			<td><a target="_blank" href="{{problem.link}}">{{problem.problem_name}}</a></td>
+	<div class="container" id="top_bar_section">
+		<h1>Problems</h1>
+	</div>
+	<div class="container" id="informationText">
+		<p>
+			Here, you will be able to find a list of problems that are ranked by their difficulty, which is great if you are trying to look for 
+			problems that will challenge you. Some recommendations to make the maximum use of this problem list are to do problems that are 
+			around or higher than your overall skill level or work on topics (Strings, Math, etc.) that you are you struggling on. We use problems
+			from LMCodeQuest, Codeforces, and AtCoder (make accounts for these so you will be able to submit your problems and check your answers).
+		<p>
+	</div>
 
-			<td>{{problem.elo}}</td>
-
-			<td>
-				{% with tags=problem.tags.all %}
-					{% if tags %}
-					    {{ tags|join:", " }}
-					{% endif %}
-				{% endwith %}
-			</td>
-
-			{% if problem.editorial %}
-				<td><a target="_blank" href="{{problem.editorial}}">Editorial</a></td>
-			{% else %}
-				<td></td>
-			{% endif %}
-
-			{% if user.is_authenticated %}
-				{% if problem in user.profile.problems_solved.all %}
-					<td><input type="checkbox" checked></td>
-				{% else %}
-					<td><input type="checkbox"></td>
+	<div class="container" id="problems_body_container">
+		<!-- problems -->
+		<table class="container" id="problems_table">
+			<colgroup>
+				<col style="width: 400px">
+				<col style="width: 70px">
+				<col style="width: 180px">
+				<col style="width: 130px">
+				<col style="width: 100px">
+			</colgroup>
+			<thead>
+				<th>Problem Name</th>
+				<th>ELO</th>
+				<th>Tags</th>
+				<th>Editorial</th>
+				<th>Status</th>
+			</thead>
+			<tbody>
+				{% if problems %}
+					{% for problem in problems %}
+						{% include "problems/problem.html" with problem=problem form="save_form" %}
+					{% endfor %}
 				{% endif %}
-			{% else %}
-				<td></td>
+			</tbody>
+		</table>
+
+		<!-- right bar -->
+		<div class="container" id="right_bar">
+			{% if user.is_authenticated %}
+				<!-- save -->
+				<form id="save_form" method="POST" action="{% url 'save_progress' %}">
+					{% csrf_token %}
+					<div class="container" id="save_container">
+						<h1 class="title_header">Save Progress</h1>
+						<input type="submit" name="save_button" id="save_button" value="Save">
+					</div>
+				</form>
 			{% endif %}
-                    </tr>
-		    {% endfor %}
-		{% endif %}
-                </tbody>
-            </table>
-        <form method="GET" action="{% url 'problems' %}" id="filterForm">
-            <div class="container" id="filter_container">
-                <h1>Filter</h1>
-                <label for="elo">
-                    ELO: 
-		    {% if min_elo and min_elo != 0 %}
-		    <input type="text" name="elo_low" id="elo_low" placeholder="MIN" class="faded-text" value="{{min_elo}}">
-		    {% else %}
-			    <input type="text" name="elo_low" id="elo_low" placeholder="MIN" class="faded-text">
-		    {% endif %}
-                    - 
-		    {% if max_elo and max_elo != 100000 %}
-			    <input type="text" name="elo_high" id="elo_high" placeholder="MAX" class="faded-text" value="{{max_elo}}">
-		    {% else %}
-			    <input type="text" name="elo_high" id="elo_high" placeholder="MAX" class="faded-text">
-		    {% endif %}
-                </label>
 
-                <label for="Tags">
-                    Tags:
-		    {% if tags %}
-			    <input type="text" name="tags" id="tags" value="{{tags}}">
-		    {% else %}
-			    <input type="text" name="tags" id="tags">
-		    {% endif %}
-                </label>
+			<!-- filter -->
+			<form method="GET" action="{% url 'problems' %}" id="filterForm">
+					<div class="container" id="filter_container">
+						<h1 class="title_header">Filter</h1>
+						<label for="elo">
+							ELO: 
+							{% if min_elo and min_elo != 0 %}
+								<input type="text" name="elo_low" id="elo_low" placeholder="MIN" class="faded-text" value="{{min_elo}}">
+							{% else %}
+								<input type="text" name="elo_low" id="elo_low" placeholder="MIN" class="faded-text">
+							{% endif %}
+							- 
+							{% if max_elo and max_elo != 100000 %}
+								<input type="text" name="elo_high" id="elo_high" placeholder="MAX" class="faded-text" value="{{max_elo}}">
+							{% else %}
+								<input type="text" name="elo_high" id="elo_high" placeholder="MAX" class="faded-text">
+							{% endif %}
+						</label>
 
-                <label for="checkbox">
-                    Completed:
-		    {% if completed and completed == 1 %}
-			    <input type="checkbox" name="completed" id="completed" checked>
-		    {% else %}
-			    <input type="checkbox" name="completed" id="completed">
-		    {% endif %}
-                </label>
+						<label for="Tags">
+							Tags:
+							{% if tags %}
+								<input type="text" name="tags" id="tags" value="{{tags}}">
+							{% else %}
+								<input type="text" name="tags" id="tags">
+							{% endif %}
+						</label>
 
-                <input type="submit" name="submit_filter_button" id="submit_filter_button" value="Filter">
-            </div>
-		</form>
+						<label for="checkbox">
+							Completed:
+							{% if completed and completed == 1 %}
+								<input type="checkbox" name="completed" id="completed" checked>
+							{% else %}
+								<input type="checkbox" name="completed" id="completed">
+							{% endif %}
+					</label>
+
+					<input type="submit" name="submit_filter_button" id="submit_filter_button" value="Filter">
+				</div>
+			</form>
+		</div>
 	</div>
 {% endblock %}

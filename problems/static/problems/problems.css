@@ -59,33 +59,46 @@
     text-align: center;
 }
 
-#problems_table td:first-child{
+#qroblems_table td:first-child{
     text-align: left;
+}
+.title_header {
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
+
+#right_bar {
+	flex-direction: column;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#save_container {
+    flex-shrink: 0;
+    border: 2px solid black;
+    padding: 20px 30px;
+    margin-bottom: 5%;
+    flex-direction: column;
+    text-align: center;
 }
 
 #filter_container {
     flex-shrink: 0;
     border: 2px solid black;
     padding: 20px 30px;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-top: 5%;
     flex-direction: column;
-    height: 325px;
     text-align: center;
 }
 
-#filter_container label{
-    margin-right: 12px;
-    margin-left: 12px;
-}
-
-#filter_container label[for="elo"] {
-    display: flex;
-    flex-direction: row;
+#save_container input {
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 #filter_container input {
-    margin-bottom: 20px;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 #elo_low {
