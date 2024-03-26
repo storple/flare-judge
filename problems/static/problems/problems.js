@@ -3,9 +3,9 @@ document.addEventListener("readystatechange", (event) => {
 		// Handles the filter form to redirect user to proper filter url
 		document.getElementById('filterForm').addEventListener('submit', function(event) {
 			event.preventDefault();
-			var minElo = document.getElementById('elo_low').value;
+			var minElo = document.getElementById('min_elo').value;
 			if (minElo === "") minElo = "0";
-			var maxElo = document.getElementById('elo_high').value;
+			var maxElo = document.getElementById('max_elo').value;
 			if (maxElo === "") maxElo = "100000";
 			var completed = document.getElementById('completed').checked;
 			if (completed) completed = "1";

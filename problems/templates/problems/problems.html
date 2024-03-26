@@ -73,15 +73,15 @@
 						<label for="elo">
 							ELO: 
 							{% if min_elo and min_elo != 0 %}
-								<input type="text" name="elo_low" id="elo_low" placeholder="MIN" class="faded-text" value="{{min_elo}}">
+								<input type="text" name="min_elo" id="min_elo" placeholder="MIN" class="faded-text" value="{{min_elo}}">
 							{% else %}
-								<input type="text" name="elo_low" id="elo_low" placeholder="MIN" class="faded-text">
+								<input type="text" name="min_elo" id="min_elo" placeholder="MIN" class="faded-text">
 							{% endif %}
 							- 
 							{% if max_elo and max_elo != 100000 %}
-								<input type="text" name="elo_high" id="elo_high" placeholder="MAX" class="faded-text" value="{{max_elo}}">
+								<input type="text" name="max_elo" id="max_elo" placeholder="MAX" class="faded-text" value="{{max_elo}}">
 							{% else %}
-								<input type="text" name="elo_high" id="elo_high" placeholder="MAX" class="faded-text">
+								<input type="text" name="max_elo" id="max_elo" placeholder="MAX" class="faded-text">
 							{% endif %}
 						</label>
 

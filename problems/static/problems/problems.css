@@ -1,6 +1,4 @@
 .container {
-    display: flex;
-    flex-direction: row;
     /* border: 1px dashed red; */
 }
 
@@ -44,6 +42,16 @@
     height: 20px;
 }
 
+#problems_table a:link, #problems_table a:visited {
+	text-decoration: none;
+	color: rgb(30, 30, 238);
+}
+
+#problems_table a:hover {
+	text-decoration: underline;
+	color: rgb(0, 0, 170);
+}
+
 #problems_table td {
     border-spacing: 8px;
     padding: 12px;
@@ -62,10 +70,6 @@
 #qroblems_table td:first-child{
     text-align: left;
 }
-.title_header {
-	margin-top: 5%;
-	margin-bottom: 5%;
-}
 
 #right_bar {
 	flex-direction: column;
@@ -73,20 +77,24 @@
     margin-right: 5%;
 }
 
+.title_header {
+	margin-bottom: 5%;
+	margin-top: 5%;
+}
+
 #save_container {
     flex-shrink: 0;
     border: 2px solid black;
     padding: 20px 30px;
-    margin-bottom: 5%;
     flex-direction: column;
     text-align: center;
+	margin-bottom: 10%;
 }
 
 #filter_container {
     flex-shrink: 0;
     border: 2px solid black;
     padding: 20px 30px;
-    margin-top: 5%;
     flex-direction: column;
     text-align: center;
 }
@@ -101,13 +109,13 @@
     margin-bottom: 5%;
 }
 
-#elo_low {
+#min_elo {
     width: 40px;
     margin-left: 10px;
     margin-right: 2px;
 }
 
-#elo_high {
+#max_elo {
     width: 40px;
     margin-left: 2px;
 }
