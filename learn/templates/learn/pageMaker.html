@@ -1,0 +1,60 @@
+{% extends "base/base_navbar.html" %}
+
+{% load static %}
+
+{% block title %}Page Maker{% endblock title %}
+
+{% block styles %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ace-builds/css/ace.min.css">
+
+	<style type="text/css" media="screen">
+    #editor { 
+		width: 45%;
+		height: 60%;
+    }
+	#preview {
+		width:45%;
+	}
+	#editor_preview {
+		width:100%;
+		height: 100%;
+	}
+	</style>
+
+	{{ block.super }}
+{% endblock styles %}
+
+{% block javascript %}
+	<script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/ace-builds/src-noconflict/ace.js"></script>
+	{{ block.super }}
+{% endblock javascript %}
+
+{% block content %}
+<div id="editor_preview" class="container">
+	<div id="editor"># hello, markdown!</div>
+	<div id="preview"> nothing to preview </div>
+</div>
+
+<script>
+	// ace setup
+	var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/markdown");
+
+	// converts editor text to preview
+	var preview = document.getElementById("preview"); 
+	var converter = new showdown.Converter();
+
+	//every time the editor changes the preview updates
+	editor.session.on('change', function(delta) {
+		var text = editor.getValue();
+		var html = converter.makeHtml(text);
+		preview.innerHTML = html;
+	});
+
+
+
+
+</script>
+{% endblock content %}

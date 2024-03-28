@@ -17,7 +17,7 @@ def problems(request,min_elo=None,max_elo=None,tags=None,completed=None):
     if max_elo is not None and max_elo != 100000:
         problems = problems.filter(elo__lte=max_elo)
     if tags is not None:
-        problems = Problem.objects.filter(tags__tag_name__contains=tags)
+        problems = problems.filter(tags__tag_name__contains=tags)
     context = {
         "problems": problems,
         "min_elo": min_elo,
