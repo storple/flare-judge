@@ -1,0 +1,14 @@
+{% extends "base/base_navbar.html" %}
+
+{% load static %}
+
+{% block title %}Guides and Tutorials{% endblock %}
+
+{% block content %}
+	{% for guide in guides %}
+		<a href="{% url 'guide' guide=guide.safe_guide_name %}">{{guide.guide_name}}</a>
+		<p>{{guide.description}}</p>
+	{% empty %}
+		<p>There are no guides at the moment.</p>
+	{% endfor %}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base/base_navbar.html" %}
+
+{% load static %}
+
+{% block title %}Problems{% endblock %}
+
+{% block content %}
+	{% if guide %}
+		{% for page in guide.page_set.all %}
+			<a href="{% url 'page' page=page.safe_page_name %}">{{page.page_name}}</a>
+		{% empty %}
+			<p>There are no pages at the moment.</p>
+		{% endfor %}
+	{% else %}
+		<p>The requested guide does not exist.</p>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% load static %}
+
+<div id="editor_preview">
+	<div id="editor">{% if widget.value %}{{ widget.value }}{% endif %}</div>
+	<div id="preview">nothing to preview</div>
+	<textarea
+		name="{{ widget.name }}"
+		{% include "django/forms/widgets/attrs.html" %}
+		style="display: none;"
+	></textarea>
+</div>
+
+<script src="{% static 'showdown.min.js' %}"></script>
+<script src="{% static 'ace/ace.js' %}"></script>
+<script src="{% static 'ace/ext-language_tools.js' %}"></script>
+<script src="{% static 'learn/markdown_editor.js' %}"></script>

@@ -1,3 +1,22 @@
 from django.contrib import admin
+from .models import Page, Guide
+from django.db import models
+# from .forms import PageForm
+from .widgets import MarkdownEditor
 
-# Register your models here.
+class PageAdmin(admin.ModelAdmin):
+    fields = ["page_name", "authors","guide","safe_page_name","markdown"]
+    formfield_overrides = {
+        models.TextField: {"widget": MarkdownEditor(attrs={"class":"hidden-textarea"})},
+    }
+
+    class Media:
+        css = {
+            "all": [
+                "learn/markdown_editor.css",
+                ],
+        }
+        # js = ["learn/markdown_editor.js"]
+
+admin.site.register(Page, PageAdmin)
+admin.site.register(Guide)

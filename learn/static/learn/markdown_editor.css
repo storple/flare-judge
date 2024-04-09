@@ -1,0 +1,20 @@
+#editor { 
+	width: 50%;
+	/* min-height: 200px; */
+	height:100%;
+	/* height: auto; */
+	margin-right: 1%;
+}
+#preview {
+	width: 50%;
+	height: 100%;
+	overflow: auto;
+}
+#editor_preview {
+	display: flex;
+	height: 500px;
+	/* margin: 5%; */
+	overflow: auto;
+	align-content: space-between;
+	flex-grow: 1;
+}

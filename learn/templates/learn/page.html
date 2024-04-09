@@ -1,0 +1,17 @@
+{% extends "base/base_navbar.html" %}
+
+{% load static %}
+
+{% block title %}Problems{% endblock %}
+
+{% block content %}
+	{% if page %}
+		<h1> {{page.page_name}} </h1>
+		{% include 'generated/'|add:page.html_generated_file.name %}
+		{% if page.guide %}
+			<a href="{% url 'guide' guide=page.guide.safe_guide_name %}">Back to guide</a>
+		{% endif %}
+	{% else %}
+		<p>The requested guide does not exist.</p>
+	{% endif %}
+{% endblock %}

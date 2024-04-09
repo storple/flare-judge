@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/django,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,python
 
+### project stuff ###
+learn/templates/generated/
+
 ### Django ###
 *.log
 *.pot
