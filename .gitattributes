@@ -1,0 +1,2 @@
+# excludes js libraries from inflating language stats
+static/** linguist-vendored
