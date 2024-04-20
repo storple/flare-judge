@@ -1,20 +1,21 @@
 {% extends "base/base_navbar.html" %}
 {% block content %}
+
 {% if form.errors %}
-{{ form.errors }}
+	{{ form.errors }}
 {% endif %}
 
 {% if user.is_authenticated %}
-<form method="post" action="{% url 'logout' %}">
-{% csrf_token %}
-<input type="submit" value="logout">
-</form>
-<a href="{% url 'home' %}"> Go Home<p>
+	<form method="post" action="{% url 'logout' %}">
+	{% csrf_token %}
+	<input type="submit" value="logout">
+	</form>
+	<a href="{% url 'home' %}"> Go Home<p>
 {% else %}
-<p>Please login to see this page.</p>
-<a href="{% url 'create_profile' %}"> Sign Up<p>
-<a href="{% url 'login' %}"> Log in<p>
-<a href="{% url 'home' %}"> Go Home<p>
+	<p>Please login to see this page.</p>
+	<a href="{% url 'create_profile' %}"> Sign Up<p>
+	<a href="{% url 'login' %}"> Log in<p>
+	<a href="{% url 'home' %}"> Go Home<p>
 {% endif %}
 
 {% endblock %}
