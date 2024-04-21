@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.files.storage import FileSystemStorage
 from django.core.files.base import ContentFile
+from django.template.defaultfilters import slugify
 
 from accounts.models import Profile
 
@@ -8,32 +9,42 @@ import markdown
 
 learn_page_fs = FileSystemStorage(location="learn/templates/generated")
 
-
 class Guide(models.Model):
     guide_name = models.CharField(default="",max_length=200)
-    safe_guide_name = models.CharField(default="",max_length=200)
-    description = models.TextField()
+    url_name = models.SlugField(default=guide_name,max_length=200)
+    short_description = models.TextField(default="")
+    description = models.TextField(default="")
+    visible = models.BooleanField(default=False)
+    in_main_page  = models.BooleanField(default=False)
     def __str__(self):
         return self.guide_name
 
+    #creates the safe url name
+    def save(self, *args, **kwargs):
+        self.url_name = slugify(self.guide_name)
+        super().save(*args, **kwargs)
+
+
 class Page(models.Model):
     page_name = models.CharField(default="",max_length=200)
-    safe_page_name = models.CharField(default="",max_length=200)
-    authors = models.ManyToManyField(Profile)
+    url_name = models.SlugField(default=page_name,max_length=200)
+    html_template_name = models.CharField(default="",max_length=200)
+
     markdown = models.TextField()
     html_generated_file = models.FileField(storage=learn_page_fs, upload_to="")
 
+    authors = models.ManyToManyField(Profile)
+    visible = models.BooleanField(default=False)
+    in_main_page  = models.BooleanField(default=False)
     guide = models.ForeignKey(
         Guide,
         on_delete=models.CASCADE,
         blank=True,
         null=True
     )
-
     def __str__(self):
         return self.page_name
 
-    # generates html from markdown text and saves it to a file
     def save(self, *args, **kwargs):
         #deletes current file to avoid duplicates
         if self.html_generated_file:
@@ -41,12 +52,19 @@ class Page(models.Model):
             if learn_page_fs.exists(path):
                 learn_page_fs.delete(path)
 
+        self.url_name = slugify(self.page_name)
+
+        #slugs are also filename-friendly, so they can be reused for that
+        if self.guide is not None:
+            filename = "{}/{}.html".format(self.guide.url_name,self.url_name)
+        else:
+            filename = "{}.html".format(self.url_name)
+
+        #saves the generated markdown
         html_generated = markdown.markdown(self.markdown, output_format="html")
 
-        if self.guide is not None:
-            filename = self.guide.guide_name+"/"+self.safe_page_name+".html"
-        else:
-            filename = self.safe_page_name+".html"
         self.html_generated_file = ContentFile(html_generated, name=filename)
-        super().save(*args, **kwargs)
 
+        self.html_template_name = "generated/{}".format(self.html_generated_file.name)
+        print(self.html_template_name,self.html_generated_file.path)
+        super().save(*args, **kwargs)

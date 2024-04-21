@@ -6,11 +6,17 @@
 
 {% block content %}
 	{% if guide %}
-		{% for page in guide.page_set.all %}
-			<a href="{% url 'page' page=page.safe_page_name %}">{{page.page_name}}</a>
-		{% empty %}
-			<p>There are no pages at the moment.</p>
-		{% endfor %}
+		{% if page.visible or user.is_superuser %}
+			<h1>{{guide.guide_name}}</h1>
+			<p>{{guide.description}}</p>
+			{% for page in pages %}
+				<a href="{% url 'page' page=page.url_name %}">{{page.page_name}}</a>
+			{% empty %}
+				<p>There are no pages at the moment.</p>
+			{% endfor %}
+		{% else %}
+			<p>You do not have access to this guide.</p>
+		{% endif %}
 	{% else %}
 		<p>The requested guide does not exist.</p>
 	{% endif %}

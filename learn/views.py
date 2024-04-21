@@ -3,28 +3,32 @@ from django.shortcuts import render
 from .models import Guide, Page
 
 def main_page(request):
-    guides = Guide.objects.all()
+    guides = Guide.objects.filter(in_main_page=True)
+    pages = Page.objects.filter(in_main_page=True)
     context = {
-        "guides": guides
+        "guides": guides, 
+        "pages": pages 
     }
-
     return render(request, "learn/main_page.html", context)
 
 def guide_page(request,guide=None):
     if guide is not None:
         try:
-            currentGuide = Guide.objects.get(safe_guide_name=guide)
+            currentGuide = Guide.objects.get(url_name=guide)
+            pages = currentGuide.page_set.filter(visible=True)
         except:
             currentGuide = None
+            pages = None
         context = {
-            "guide": currentGuide
+            "guide": currentGuide,
+            "pages": pages
         }
         return render(request, "learn/guide_page.html", context)
 
 def page(request,page=None):
     if page is not None:
         try:
-            currentPage = Page.objects.get(safe_page_name=page)
+            currentPage = Page.objects.get(url_name=page)
         except:
             currentPage = None
 
