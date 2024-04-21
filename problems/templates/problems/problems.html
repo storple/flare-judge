@@ -9,11 +9,6 @@
 {{block.super}}
 {% endblock %}
 
-{% block javascript %}
-<script src="{% static 'problems/problems.js' %}"></script>
-{{block.super}}
-{% endblock %}
-
 {% block content %}
 	<div class="container" id="top_bar_section">
 		<h1>Problems</h1>
@@ -29,7 +24,7 @@
 
 	<div class="container" id="problems_body_container">
 		<!-- problems -->
-		<table class="container" id="problems_table">
+		<table id="problems_table">
 			<colgroup>
 				<col style="width: 400px">
 				<col style="width: 70px">
@@ -108,4 +103,5 @@
 			</form>
 		</div>
 	</div>
+	<script src="{% static 'problems/problems.js' %}"></script>
 {% endblock %}

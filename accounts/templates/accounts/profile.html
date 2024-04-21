@@ -1,21 +1,35 @@
 {% extends "base/base_navbar.html" %}
+{% load static %}
+
+{% block styles %}
+	<link rel="stylesheet" href="{% static 'problems/solved_problems.css' %}">
+	<link rel="stylesheet" href="{% static 'accounts/profile.css' %}">
+{{block.super}}
+{% endblock %}
+
 {% block content %}
+	{% if form.errors %}
+		{{ form.errors }}
+	{% endif %}
 
-{% if form.errors %}
-	{{ form.errors }}
-{% endif %}
+	{% if user.is_authenticated %}
+		<div id="grid_container">
+			<div id="left_column">
+				<h1>{{user.username}}</h1>
+				<a href="{% url 'change_password' %}" id="change_password_link">Change Password</a>
+				<form method="post" action="{% url 'logout' %}">
+				{% csrf_token %}
+				<input type="submit" value="logout">
+				</form>
+			</div>
 
-{% if user.is_authenticated %}
-	<form method="post" action="{% url 'logout' %}">
-	{% csrf_token %}
-	<input type="submit" value="logout">
-	</form>
-	<a href="{% url 'home' %}"> Go Home<p>
-{% else %}
-	<p>Please login to see this page.</p>
-	<a href="{% url 'create_profile' %}"> Sign Up<p>
-	<a href="{% url 'login' %}"> Log in<p>
-	<a href="{% url 'home' %}"> Go Home<p>
-{% endif %}
+			<div id="right_column">
+				<h2 id="solved_problems_heading">Problems Solved: {{ user.profile.problems_solved.all|length }}</h2>
+				{% include "problems/solved_problems.html" %}
+			</div>
 
+		</div>
+	{% else %}
+		<p>Please login to see this page.</p>
+	{% endif %}
 {% endblock %}

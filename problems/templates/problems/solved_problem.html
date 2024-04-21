@@ -1,0 +1,19 @@
+<tr>
+	<td><a target="_blank" href="{{problem.link}}">{{problem.problem_name}}</a></td>
+
+	<td>{{problem.elo}}</td>
+
+	<td>
+		{% with tags=problem.tags.all %}
+			{% if tags %}
+			    {{ tags|join:", " }}
+			{% endif %}
+		{% endwith %}
+	</td>
+
+	{% if problem.editorial %}
+		<td><a target="_blank" href="{{problem.editorial}}">Editorial</a></td>
+	{% else %}
+		<td></td>
+	{% endif %}
+</tr>

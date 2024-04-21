@@ -1,0 +1,50 @@
+.container {
+    /* border: 1px dashed red; */
+}
+
+#problems_body_container {
+    flex-direction: row;
+}
+
+#problems_table {
+    display: table;
+    height: 0px;
+    /* width: 70%; */
+    border-collapse: collapse;
+    text-align: center;
+    overflow-y: auto;
+}
+
+#problems_table thead th {
+    font-size: 25px;
+    border: 2px solid black;
+	height: 20px;
+}
+
+#problems_table a:link, #problems_table a:visited {
+	text-decoration: none;
+	color: rgb(30, 30, 238);
+}
+
+#problems_table a:hover {
+	text-decoration: underline;
+	color: rgb(0, 0, 170);
+}
+
+#problems_table td {
+    padding: 12px;
+    border: 2px solid black;
+}
+
+#problems_table tbody tr {
+    height: 20px;
+}
+
+#problems_table td:not(:first-child) {
+    height: 20px;
+    text-align: center;
+}
+
+#problems_table td:first-child{
+    text-align: left;
+}

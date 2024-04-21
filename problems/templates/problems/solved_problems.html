@@ -1,0 +1,23 @@
+<div class="container" id="problems_body_container">
+	<table id="problems_table">
+		<colgroup>
+			<col style="width: 400px">
+			<col style="width: 70px">
+			<col style="width: 180px">
+			<col style="width: 130px">
+		</colgroup>
+		<thead>
+			<th>Problem Name</th>
+			<th>ELO</th>
+			<th>Tags</th>
+			<th>Editorial</th>
+		</thead>
+		<tbody>
+			{% with solved_problems=user.profile.problems_solved.all %}
+				{% for problem in solved_problems %}
+					{% include "problems/solved_problem.html" with problem=problem %}
+				{% endfor %}
+			{% endwith %}
+		</tbody>
+	</table>
+</div>

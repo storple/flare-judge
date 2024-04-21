@@ -4,26 +4,14 @@
 
 {% block styles %}    
 	<link rel="stylesheet" href="{% static 'base/base_auth.css' %}">
+	<link rel="stylesheet" href="{% static 'base/base_navbar.css' %}">
 	{{block.super}}
 {% endblock %}
 
 {% block body %}
-	<header class="container">
-		<a href="{% url 'home' %}" id="logo_link">
-			<img src="{% static 'base/flarelogo.png' %}" alt="Flare Logo" class="logo">
-
-		</a>
-		<nav id="main_links">
-			<a href="{% url 'problems' %}" id="problem_link">Problems</a>
-			<a href="{% url 'learn' %}" id="learn_link">Learn</a>
-			<a href="{% url 'contests' %}" id="learn_link">Contests</a>
-		</nav>
-		<nav id="profile_links">
-			<a href="{% url 'login' %}" id="login_link">Log In</a>
-			<a href="{% url 'create_profile' %}" id="signup_link">Sign Up</a>
-		</nav>
-	</header>
-	<div id="content" class="container">
-		{% block content %}{% endblock %}
-	</div>
+	<div id="main_container">
+		{% include "base/top_navbar.html" %}
+		<div id="content" class="container">
+			{% block content %}{% endblock %}
+		</div>
 {% endblock %}
