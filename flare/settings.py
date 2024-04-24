@@ -22,24 +22,25 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-if os.getenv("SECRET_KEY") is not None:
-    SECRET_KEY = os.getenv("SECRET_KEY")
-else:
-    print("SECRET_KEY not set in .env file")
+SECRET_KEY = os.getenv("SECRET_KEY")
+if SECRET_KEY is None:
+    print("SECRET_KEY not set in .env file.")
+    exit()
+if SECRET_KEY == "KEY HERE":
+    print("Setting SECRET_KEY to default is a security risk! Change SECRET_KEY to something else.")
     exit()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-ENV_DEBUG = os.getenv("DEBUG")
+ENV_DEBUG = os.getenv("DEBUG").lower()
 
-if ENV_DEBUG == "True" or ENV_DEBUG == "true":
-    DEBUG = True
-elif ENV_DEBUG == "False" or ENV_DEBUG == "false":
-    DEBUG = False
-elif ENV_DEBUG is None:
+if ENV_DEBUG is None:
     print("DEBUG not set in .env file")
     exit()
+
+if ENV_DEBUG == "true": DEBUG = True
+elif ENV_DEBUG == "false": DEBUG = False
 else:
-    print("Bad DEBUG value in .env file:",ENV_DEBUG)
+    print("Bad DEBUG value in .env file:", ENV_DEBUG)
     exit()
 
 ALLOWED_HOSTS = ["*"]
