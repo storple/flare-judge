@@ -6,7 +6,7 @@
 	<td>
 		{% with tags=problem.tags.all %}
 			{% if tags %}
-			    {{ tags|join:", " }}
+				{{ tags|join:", " }}
 			{% endif %}
 		{% endwith %}
 	</td>
@@ -28,6 +28,7 @@
 					hx-post="{% url 'save_problem' %}"
 					hx-swap="none"
 					hx-vals='{"name": "{{problem.problem_name}}"}'
+				>
 				</input>
 			</td>
 		{% endif %}

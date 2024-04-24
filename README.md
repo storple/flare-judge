@@ -4,7 +4,8 @@
 
 
 # Flare Judge
-A competitive programming roadmap for aspiring high school students who want to succeed.
+A centralized learning platform that pulls competitive programming resources from across the web and puts them all in one place. Flare has an array of resources including custom-curated tutorials, practice problems, and language-specific assistance to aid in the learning process for competitive programming for a wide range of skill levels.
+
 ## Run Locally
 Python 3.10+ required
 you may use the global install or use a [virtual environment](https://docs.python.org/3/tutorial/venv.html#creating-virtual-environments) (recommended)
@@ -33,3 +34,23 @@ Start the server
 python manage.py migrate
 python manage.py runserver
 ```
+
+## Admin Panel
+Adding problems, lessons, and tags is very convenient thanks to the admin panel!
+
+To use the admin panel, first create a superuser:
+
+```bash
+python manage.py createsuperuser
+```
+
+Go to the Django admin panel by entering the following link and log in
+
+```
+http://127.0.0.1:8000/admin/
+```
+
+Using the admin panel you can now easily add problems, lessons, and tags to the website!
+
+![Django Admin Panel](https://github.com/storple/flare-judge/blob/main/screenshots/django_admin_panel.png?raw=true)
+
