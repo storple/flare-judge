@@ -17,7 +17,10 @@
 }
 
 #informationText {
-    margin: 10px 20px 50px;
+    margin-bottom: 25px;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 #problems_body_container {
@@ -73,8 +76,8 @@
 
 #right_bar {
 	flex-direction: column;
-    margin-left: 5%;
-    margin-right: 5%;
+	margin-left: 5%;
+	margin-right: 5%;
 }
 
 .title_header {
@@ -83,15 +86,15 @@
 }
 
 #save_container {
-    flex-shrink: 0;
-    border: 2px solid black;
-    padding: 20px 30px;
-    flex-direction: column;
+	flex-shrink: 0;
+	border: 2px solid black;
+	padding: 20px 30px;
+	flex-direction: column;
     text-align: center;
 	margin-bottom: 10%;
 }
 
-#filter_container {
+#filter_form {
     flex-shrink: 0;
     border: 2px solid black;
     padding: 20px 30px;
@@ -104,7 +107,7 @@
     margin-bottom: 5%;
 }
 
-#filter_container input {
+#filter_form input {
     margin-top: 5%;
     margin-bottom: 5%;
 }
@@ -127,4 +130,8 @@
 .faded-text {
     opacity: 0.6;
     text-align: center;
+}
+
+#page_navigation {
+
 }

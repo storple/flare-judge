@@ -1,0 +1,66 @@
+<div class="container" id="right_bar">
+	<form
+		class="container"
+		id="filter_form"
+		hx-post="{% url 'problems_page' page=page %}"
+		hx-target="#problems_body_container"
+		hx-swap="outerHTML"
+		hx-trigger="change from:.filter_input delay:500ms"
+		>
+		<h1 class="title_header">Filter</h1>
+		<label for="elo">
+			ELO: 
+			<input
+			type="text"
+			name="min_elo"
+			id="min_elo"
+			class="filter_input"
+			placeholder="MIN"
+			class="faded-text"
+			{% if min_elo %}
+				value="{{min_elo}}"
+			{% endif %}
+			>
+			-
+			<input
+			type="text"
+			name="max_elo"
+			id="max_elo"
+			class="filter_input"
+			placeholder="MAX"
+			class="faded-text"
+			{% if max_elo %}
+				value="{{max_elo}}"
+			{% endif %}
+			>
+		</label>
+
+		<label for="Tags">
+			Tags:
+			<input
+			type="text"
+			name="tags"
+			id="tags"
+			class="filter_input"
+			{% if tags %}
+				value="{{tags}}"
+			{% endif %}
+			>
+		</label>
+
+		{% if user.is_authenticated %}
+			<label for="checkbox">
+				Completed:
+				<input
+				type="checkbox"
+				name="completed"
+				id="completed"
+				class="filter_input"
+				{% if completed %}
+					checked
+				{% endif %}>
+			</label>
+		{% endif %}
+	</form>
+	{% include "problems/page_navigation.html" %}
+</div>

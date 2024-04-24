@@ -66,5 +66,4 @@ class Page(models.Model):
         self.html_generated_file = ContentFile(html_generated, name=filename)
 
         self.html_template_name = "generated/{}".format(self.html_generated_file.name)
-        print(self.html_template_name,self.html_generated_file.path)
         super().save(*args, **kwargs)

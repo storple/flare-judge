@@ -19,17 +19,17 @@
 
 	{% with solved_problems=user.profile.problems_solved.all %}
 		{% if user.is_authenticated %}
-		<td><input type="checkbox" name="{{problem.problem_name}}"
-					{% if form %}
-						form="{{form}}"
-					{% endif %}
-
+			<td>
+				<input type="checkbox"
+					name="{{problem.problem_name}}"
 					{% if problem in solved_problems %}
 						checked
 					{% endif %}
-				></td>
-		{% else %}
-			<td></td>
+					hx-post="{% url 'save_problem' %}"
+					hx-swap="none"
+					hx-vals='{"name": "{{problem.problem_name}}"}'
+				</input>
+			</td>
 		{% endif %}
 	{% endwith %}
 </tr>

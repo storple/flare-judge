@@ -1,0 +1,27 @@
+<table id="problems_table">
+	<colgroup>
+		<col style="width: 400px">
+		<col style="width: 70px">
+		<col style="width: 180px">
+		<col style="width: 130px">
+		{% if user.is_authenticated %}
+			<col style="width: 100px">
+		{% endif %}
+	</colgroup>
+	<thead>
+		<th>Problem Name</th>
+		<th>ELO</th>
+		<th>Tags</th>
+		<th>Editorial</th>
+		{% if user.is_authenticated %}
+			<th>Status</th>
+		{% endif %}
+	</thead>
+	<tbody>
+		{% if problems %}
+			{% for problem in problems %}
+				{% include "problems/problem.html" with problem=problem %}
+			{% endfor %}
+		{% endif %}
+	</tbody>
+</table>

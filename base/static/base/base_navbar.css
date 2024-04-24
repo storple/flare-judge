@@ -2,6 +2,7 @@
 	height: 100%;
 	display: grid;
 	grid-template-rows: 90px auto;
+	overflow: auto;
 }
 
 #content{
@@ -16,10 +17,11 @@ header {
 }
 
 #website_title{
-    font-family: "Epilogue";
-    font-weight: 600;
-    font-size: 40px;
+	font-family: "Epilogue";
+	font-weight: 600;
+	font-size: 40px;
 	margin-left: 5px;
+	padding-right: 10px;
 }
 
 header a{
