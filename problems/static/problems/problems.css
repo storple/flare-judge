@@ -78,6 +78,7 @@
 	flex-direction: column;
 	margin-left: 5%;
 	margin-right: 5%;
+	gap: 10px;
 }
 
 .title_header {
@@ -133,5 +134,28 @@
 }
 
 #page_navigation {
+	gap: 15px;
+}
 
+#page_numbers {
+	gap: 4px;
+}
+
+.page_link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+	padding: 5px 10px;
+
+    border: 2px solid black;
+	border-radius: 5px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.page_link.disabled {
+	color: #ccc;
+	border-color: #ccc;
+	cursor: default;
 }

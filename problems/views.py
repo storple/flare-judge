@@ -9,7 +9,10 @@ def problems_by_page(problems,page,problem_per_page):
     else:
         return None
 
-def problems(request, page=1, problem_per_page=50):
+def max_pages(problems,problems_per_page):
+        return max(1, ((len(problems) - 1) // problems_per_page) + 1)
+
+def problems(request, page=1, problems_per_page=50):
     problems = Problem.objects.all()
 
     # called on a page change or filtering change
@@ -34,11 +37,16 @@ def problems(request, page=1, problem_per_page=50):
         if max_elo != "": problems = problems.filter(elo__lte=max_elo)
         if tags != "": problems = problems.filter(tags__tag_name__contains=tags)
 
-        problems = problems_by_page(problems,page,problem_per_page)
+        current_max_pages = max_pages(problems,problems_per_page)
+
+        page = min(current_max_pages, page)
+
+        problems = problems_by_page(problems,page,problems_per_page)
 
         context = {
             "problems": problems,
             "page": page,
+            "max_pages": current_max_pages,
             "min_elo": min_elo,
             "max_elo": max_elo,
             "tags": tags,
@@ -47,10 +55,16 @@ def problems(request, page=1, problem_per_page=50):
         return render(request, "problems/problems&filter.html", context)
 
     #first rendering of the page
-    problems = problems_by_page(problems,page,problem_per_page)
+    current_max_pages = max_pages(problems,problems_per_page)
+
+    page = min(current_max_pages, page)
+
+    problems = problems_by_page(problems,page,problems_per_page)
+
     context = {
         "problems": problems,
-        "page": page
+        "page": page,
+        "max_pages": current_max_pages,
     }
     return render(request, "problems/problems.html", context)
 

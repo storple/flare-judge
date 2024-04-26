@@ -80,7 +80,7 @@ header a {
 	padding-left: 10px;
 	padding-right: 10px;
 	border-radius: 10px;
-	transition: color 0.1s linear;
+	transition: color 0.1s, background-color 0.1s;
 }
 
 #main_links a:hover, #profile_links a:hover {
