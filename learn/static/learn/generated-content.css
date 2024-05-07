@@ -1,0 +1,42 @@
+/* generated page stylings */
+
+#page {
+	align-self: center;
+	width: 80%;
+}
+
+.toc {
+	order: 2;
+}
+
+#generated-content {
+	font-family: "JetBrains Mono", monospace;
+}
+
+#generated-content strong {
+	font-size: 1.1rem;
+	font-weight: 800;
+	font-style: italic;
+}
+
+#generated-content h1 {
+	font-size: 2.5rem;
+	font-weight: 700;
+	font-style: normal;
+}
+
+#generated-content h2 {
+	font-size: 1.75rem;
+}
+
+#generated-content h3 {
+	font-size: 1.4rem;
+}
+
+#generated-content p {
+	font-size: 1rem;
+}
+
+#generated-content code {
+	font-size: .85rem;
+}

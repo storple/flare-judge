@@ -15,7 +15,7 @@ editor.setOptions({
 
 // converts editor text to preview
 let hidden_Textarea = document.getElementsByClassName("hidden-textarea")[0];
-let preview = document.getElementById("preview"); 
+let preview = document.getElementById("generated-content"); 
 let converter = new showdown.Converter();
 converter.setFlavor('github');
 // initially renders the html witout triggering editor change

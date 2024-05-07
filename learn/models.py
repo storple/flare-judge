@@ -32,6 +32,7 @@ class Page(models.Model):
 
     markdown = models.TextField()
     html_generated_file = models.FileField(storage=learn_page_fs, upload_to="")
+    toc = models.TextField(default="")
 
     authors = models.ManyToManyField(Profile)
     visible = models.BooleanField(default=False)
@@ -61,7 +62,9 @@ class Page(models.Model):
             filename = "{}.html".format(self.url_name)
 
         #saves the generated markdown
-        html_generated = markdown.markdown(self.markdown, output_format="html")
+        md = markdown.Markdown(output_format="html", extensions=['extra','toc','nl2br'])
+        html_generated = md.convert(self.markdown)
+        self.toc = md.toc
 
         self.html_generated_file = ContentFile(html_generated, name=filename)
 

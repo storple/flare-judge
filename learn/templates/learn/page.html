@@ -7,11 +7,21 @@
 {% block content %}
 	{% if page %}
 		{% if page.visible or user.is_superuser %}
-			<h1> {{page.page_name}} </h1>
-			{% include page.html_template_name %}
-			{% if page.guide and page.guide.visible %}
-				<a href="{% url 'guide' guide=page.guide.url_name %}">Back to guide</a>
-			{% endif %}
+			<div id="page" class="container">
+				<div id="generated-content">
+					<h1> {{page.page_name}} </h1>
+					{% include page.html_template_name %}
+					{% if page.guide and page.guide.visible %}
+						<a href="{% url 'guide' guide=page.guide.url_name %}">Back to guide</a>
+					{% endif %}
+				</div>
+				{% comment %}
+				<!-- toc -->
+				{% autoescape off %}
+					{{ page.toc }}
+				{% endautoescape %}
+				{% endcomment %}
+			</div>
 		{% else %}
 			<p>You do not have access to this page.</p>
 		{% endif %}

@@ -2,7 +2,7 @@
 
 <div id="editor_preview">
 	<div id="editor">{% if widget.value %}{{ widget.value }}{% endif %}</div>
-	<div id="preview">nothing to preview</div>
+	<div id="generated-content">nothing to preview</div>
 	<textarea
 		name="{{ widget.name }}"
 		{% include "django/forms/widgets/attrs.html" %}
