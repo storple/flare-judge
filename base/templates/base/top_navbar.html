@@ -7,7 +7,9 @@
 	<nav id="main_links">
 		<a href="{% url 'problems' %}" id="problem_link">Problems</a>
 		<a href="{% url 'learn' %}" id="learn_link">Learn</a>
+		{% comment %}
 		<a href="{% url 'contests' %}" id="learn_link">Contests</a>
+		{% endcomment %}
 	</nav>
 	{% if user.is_authenticated %}
 		<nav id="profile_links">

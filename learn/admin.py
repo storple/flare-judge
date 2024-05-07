@@ -14,6 +14,7 @@ class PageAdmin(admin.ModelAdmin):
         css = {
             "all": [
                 "learn/markdown_editor.css",
+                "learn/generated-content.css",
                 ],
         }
         # js = ["learn/markdown_editor.js"]

@@ -2,17 +2,39 @@
 
 {% load static %}
 
+{% block styles %}
+	<link rel="stylesheet" href="{% static 'learn/main_page.css' %}">
+{{ block.super }}
+{% endblock %}
+
 {% block title %}Guides and Tutorials{% endblock %}
 
 {% block content %}
 	{% if guides or pages %}
-		{% for guide in guides %}
-			<a href="{% url 'guide' guide=guide.url_name %}">{{guide.guide_name}}</a>
-			<p>{{guide.short_description}}</p>
-		{% endfor %}
-		{% for page in pages %}
-			<a href="{% url 'page' page=page.url_name %}">{{page.page_name}}</a>
-		{% endfor %}
+		<div id="resource_container" class="container">
+			{% if guides %}
+				<!-- guides -->
+				<h1>Guides:</h1>
+				<div id="guide_container" class="container">
+					{% for guide in guides %}
+						<a class="guide_box" href="{% url 'guide' guide=guide.url_name %}">
+							<h1>{{guide.guide_name}}</h1>
+							<p>{{guide.short_description}}</p>
+						</a>
+					{% endfor %}
+				</div>
+			{% endif %}
+
+			{% if pages %}
+				<!-- pages -->
+				<h1>Pages:</h1>
+				<div id="page_container" class="container">
+					{% for page in pages %}
+						<a href="{% url 'page' page=page.url_name %}">{{page.page_name}}</a>
+					{% endfor %}
+				</div>
+			{% endif %}
+		</div>
 	{% else %}
 		<p>no content to display at this time.</p>
 	{% endif %}

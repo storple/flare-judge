@@ -1,0 +1,31 @@
+#resource_container{
+	margin-left: 20px;
+	margin-right: 20px;
+	flex-direction: column;
+}
+
+#guide_container{
+	gap: 20px;
+	flex-direction:column;
+	height:80%;
+	flex-wrap: wrap;
+	align-content: flex-start;
+}
+
+.guide_box{
+	border-radius: 7px;
+	border: 2px black solid;
+	padding-left:15px;
+	padding-right:15px;
+	background-color: white;
+	color: black !important;
+	text-decoration: none !important;
+	transition-duration: 0.2s;
+	transition-property: background-color,scale;
+	width: 20%;
+}
+.guide_box:hover{
+	background-color: #eeeeee;
+	/* color: red; */
+	scale: 1.04;
+}

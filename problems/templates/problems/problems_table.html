@@ -5,16 +5,16 @@
 		<col style="width: 180px">
 		<col style="width: 130px">
 		{% if user.is_authenticated %}
-			<col style="width: 100px">
+			<col style="width: 10px">
 		{% endif %}
 	</colgroup>
 	<thead>
 		<th>Problem Name</th>
-		<th>ELO</th>
+		<th>Difficulty</th>
 		<th>Tags</th>
 		<th>Editorial</th>
 		{% if user.is_authenticated %}
-			<th>Status</th>
+			<th>Solved</th>
 		{% endif %}
 	</thead>
 	<tbody>

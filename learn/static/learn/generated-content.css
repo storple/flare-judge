@@ -2,7 +2,7 @@
 
 #page {
 	align-self: center;
-	width: 80%;
+	width: 70%;
 }
 
 .toc {
@@ -11,6 +11,8 @@
 
 #generated-content {
 	font-family: "JetBrains Mono", monospace;
+	background-color: white;
+	color: black;
 }
 
 #generated-content strong {
@@ -34,9 +36,11 @@
 }
 
 #generated-content p {
-	font-size: 1rem;
+	font-size: 1.2rem;
+	line-height: 1.4;
 }
 
 #generated-content code {
 	font-size: .85rem;
+	color: black;
 }

@@ -2,7 +2,17 @@
 
 {% load static %}
 
-{% block title %}Problems{% endblock %}
+{% block styles %}
+	<link rel="stylesheet" href="{% static 'learn/guide_page.css' %}">
+{{ block.super }}
+{% endblock %}
+
+
+{% block title %}
+{% if guide %}{% if page.visible or user.is_superuser %}{{guide.guide_name}}
+{% else %}Cannot Access{% endif %}
+{% else %}Doesn't Exist{% endif %}
+{% endblock %}
 
 {% block content %}
 	{% if guide %}

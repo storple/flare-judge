@@ -1,9 +1,26 @@
 html, body {
+	--accent: rgb(238, 30, 30);
+	--hover-link: rgb(170, 0, 0);
+
 	background-color: white;
 	font-family: 'Poppins', sans-serif;
 	height: 100%;
 	overflow: hidden;
 	margin: 0;
+}
+
+#content input[type="checkbox"] {
+	accent-color: var(--accent);
+}
+
+#content a:link, #content a:visited {
+	text-decoration: none;
+	color: var(--accent);
+}
+
+#content a:hover {
+	text-decoration: underline;
+	color: var(--hover-link);
 }
 
 /* a { */
