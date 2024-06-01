@@ -1,7 +1,7 @@
 #main_container {
 	height: 100%;
 	display: grid;
-	grid-template-rows: 90px auto;
+	grid-template-rows: 75px auto;
 	overflow: auto;
 }
 
@@ -46,6 +46,9 @@ header a {
 	text-decoration: none;
 	transition-duration: 0.1s;
 	transition-property: color, background-color;
+
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 #main_links a:hover, #profile_links a:hover {
@@ -59,12 +62,7 @@ header a {
 	align-items: center;
 	margin-left: auto;
 	margin-right: 50px;
-	justify-content: space-between;
 	gap: 10px;
-}
-
-#profile_links a {
-	width: 100px;
 }
 
 #main_links {
@@ -73,10 +71,6 @@ header a {
 	gap: 30px;
 	margin-left: 50px;
 	font-size: 1.2rem;
-}
-#main_links a {
-	padding-left: 10px;
-	padding-right: 10px;
 }
 
 #signup_link {
