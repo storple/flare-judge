@@ -53,6 +53,13 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'problems.apps.ProblemsConfig',
     'learn.apps.LearnConfig',
+
+    'tailwind',
+    'theme',
+    'django_browser_reload',
+
+    "django_htmx",
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -69,6 +76,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    "django_htmx.middleware.HtmxMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = 'flare.urls'
@@ -138,6 +148,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+#tailwind settings
+TAILWIND_APP_NAME = 'theme'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",

@@ -2,16 +2,11 @@
 
 {% load static %}
 
-{% block styles %}    
-	<link rel="stylesheet" href="{% static 'base/base_navbar.css' %}">
-	{{block.super}}
-{% endblock %}
-
 {% block body %}
-		<div id="main_container">
-			{% include "base/top_navbar.html" %}
-			<div id="content" class="container">
-				{% block content %}{% endblock %}
-			</div>
-		</div>
+    <div class="divide-y-2 divide-background-700 h-full grid grid-rows-[max-content_1fr]">
+        {% include "base/top_navbar.html" %}
+        <main id="main" class="min-h-full">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
 {% endblock %}

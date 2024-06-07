@@ -1,4 +1,4 @@
-{% extends "base/base_auth.html" %}
+{% extends base_template %}
 
 {% block title %}Log In{% endblock %}
 
@@ -18,7 +18,7 @@
     {% endif %}
 {% endif %}
 
-<form method="post" action="{% url 'login' %}">
+<form method="post" action="{% url 'login' %}" hx-post="{% url 'login' %}">
 {% csrf_token %}
 <div>
 	{{ form.username.label_tag }}
