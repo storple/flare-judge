@@ -5,16 +5,16 @@
 {% block title %}Problems{% endblock %}
 
 {% block styles %}
-<link rel="stylesheet" href="{% static 'problems/problems.css' %}">
+<!-- <link rel="stylesheet" href="{% static 'problems/problems.css' %}"> -->
 {{block.super}}
 {% endblock %}
 
 {% block content %}
-	<div class="container" id="top_bar_section">
-		<h1>Problems</h1>
+	<div class="flex justify-center">
+		<h1 class="text-text-light dark:text-text-dark">Problems</h1>
 	</div>
-	<div class="container" id="informationText">
-		<p>
+	<div>
+		<p class="text-text-light dark:text-text-dark">
 			Here, you will be able to find a list of problems that are ranked by their difficulty, which is great if you are trying to look for 
 			problems that will challenge you. Some recommendations to make the maximum use of this problem list are to do problems that are 
 			around or higher than your overall skill level or work on topics (Strings, Math, etc.) that you are you struggling on. We use problems

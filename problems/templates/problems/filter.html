@@ -2,10 +2,11 @@
 	<form
 		class="container"
 		id="filter_form"
-		hx-post="{% url 'problems_page' page=page %}"
+		hx-get="{% url 'problems_page' page=page %}"
 		hx-target="#problems_body_container"
 		hx-swap="outerHTML"
 		hx-trigger="change from:.filter_input delay:500ms"
+        hx-push-url="true"
 		>
 		<h1 class="title_header">Filter</h1>
 		Difficulty: 

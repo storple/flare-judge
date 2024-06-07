@@ -32,9 +32,11 @@
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
                             <a href="{% url 'problems' %}"
+                                hx-get="{% url 'problems' %}" hx-target="main" hx-push-url="true"
                                 class="bg-accent-600 text-text-100 rounded-md px-3 py-2 text-sm font-bold aria-current="page"
                                 >Problems</a>
                             <a href="{% url 'learn' %}"
+                                hx-get="{% url 'learn' %}" hx-target="main" hx-push-url="true"
                                 class="dark:text-text-300 dark:hover:bg-accent-800 dark:hover:text-text-100 rounded-md px-3 py-2 text-sm font-medium" 
                                 >Learn</a>
                         </div>
@@ -87,12 +89,13 @@
                                 aria-labelledby="user-menu-button"
                                 >
                                 {% if user.is_authenticated %}
-                                <a href="{% url 'profile' %}"hx-post="{% url 'profile' %}" hx-target="main" class="block px-4 py-2 text-sm text-text-800 dark:text-text-200 dark:focus:bg-background-700 hover:bg-background-200 dark:hover:bg-background-800">Profile</a>
-                                <a href="{% url 'profile' %}"hx-post="{% url 'profile' %}" hx-target="main" class="block px-4 py-2 text-sm text-text-800 dark:text-text-200 dark:focus:bg-background-700 hover:bg-background-200 dark:hover:bg-background-800">Settings</a>
-                                <a href="{% url 'logout' %}" hx-post="{% url 'logout' %}"  hx-target="main" class="block px-4 py-2 text-sm text-text-800 dark:text-text-200 dark:focus:bg-background-700 hover:bg-background-200 dark:hover:bg-background-800">Sign out</a>
+                                <a href="{% url 'profile' %}" hx-get="{% url 'profile' %}" hx-target="main" hx-push-url="true" class="block px-4 py-2 text-sm text-text-800 dark:text-text-200 dark:focus:bg-background-700 hover:bg-background-200 dark:hover:bg-background-800">Profile</a>
+                                <a href="{% url 'profile' %}" hx-get="{% url 'profile' %}" hx-target="main" hx-push-url="true" class="block px-4 py-2 text-sm text-text-800 dark:text-text-200 dark:focus:bg-background-700 hover:bg-background-200 dark:hover:bg-background-800">Settings</a>
+                                <a href="{% url 'logout' %}"  hx-get="{% url 'logout' %}"  hx-target="main" hx-push-url="true" class="block px-4 py-2 text-sm text-text-800 dark:text-text-200 dark:focus:bg-background-700 hover:bg-background-200 dark:hover:bg-background-800">Sign out</a>
+        
                                 {% else %}
-                                <a href="{% url 'login' %}" class="block px-4 py-2 text-sm text-text-800 dark:text-text-200 dark:focus:bg-background-700 hover:bg-background-200 dark:hover:bg-background-800">Log In</a>
-                                <a href="{% url 'create_profile' %}" class="block px-4 py-2 text-sm text-text-800 dark:text-text-200 dark:focus:bg-background-700 hover:bg-background-200 dark:hover:bg-background-800">Sign Up</a>
+                                <a href="{% url 'login' %}"          hx-get="{% url 'login' %}" hx-target="main" hx-push-url="true" class="block px-4 py-2 text-sm text-text-800 dark:text-text-200 dark:focus:bg-background-700 hover:bg-background-200 dark:hover:bg-background-800">Log In</a>
+                                <a href="{% url 'create_profile' %}" hx-get="{% url 'create_profile' %}" hx-target="main" hx-push-url="true" class="block px-4 py-2 text-sm text-text-800 dark:text-text-200 dark:focus:bg-background-700 hover:bg-background-200 dark:hover:bg-background-800">Sign Up</a>
                                 {% endif %}
                             </div>
                         </div>
@@ -142,8 +145,10 @@
             <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
                 <!-- Current: "bg-gray-900 text-text-100", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <a href="{% url 'problems' %}"
+                    hx-get="{% url 'problems' %}" hx-target="main" hx-push-url="true"
                     class="bg-accent-100 dark:bg-accent-600 text-text-100 block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Problems</a>
                 <a href="{% url 'learn' %}"
+                    hx-get="{% url 'learn' %}" hx-target="main" hx-push-url="true"
                     class="text-text-700 dark:text-text-300 hover:bg-accent-200 dark:hover:bg-accent-800 dark:hover:text-text-100 block rounded-md px-3 py-2 text-base font-medium">Learn</a>
             </div>
             <div class="border-t border-background-700 pb-3 pt-4">

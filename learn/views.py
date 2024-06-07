@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from flare.shortcuts import htmx_render
 
 from .models import Guide, Page
 
@@ -11,7 +11,7 @@ def main_page(request):
         "guides": guides, 
         "pages": pages 
     }
-    return render(request, "learn/main_page.html", context)
+    return htmx_render(request, "learn/main_page.html", context)
 
 def guide_page(request,guide=None):
     if guide is not None:
@@ -25,7 +25,7 @@ def guide_page(request,guide=None):
             "guide": currentGuide,
             "pages": pages
         }
-        return render(request, "learn/guide_page.html", context)
+        return htmx_render(request, "learn/guide_page.html", context)
 
 def page(request,page=None):
     problems = Problem.objects.all()
@@ -39,4 +39,4 @@ def page(request,page=None):
             "page": currentPage,
             "problems": problems
         }
-        return render(request, "learn/page.html", context)
+        return htmx_render(request, "learn/page.html", context)

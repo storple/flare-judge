@@ -27,7 +27,7 @@
 					{% endif %}
 					hx-post="{% url 'save_problem' %}"
 					hx-swap="none"
-					hx-vals='{"name": "{{problem.problem_name}}"}'
+					hx-vals='{"problem-name": "{{problem.problem_name}}"}'
 				>
 				</input>
 			</td>

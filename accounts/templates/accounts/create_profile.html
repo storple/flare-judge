@@ -3,7 +3,7 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
-<form method="post" action="{% url 'create_profile' %}">
+<form method="post" action="{% url 'create_profile' %}" hx-post="{% url 'create_profile' %}" hx-target="#main">
 {% csrf_token %}
 <div>
 	{{ form.username.label_tag }}

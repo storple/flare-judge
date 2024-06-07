@@ -58,9 +58,9 @@ module.exports = {
 				800: 'hsl(var(--text-800))',
 				900: 'hsl(var(--text-900))',
 				950: 'hsl(var(--text-950))',
-				DEFAULT: 'hsl(var(--text-500))',
-				light: 'hsl(var(--text-100))',
-				dark: 'hsl(var(--text-900))',
+				DEFAULT: 'hsl(var(--text-900))',
+				light: 'hsl(var(--text-900))',
+				dark: 'hsl(var(--text-100))',
 			},
 			'background': {
 				50: 'hsl(var(--background-50))',
