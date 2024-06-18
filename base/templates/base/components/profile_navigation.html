@@ -1,0 +1,11 @@
+<div class="ml-4 flex items-center md:ml-6" id="profile_links"
+    {% if oob_swap %}
+    hx-swap-oob="true"
+    {% endif %}
+    >
+    {% if user.is_authenticated %}
+        {% include "base/components/profile_dropdown.html" %}
+    {% else %}
+        {% include "base/components/profile_links.html" %}
+    {% endif %}
+</div>

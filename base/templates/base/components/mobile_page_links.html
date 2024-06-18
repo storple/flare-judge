@@ -1,0 +1,26 @@
+<div class="space-y-1 px-2 pb-3 pt-2 sm:px-3"
+    id="mobile_page_links"
+    {% if oob_swap %}
+    hx-swap-oob="true"
+    {% endif %}
+    >
+    <!-- Current: "bg-gray-900 text-text-100", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+    <a href="{% url 'problems' %}"
+        hx-get="{% url 'problems' %}" hx-target="main" hx-push-url="true"
+        {% if current_page == "problems" %}
+            class="bg-accent-100 dark:bg-accent-600 text-text-100 block rounded-md px-3 py-2 text-base font-medium"
+            aria-current="page"
+        {% else %}
+            class="text-text-700 dark:text-text-300 hover:bg-accent-200 dark:hover:bg-accent-800 dark:hover:text-text-100 block rounded-md px-3 py-2 text-base font-medium"
+        {% endif %}
+        >Problems</a>
+    <a href="{% url 'learn' %}"
+        hx-get="{% url 'learn' %}" hx-target="main" hx-push-url="true"
+        {% if current_page == "learn" %}
+            class="bg-accent-100 dark:bg-accent-600 text-text-100 block rounded-md px-3 py-2 text-base font-medium"
+            aria-current="page"
+        {% else %}
+            class="text-text-700 dark:text-text-300 hover:bg-accent-200 dark:hover:bg-accent-800 dark:hover:text-text-100 block rounded-md px-3 py-2 text-base font-medium"
+        {% endif %}
+        >Learn</a>
+</div>

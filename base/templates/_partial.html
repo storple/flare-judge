@@ -1,1 +1,6 @@
 {% block content %}{% endblock %}
+
+{% block oob %}
+    {% include "base/components/page_links.html" with oob_swap=True %}
+    {% include "base/components/mobile_page_links.html" with oob_swap=True %}
+{% endblock %}

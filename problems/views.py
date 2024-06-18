@@ -48,10 +48,9 @@ def filter_problems(request: HttpRequest,data: QueryDict, page):
             "max_elo": max_elo,
             "tags": tags,
             "completed": completed,
-            "page": page,
+            "problem_page": page,
             "max_pages": current_max_pages,
         }
-
         return context
 
 def problems_view(request: HttpRequest, page=1):
@@ -80,11 +79,11 @@ def problems_view(request: HttpRequest, page=1):
 
             context = {
                 "problems": problems,
-                "page": page,
+                "problem_page": page,
                 "max_pages": current_max_pages,
             }
             print(context)
-            return htmx_render(request, "problems/problems.html", context)
+            return htmx_render(request, "problems/problems.html", context, page = "problems")
     else:
         #invalid method
         return HttpResponse(status=400)

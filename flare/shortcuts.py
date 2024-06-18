@@ -12,7 +12,10 @@ def full_render(request,template,context={}):
     context.update({ "base_template": base_template })
     return render(request,template,context)
 
-def htmx_render(request,template,context={}):
+def htmx_render(request,template,context={}, **kwargs):
+    current_page = kwargs.get("page","")
+    context.update({"current_page":current_page})
+
     if request.htmx:
         return partial_render(request,template,context)
     else:

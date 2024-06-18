@@ -18,7 +18,7 @@
     {% endif %}
 {% endif %}
 
-<form method="post" action="{% url 'login' %}" hx-post="{% url 'login' %}" hx-target="#main">
+<form method="post" action="{% url 'login' %}" >
 {% csrf_token %}
 <div>
 	{{ form.username.label_tag }}

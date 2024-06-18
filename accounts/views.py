@@ -2,6 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import logout, login
 from django.urls import reverse
+from django.core.exceptions import PermissionDenied
+from django.shortcuts import redirect
 
 from .models import Profile
 from flare.shortcuts import htmx_render, htmx_redirect
@@ -27,9 +29,10 @@ def create_profile(request):
 
 @login_required
 def logout_view(request):
-    if request.method == "POST":
-        logout(request)
-    return htmx_redirect(request,reverse("login"))
+    logout(request)
+    # return htmx_redirect(request,reverse("login"))
+    # full page load to update the profile dropdown / profile links
+    return redirect(reverse("login"))
 
 def login_view(request):
     if request.method == "POST":
@@ -40,10 +43,11 @@ def login_view(request):
             if user is not None:
                 login(request, user)
 
-                return htmx_redirect(request,reverse("profile"))
+                # return htmx_redirect(request,reverse("profile"))
+                # full page load to update the profile dropdown / profile links
+                return redirect(reverse("profile"))
             else:
-                #TODO: error handling
-                pass
+                raise PermissionDenied
     else:
         form = AuthenticationForm()
     context = {

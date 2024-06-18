@@ -2,7 +2,7 @@
 	<form
 		class="container"
 		id="filter_form"
-		hx-get="{% url 'problems_page' page=page %}"
+		hx-get="{% url 'problems_page' problem_page=problem_page %}"
 		hx-target="#problems_body_container"
 		hx-swap="outerHTML"
 		hx-trigger="change from:.filter_input delay:500ms"
