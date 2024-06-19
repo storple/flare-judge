@@ -20,7 +20,7 @@
 	<tbody>
 		{% if problems %}
 			{% for problem in problems %}
-				{% include "problems/problem.html" with problem=problem %}
+				{% include "problems/components/problem.html" with problem=problem %}
 			{% endfor %}
 		{% endif %}
 	</tbody>

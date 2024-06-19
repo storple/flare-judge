@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpRequest, QueryDict
 
-from flare.shortcuts import htmx_render, partial_render, full_render
+from django.shortcuts import render
+from flare.shortcuts import htmx_render, full_page_render
 
 from .models import Problem
 
@@ -64,10 +65,10 @@ def problems_view(request: HttpRequest, page=1):
 
             if request.htmx:
                 # on filter url with htmx: only return the table
-                return partial_render(request, "problems/problems&filter.html", context)
+                return render(request, "problems/problems&filter.html", context)
             else:
                 # on filter url without htmx: return the whole page with the filtering
-                return full_render(request, "problems/problems.html", context)
+                return full_page_render(request, "problems/problems.html", context)
         else:
             problems = Problem.objects.all()
 
@@ -82,7 +83,7 @@ def problems_view(request: HttpRequest, page=1):
                 "problem_page": page,
                 "max_pages": current_max_pages,
             }
-            print(context)
+            # render page without filtering
             return htmx_render(request, "problems/problems.html", context, page = "problems")
     else:
         #invalid method
@@ -95,7 +96,6 @@ def save_problem(request: HttpRequest):
         user = request.user
         if user.is_authenticated:
             currentProfile = user.profile
-            print()
             name = data["problem-name"]
             try:
                 problem = Problem.objects.get(problem_name=name)

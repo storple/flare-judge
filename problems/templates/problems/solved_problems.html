@@ -15,7 +15,7 @@
 		<tbody>
 			{% with solved_problems=user.profile.problems_solved.all %}
 				{% for problem in solved_problems %}
-					{% include "problems/solved_problem.html" with problem=problem %}
+					{% include "problems/components/solved_problem.html" with problem=problem %}
 				{% endfor %}
 			{% endwith %}
 		</tbody>
