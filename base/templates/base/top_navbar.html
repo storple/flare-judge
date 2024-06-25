@@ -18,7 +18,10 @@
         <div class="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
             <div class="flex h-20 items-center justify-between">
                 <div class="flex items-center">
-                    <a href="{% url 'home' %}" class="flex items-center">
+                    <a href="{% url 'home' %}"
+                        hx-get="{% url 'home' %}" hx-target="main" hx-push-url="true"
+                        class="flex items-center"
+                        >
                         <img src="{% static 'base/flarelogo.png' %}" alt="Flare Logo" class="h-16 w-16">
                         <h1 class="text-xl font-bold text-text-100 ml-1" >Flare</h1>
                     </a>

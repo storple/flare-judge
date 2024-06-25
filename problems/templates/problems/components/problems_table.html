@@ -13,29 +13,41 @@
 	<!-- </colgroup> -->
 	<thead>
         <tr class="bg-background-50 dark:bg-background-950">
-            <th
-                class="text-sm font-medium text-left pl-4 py-2"
-                >Problem Name</th>
-            <th
-                class="text-sm font-medium text-left pl-4 py-2"
-                >Difficulty</th>
-            <th
-                class="text-sm font-medium text-left pl-4 pr-3 py-2"
-                >Tags</th>
-            <th
-                class="text-sm font-medium text-left pl-4 py-2"
-                >Editorial</th>
+            <th class="text-left pl-4 py-2 text-base font-bold">
+                <a class="flex flex-row gap-1 items-center"
+                    >Name
+                    <i class="fa-solid fa-sort"></i>
+                    <!-- <i class="fa-solid fa-sort-up"></i> -->
+                    <!-- <i class="fa-solid fa-sort-down"></i> -->
+                </a>
+            </th>
+            <th class="text-left pl-4 py-2 text-base font-bold">
+                <a class="flex flex-row gap-1 items-center text-base"
+                    >Difficulty
+                    <i class="fa-solid fa-sort"></i>
+                    <!-- <i class="fa-solid fa-sort-up"></i> -->
+                    <!-- <i class="fa-solid fa-sort-down"></i> -->
+                </a>
+            </th>
+            <th class="text-left pl-4 py-2 text-base font-bold"
+                >Tags
+            </th>
+            <th class="text-left pl-4 py-2 text-base font-bold"
+                >Editorial
+            </th>
             {% if user.is_authenticated %}
-                <th
-                    class="text-sm font-medium text-center pl-4 py-2"
-                    >Solved</th>
+                <th class="text-center py-2 px-4 text-base font-bold"
+                    >Solved
+                </th>
             {% endif %}
             </tr>
 	</thead>
 	<tbody>
 		{% if problems %}
 			{% for problem in problems %}
-				{% include "problems/components/problem.html" with problem=problem %}
+                {% with solved_problems=user.profile.problems_solved.all %}
+                    {% include "problems/components/problem.html" with problem=problem %}
+                {% endwith %}
 			{% endfor %}
 		{% endif %}
 	</tbody>

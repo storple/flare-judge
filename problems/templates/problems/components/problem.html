@@ -1,6 +1,6 @@
 <tr>
 	<td
-        class="text-sm font-medium text-left pl-4 py-2"
+        class="text-sm font-medium text-left pl-4 py-3"
         >
         <a target="_blank" href="{{problem.link}}"
             class="text-accent-400"
@@ -8,44 +8,49 @@
     </td>
 
 	<td
-        class="text-sm font-medium text-left pl-4 py-2"
+        class="text-sm font-medium text-left pl-4 py-3"
         >{{problem.elo}}</td>
 
 	<td
-        class="text-sm font-medium text-left pl-4 py-2"
+        class="text-sm font-medium text-left pl-4 py-3"
         >
 		{% with tags=problem.tags.all %}
 			{% if tags %}
-				{{ tags|join:", " }}
+                {% for tag in tags %}
+                    <span
+                        class="inline-flex items-center rounded-md bg-accent-800/30 text-xs font-medium text-accent-300 px-2 py-1 mr-1 mb-1"
+                        >{{tag}}</span>
+                {% endfor %}
+            {% else %}
+                None
 			{% endif %}
 		{% endwith %}
 	</td>
 
-	{% if problem.editorial %}
         <td
-            class="text-sm font-medium text-left pl-4 py-2"
+            class="text-sm font-medium text-left pl-4 py-3"
             >
-            <a target="_blank" href="{{problem.editorial}}">Editorial</a></td>
-	{% else %}
-		<td></td>
-	{% endif %}
+            {% if problem.editorial %}
+                <a target="_blank" href="{{problem.editorial}}">Editorial</a>
+            {% else %}
+                None
+            {% endif %}
+        </td>
 
-	{% with solved_problems=user.profile.problems_solved.all %}
-		{% if user.is_authenticated %}
-            <td
-                class="text-sm font-medium pl-4 py-2 text-center"
-                >
-				<input type="checkbox"
-					name="{{problem.problem_name}}"
-					{% if problem in solved_problems %}
-						checked
-					{% endif %}
-					hx-post="{% url 'save_problem' %}"
-					hx-swap="none"
-					hx-vals='{"problem-name": "{{problem.problem_name}}"}'
-				>
-				</input>
-			</td>
-		{% endif %}
-	{% endwith %}
+    {% if user.is_authenticated %}
+        <td
+            class="text-sm font-medium px-4 py-3 text-center"
+            >
+            <input type="checkbox"
+                name="{{problem.problem_name}}"
+                {% if problem in solved_problems %}
+                    checked
+                {% endif %}
+                hx-post="{% url 'save_problem' %}"
+                hx-swap="none"
+                hx-vals='{"problem-name": "{{problem.problem_name}}"}'
+            >
+            </input>
+        </td>
+    {% endif %}
 </tr>
