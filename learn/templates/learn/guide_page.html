@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block styles %}
-	<link rel="stylesheet" href="{% static 'learn/guide_page.css' %}">
+	<!-- <link rel="stylesheet" href="{% static 'learn/guide_page.css' %}"> -->
 {{ block.super }}
 {% endblock %}
 
@@ -15,19 +15,29 @@
 {% endblock %}
 
 {% block content %}
-	{% if guide %}
-		{% if page.visible or user.is_superuser %}
-			<h1>{{guide.guide_name}}</h1>
-			<p>{{guide.description}}</p>
-			{% for page in pages %}
-				<a href="{% url 'page' page=page.url_name %}">{{page.page_name}}</a>
-			{% empty %}
-				<p>There are no pages at the moment.</p>
-			{% endfor %}
-		{% else %}
-			<p>You do not have access to this guide.</p>
-		{% endif %}
-	{% else %}
-		<p>The requested guide does not exist.</p>
-	{% endif %}
+	<div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+        {% if guide %}
+            {% if page.visible or user.is_superuser %}
+                <h1
+                    class="text-text-light dark:text-text-dark text-3xl font-bold"
+                    >{{guide.guide_name}}
+                </h1>
+                <p
+                    class="text-text-light dark:text-text-dark mt-2"
+                    >{{guide.description}}
+                </p>
+                <div class="flex flex-col mt-2">
+                    {% for page in pages %}
+                        <a class="text-accent-400 mt-1" href="{% url 'page' page=page.url_name %}" >{{page.page_name}}</a>
+                    {% empty %}
+                        <p>There are no pages at the moment.</p>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>You do not have access to this guide.</p>
+            {% endif %}
+        {% else %}
+            <p>The requested guide does not exist.</p>
+        {% endif %}
+    </div>
 {% endblock %}
