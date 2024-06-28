@@ -21,15 +21,16 @@
 {% block content %}
 	{% if page %}
 		{% if page.visible or user.is_superuser %}
-			<!-- <div id="page" class="flex"> -->
             <div class="mx-auto max-w-5xl px-4 py-4 sm:px-6 lg:px-8">
-				<div id="generated-content">
-                    <h1 class="text-text-light dark:text-text-dark text-3xl font-bold mb-2">{{page.page_name}}</h1>
+                <h1 class="text-text-light dark:text-text-dark text-3xl font-bold mt-4 mb-8">{{page.page_name}}</h1>
+				<div class="markdown">
 					{% include page.html_template_name %}
-					{% if page.guide and page.guide.visible %}
-						<a href="{% url 'guide' guide=page.guide.url_name %}">Back to guide</a>
-					{% endif %}
 				</div>
+                {% if page.guide and page.guide.visible %}
+                    <a
+                        class="red-link"
+                        href="{% url 'guide' guide=page.guide.url_name %}">Back to guide</a>
+                {% endif %}
 				{% comment %}
 				<!-- toc -->
 				{% autoescape off %}
@@ -38,10 +39,12 @@
 				{% endcomment %}
 			</div>
 		{% else %}
-			<p>You do not have access to this page.</p>
+            <p class="text-text-light mt-1 dark:text-text-dark"
+            >You do not have access to this page.</p>
 		{% endif %}
 	{% else %}
-		<p>The requested page does not exist.</p>
+        <p class="text-text-light mt-1 dark:text-text-dark"
+        >The requested page does not exist.</p>
 	{% endif %}
 	<script>hljs.highlightAll();</script>
 {% endblock %}

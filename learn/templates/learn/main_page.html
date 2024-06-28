@@ -30,12 +30,13 @@
                 <h1 class="text-text-light dark:text-text-dark text-3xl font-bold mt-4">Featured Pages</h1>
                 <div class="flex flex-col mt-2">
 					{% for page in pages %}
-                        <a class="text-accent-400 mt-1" href="{% url 'page' page=page.url_name %}" >{{page.page_name}}</a>
+                        <a class="red-link mt-1" href="{% url 'page' page=page.url_name %}" >{{page.page_name}}</a>
 					{% endfor %}
 				</div>
 			{% endif %}
 		</div>
 	{% else %}
-		<p>no content to display at this time.</p>
+        <p class="text-text-light mt-1 dark:text-text-dark"
+        >no content to display at this time.</p>
 	{% endif %}
 {% endblock %}

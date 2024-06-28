@@ -18,7 +18,8 @@
 		<div id="grid_container">
 			<div id="left_column">
 				<h1>{{user.username}}</h1>
-				<a href="{% url 'change_password' %}" id="change_password_link">Change Password</a>
+				<a
+                    href="{% url 'change_password' %}" id="change_password_link">Change Password</a>
 				<form method="post" action="{% url 'logout' %}">
 				{% csrf_token %}
 				<input type="submit" value="logout">

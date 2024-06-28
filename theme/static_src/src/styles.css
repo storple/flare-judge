@@ -2,7 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .red-link {
+        @apply dark:text-accent-400 hover:underline;
+    }
+}
+
 @layer base {
+    .markdown h1 {
+        @apply text-3xl mb-6 mt-7 font-bold;
+    }
+    .markdown h2 {
+        @apply text-2xl mb-4 mt-8 font-medium;
+    }
+    .markdown h3 {
+        @apply text-xl mb-4 mt-8 font-medium;
+    }
+    .markdown h4 {
+        @apply text-lg mb-4 mt-8 font-medium;
+    }
+
+    .markdown blockquote {
+        @apply text-lg ml-10 mb-4 mt-8 font-medium;
+    }
+    .markdown ul {
+        @apply list-disc list-inside mb-4 ml-3;
+    }
+    .markdown ol {
+        @apply list-decimal list-inside mb-4 ml-3;
+    }
+    .markdown li {
+        @apply ml-1 mb-2;
+    }
+    .markdown a {
+        @apply red-link mb-1;
+    }
+    .markdown p {
+        @apply text-lg mb-4 leading-7;
+    }
+    .markdown pre code {
+        @apply mb-4 overflow-x-auto -mx-4 sm:-mx-6 md:mx-0;
+    }
+    .markdown code {
+        @apply dark:bg-background-800 dark:text-text-200 px-1 pt-1 rounded;
+    }
+
   :root {
     --text-50: 0 0% 95%;
     --text-100: 0 0% 90%;
