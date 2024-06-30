@@ -1,8 +1,34 @@
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from flare.shortcuts import htmx_render
 
 from .models import Guide, Page
 
 from problems.models import Problem
+
+from .markdown import md
+
+@login_required
+def markdown_generator(request):
+    if request.method == "POST":
+        if request.user.is_superuser: # just using request.user attributes
+            data = request.POST
+            markdown = data.get("editor","")
+            if markdown == "":
+                return HttpResponse()
+            else:
+                html_generated = md.convert(markdown)
+                return HttpResponse(html_generated)
+        else:
+            # forbidden
+            return HttpResponse(status=403)
+    else:
+        # method invalid
+        return HttpResponse(status=400)
+
+
+def markdown_editor(request):
+    return htmx_render(request, "learn/markdown_editor.html", page="learn")
 
 def main_page(request):
     guides = Guide.objects.filter(in_main_page=True)

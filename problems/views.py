@@ -13,7 +13,7 @@ def problems_by_page(problems: Problem, page, problem_per_page=50):
 
 
 def max_pages(problems: Problem, problems_per_page=50):
-        return max(1, ((len(problems) - 1) // problems_per_page) + 1)
+        return max(1, ((problems.count() - 1) // problems_per_page) + 1)
 
 
 def filter_problems(request: HttpRequest,data: QueryDict, page):

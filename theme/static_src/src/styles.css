@@ -21,7 +21,6 @@
     .markdown h4 {
         @apply text-lg mb-4 mt-8 font-medium;
     }
-
     .markdown blockquote {
         @apply text-lg ml-10 mb-4 mt-8 font-medium;
     }
@@ -35,16 +34,34 @@
         @apply ml-1 mb-2;
     }
     .markdown a {
-        @apply red-link mb-1;
+        @apply red-link;
     }
     .markdown p {
         @apply text-lg mb-4 leading-7;
     }
-    .markdown pre code {
+    .markdown .highlight {
         @apply mb-4 overflow-x-auto -mx-4 sm:-mx-6 md:mx-0;
     }
+    .markdown pre {
+        @apply p-4;
+    }
     .markdown code {
-        @apply dark:bg-background-800 dark:text-text-200 px-1 pt-1 rounded;
+        @apply px-1 pt-1 rounded;
+    }
+    .markdown .katex-display {
+        @apply overflow-auto;
+    }
+    .markdown table {
+        @apply dark:bg-background-800 rounded-lg overflow-clip;
+    }
+    .markdown thead {
+        @apply rounded-t-md text-left bg-background-50 dark:bg-background-950;
+    }
+    .markdown thead tr th {
+        @apply py-2 px-4; 
+    }
+    .markdown tbody tr td {
+        @apply py-3 px-4;
     }
 
   :root {

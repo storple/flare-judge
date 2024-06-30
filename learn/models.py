@@ -5,7 +5,7 @@ from django.template.defaultfilters import slugify
 
 from accounts.models import Profile
 
-import markdown
+from .markdown import md
 
 learn_page_fs = FileSystemStorage(location="learn/templates/generated")
 
@@ -62,11 +62,14 @@ class Page(models.Model):
             filename = "{}.html".format(self.url_name)
 
         #saves the generated markdown
-        md = markdown.Markdown(output_format="html", extensions=['extra','toc','nl2br'])
+        print("started markdowning")
+        print("halfway stuff")
         html_generated = md.convert(self.markdown)
+        print("now here stuff")
         self.toc = md.toc
 
         self.html_generated_file = ContentFile(html_generated, name=filename)
 
         self.html_template_name = "generated/{}".format(self.html_generated_file.name)
+        print("finally")
         super().save(*args, **kwargs)

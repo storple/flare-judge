@@ -13,8 +13,7 @@ class PageAdmin(admin.ModelAdmin):
     class Media:
         css = {
             "all": [
-                "learn/markdown_editor.css",
-                "learn/generated-content.css",
+                "learn/markdown_editor_widget.css",
                 ],
         }
         # js = ["learn/markdown_editor.js"]

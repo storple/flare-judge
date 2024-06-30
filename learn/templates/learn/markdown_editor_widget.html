@@ -1,0 +1,15 @@
+{% load static %}
+
+<div id="editor_preview">
+	<div id="editor">{% if widget.value %}{{ widget.value }}{% endif %}</div>
+	<textarea
+		name="{{ widget.name }}"
+        class="hidden-textarea"
+		{% include "django/forms/widgets/attrs.html" %}
+		style="display: none;"
+	></textarea>
+</div>
+
+<script src="{% static 'vendored/ace/ace.js' %}" defer></script>
+<script src="{% static 'vendored/ace/ext-language_tools.js' %}" defer></script>
+<script src="{% static 'learn/markdown_editor_widget.js' %}" defer></script>

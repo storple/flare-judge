@@ -6,15 +6,12 @@ let editor = ace.edit("editor");
 editor.setTheme("ace/theme/tomorrow_night");
 editor.session.setMode("ace/mode/markdown");
 
-
 // enable autocompletion and snippets
 editor.setOptions({
 	enableBasicAutocompletion: true,
 	enableSnippets: true,
-	enableLiveAutocompletion: true,
+	enableLiveAutocompletion: true
 });
-
-editor.session.setUseWrapMode(true);
 
 // converts editor text to preview
 let hidden_Textarea = document.getElementsByClassName("hidden-textarea")[0];

@@ -2,16 +2,6 @@
 
 {% load static %}
 
-{% block styles %}
-	<link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/tokyo-night-dark.min.css">
-	{{ block.super }}
-{% endblock %}
-
-{% block javascript %}
-	<script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
-	{{ block.super }}
-{% endblock %}
-
 {% block title %}
 {% if page %}{% if page.visible or user.is_superuser %}{{page.page_name}}
 {% else %}Cannot Access{% endif %}
@@ -46,5 +36,4 @@
         <p class="text-text-light mt-1 dark:text-text-dark"
         >The requested page does not exist.</p>
 	{% endif %}
-	<script>hljs.highlightAll();</script>
 {% endblock %}
