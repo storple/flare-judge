@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block content %}
+{% if user.is_superuser %}
 <style>
     .htmx-indicator, .htmx-request {
         display:none;
@@ -64,6 +65,7 @@
     <div class="markdown htmx_req"></div>
 </div>
 {% include "learn/components/clipboard_notification.html" %}
+{% endif %}
 {% endblock %}
 
 {% block javascript %}

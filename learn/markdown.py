@@ -1,39 +1,6 @@
 import markdown
 
-# from markdown.treeprocessors import Treeprocessor
-# from markdown.extensions import Extension
-# import xml.etree.ElementTree as etree
-
-# class CodeClipboardProcessor(Treeprocessor):
-#     def run(self, root):
-#         print("running this right neow")
-#         print(root.tag,root.text,root.tail)
-#         # root.text = "BRUHHH"
-#         # blocks = root.iter('pre')
-#         # for block in blocks:
-#         #     print(block.text)
-#         #     print(block == root)
-#         #     if len(block) == 1 and block[0].tag == 'code':
-#         #         clipboard_button = etree.SubElement( block, 'button', { 'class' : 'code-clipboard' })
-#         #         etree.SubElement( clipboard_button, 'i', { 'class' : 'fa-solid fa-copy' })
-#         for child in root:
-#             print(child.tag, child.attrib,child.text)
-#             for child2 in child:
-#                 print(child2.tag, child2.attrib,child2.text)
-#         for element in root.iter('pre'):
-#             print("found a pre right here: ",element.text)
-#             clipboard_button = etree.SubElement( element, 'button', { 'class' : 'code-clipboard' })
-#             etree.SubElement( clipboard_button, 'i', { 'class' : 'fa-solid fa-copy' })
-#
-# class CodeClipboardExtension(Extension):
-#     def extendMarkdown(self, md):
-#         md.treeprocessors.register(CodeClipboardProcessor(md), 'codeclipboardprocessor', 200)
-
-
 def _code_custom_formatter(source, language, class_name, options, md, **kwargs):
-
-    print(language)
-    print(md.preprocessors['fenced_code_block'].extension.superfences)
     code_block = md.preprocessors['fenced_code_block'].extension.superfences[0]['formatter'](
         source, language, options, md, **kwargs
     )
