@@ -1,6 +1,13 @@
 {% extends base_template %}
 {% load static %}
 
+{% block title %}Markdown Editor{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous" />
+{{ block.super }}
+{% endblock %}
+
 {% block content %}
 <style>
     .htmx-indicator, .htmx-request {
@@ -56,13 +63,16 @@
     <h1 class="text-text-light dark:text-text-dark text-3xl font-bold my-8 htmx_req">Article Name</h1>
     <div class="markdown htmx_req"></div>
 </div>
-
+{% include "learn/components/clipboard_notification.html" %}
 {% endblock %}
 
 {% block javascript %}
     {{ block.super }}
-    <!-- <script src="{% static 'vendored/clipboard.min.js' %}" defer></script> -->
+    <script src="{% static 'vendored/clipboard.min.js' %}" defer></script>
+    <script src="{% static 'learn/clipboard.js' %}" defer></script>
+
     <script src="{% static 'vendored/ace/ace.js' %}" defer></script>
     <script src="{% static 'vendored/ace/ext-language_tools.js' %}" defer></script>
+
     <script src="{% static 'learn/markdown_editor.js' %}" defer></script>
 {% endblock %}

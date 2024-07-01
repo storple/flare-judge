@@ -45,7 +45,7 @@
     .markdown pre {
         @apply p-4;
     }
-    .markdown code {
+    .markdown code:not(pre code) {
         @apply px-1 pt-1 rounded;
     }
     .markdown .katex-display {

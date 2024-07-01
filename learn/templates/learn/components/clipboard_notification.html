@@ -1,0 +1,21 @@
+<div class="clipboard_notification" x-data="
+    {
+        active : false,
+        show() {
+            this.active = true;
+            setTimeout(() => this.active = false,2000)
+        } 
+    }
+    " @clipboard_notfication.window.throttle.2000ms="show()">
+    <div class="right-8 bottom-8 pl-6 pr-20 py-4 rounded-md shadow-md
+        bg-background-50 dark:bg-background-900 dark:shadow-background-800 ring-1 dark:ring-background-700 ring-opacity-5 fixed"
+        x-show="active"
+        x-transition:enter="transition ease-out duration-150"
+        x-transition:enter-start="opacity-0 scale-90"
+        x-transition:enter-end="opacity-100 scale-100"
+
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100 scale-100"
+        x-transition:leave-end="opacity-0 scale-90"
+        >Copied to Clipboard</div>
+</div>

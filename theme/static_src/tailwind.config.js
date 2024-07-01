@@ -40,6 +40,9 @@ module.exports = {
          * and make sure the pattern below matches your project structure.
 	    */
 	    // '../../**/*.py'
+        
+        // classes included in markdown
+	    '../../learn/markdown.py'
     ],
 	theme: {
         extend: {
