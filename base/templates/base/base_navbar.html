@@ -3,9 +3,9 @@
 {% load static %}
 
 {% block body %}
-    <div class="divide-y-2 divide-background-700 h-full flex flex-col">
+    <div class="divide-y-2 divide-background-700 flex flex-col">
         {% include "base/top_navbar.html" %}
-        <main id="main" class="h-full">
+        <main id="main">
             {% block content %}{% endblock %}
         </main>
     </div>

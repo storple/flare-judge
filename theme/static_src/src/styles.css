@@ -24,11 +24,11 @@
     .markdown blockquote {
         @apply text-lg ml-10 mb-4 mt-8 font-medium;
     }
-    .markdown ul {
-        @apply list-disc list-inside mb-4 ml-3;
-    }
     .markdown ol {
         @apply list-decimal list-inside mb-4 ml-3;
+    }
+    .markdown ul {
+        @apply list-disc list-inside mb-4 ml-3;
     }
     .markdown li {
         @apply ml-1 mb-2;
@@ -39,12 +39,14 @@
     .markdown p {
         @apply text-lg mb-4 leading-7;
     }
-    .markdown .highlight {
+    /* doesn't affect inline code */
+    .markdown .highlight:not(code.highlight) {
         @apply mb-4 overflow-x-auto -mx-4 sm:-mx-6 md:mx-0;
     }
     .markdown pre {
         @apply p-4;
     }
+    /* doesn't affect codeblocks */
     .markdown code:not(pre code) {
         @apply px-1 pt-1 rounded;
     }
@@ -62,6 +64,12 @@
     }
     .markdown tbody tr td {
         @apply py-3 px-4;
+    }
+    .toc a {
+        @apply text-sm red-link font-medium;
+    }
+    .toc li {
+        @apply pb-4;
     }
 
   :root {

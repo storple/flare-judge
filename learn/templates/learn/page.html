@@ -10,38 +10,47 @@
 
 
 {% block styles %}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'vendored/katex/katex.min.css' %}"/>
 {{ block.super }}
 {% endblock %}
 
 {% block content %}
-    <div class="mx-auto max-w-5xl px-4 py-4 sm:px-6 lg:px-8">
-	{% if page %}
-		{% if page.visible or user.is_superuser %}
-                <h1 class="text-text-light dark:text-text-dark text-3xl font-bold mt-4 mb-8">{{page.page_name}}</h1>
-				<div class="markdown">
-					{% include page.html_template_name %}
-				</div>
-                {% if page.guide and page.guide.visible %}
-                    <a
-                        class="red-link"
-                        href="{% url 'guide' guide=page.guide.url_name %}">Back to guide</a>
-                {% endif %}
-				{% comment %}
-				<!-- toc -->
-				{% autoescape off %}
-					{{ page.toc }}
-				{% endautoescape %}
-				{% endcomment %}
-		{% else %}
+    <div class="flex flex-row">
+    <div class="ml-auto overflow-auto max-w-6xl px-4 py-4 sm:px-6 lg:pl-8 lg:pr-10">
+        {% if page %}
+            {% if page.visible or user.is_superuser %}
+                    <h1 class="text-text-light dark:text-text-dark text-3xl font-bold mt-4 mb-8">{{page.page_name}}</h1>
+                    <div class="markdown">
+                        {% include page.html_template_name %}
+                    </div>
+                    {% if page.guide and page.guide.visible %}
+                        <a
+                            class="red-link"
+                            href="{% url 'guide' guide=page.guide.url_name %}">Back to guide</a>
+                    {% endif %}
+                    {% comment %}
+                    {% endcomment %}
+            {% else %}
+                <p class="text-text-light mt-1 dark:text-text-dark"
+                >You do not have access to this page.</p>
+            {% endif %}
+        {% else %}
             <p class="text-text-light mt-1 dark:text-text-dark"
-            >You do not have access to this page.</p>
-		{% endif %}
-	{% else %}
-        <p class="text-text-light mt-1 dark:text-text-dark"
-        >The requested page does not exist.</p>
-	{% endif %}
+            >The requested page does not exist.</p>
+        {% endif %}
     </div>
+
+    <!-- toc -->
+    {% autoescape off %}
+    <div class="hidden lg:block pr-8 w-60 min-w-60 mr-auto">
+        <div class="sticky top-0 pt-8">
+        {{ page.toc }}
+        </div>
+    </div>
+    {% endautoescape %}
+
+    </div>
+
     {% include "learn/components/clipboard_notification.html" %}
 {% endblock %}
 

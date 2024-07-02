@@ -12,7 +12,7 @@
     {% endblock %}
     {% block javascript %}
         <script src="{% static 'vendored/htmx.min.js' %}" defer></script>
-        <script src="https://unpkg.com/alpinejs" defer></script>
+        <script src="{% static 'vendored/alpinejs.min.js' %}" defer></script>
         <script src="https://kit.fontawesome.com/7bc532d61e.js" crossorigin="anonymous"></script>
 	{% endblock %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +25,7 @@
     <link rel="shortcut icon" href="{% static 'base/favicon.png' %}"/>
     {% tailwind_css %}
 </head>
-	<body class="h-full" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+	<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     {% block body %}{% endblock %}
 	</body>
 </html>
