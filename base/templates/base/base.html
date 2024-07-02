@@ -12,8 +12,28 @@
     {% endblock %}
     {% block javascript %}
         <script src="{% static 'vendored/htmx.min.js' %}" defer></script>
-        <script src="{% static 'vendored/alpinejs.min.js' %}" defer></script>
-        <script src="https://kit.fontawesome.com/7bc532d61e.js" crossorigin="anonymous"></script>
+
+        <script src="{% static 'vendored/alpinejs/alpinejs_persist.min.js' %}"></script>
+        <script defer>
+            document.addEventListener('alpine:init', () => {
+                Alpine.store('language', {
+                    update_language_text(){
+                        lang2text = {'cpp':'C++','python':'Python','java':'Java'};
+                        this.language_text = lang2text[this.language];
+                    },
+
+                    language: Alpine.$persist('cpp').as('language_preference'),
+                    language_text: 'cpp',
+
+                    set_language(language){
+                        this.language = language;
+                        this.update_language_text();
+                    },
+                });
+            });
+        </script>
+        <script src="{% static 'vendored/alpinejs/alpinejs.min.js' %}" defer></script>
+        <script src="https://kit.fontawesome.com/7bc532d61e.js" crossorigin="anonymous" defer></script>
 	{% endblock %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +45,7 @@
     <link rel="shortcut icon" href="{% static 'base/favicon.png' %}"/>
     {% tailwind_css %}
 </head>
-	<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+	<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'x-init="$store.language.update_language_text()">
     {% block body %}{% endblock %}
 	</body>
 </html>

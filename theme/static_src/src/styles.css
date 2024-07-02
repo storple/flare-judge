@@ -25,10 +25,10 @@
         @apply text-lg ml-10 mb-4 mt-8 font-medium;
     }
     .markdown ol {
-        @apply list-decimal list-inside mb-4 ml-3;
+        @apply list-decimal list-inside ml-3 mt-2;
     }
     .markdown ul {
-        @apply list-disc list-inside mb-4 ml-3;
+        @apply list-disc list-inside ml-3 mt-2;
     }
     .markdown li {
         @apply ml-1 mb-2;
@@ -68,8 +68,11 @@
     .toc a {
         @apply text-sm red-link font-medium;
     }
+    .toc ul ul {
+        @apply pl-4 pt-0.5;
+    }
     .toc li {
-        @apply pb-4;
+        @apply pb-0.5;
     }
 
   :root {
