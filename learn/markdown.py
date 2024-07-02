@@ -6,7 +6,7 @@ def _code_custom_formatter(source, language, class_name, options, md, **kwargs):
     )
 
     clipboard_button = """\
-<button class="code-clipboard hover:text-accent-400 active:text-accent-700 transition-colors absolute top-2.5 right-0 md:right-3.5" @click="$dispatch('clipboard_notfication')" x-data>\
+<button class="code-clipboard hover:text-accent-400 active:text-accent-700 transition-colors absolute top-2.5 right-0 md:right-3.5">\
 <i class="fa-regular fa-copy"></i>\
 </button>"""
     return f'<div class="relative {language}">{clipboard_button}{code_block}</div>'

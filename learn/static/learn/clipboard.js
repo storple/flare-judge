@@ -8,5 +8,6 @@ var clipboard = new ClipboardJS(
 );
 
 clipboard.on('success', function(e) {
+    e.trigger.dispatchEvent(new CustomEvent('clipboard_notfication', { bubbles: true }));
     e.clearSelection();
 });

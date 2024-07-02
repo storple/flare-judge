@@ -51,7 +51,7 @@
         @apply px-1 pt-1 rounded;
     }
     .markdown .katex-display {
-        @apply overflow-auto;
+        @apply overflow-x-auto overflow-y-hidden;
     }
     .markdown table {
         @apply dark:bg-background-800 rounded-lg overflow-clip;

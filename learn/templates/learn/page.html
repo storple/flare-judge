@@ -16,7 +16,7 @@
 
 {% block content %}
     <div class="flex flex-row">
-    <div class="ml-auto overflow-auto max-w-6xl px-4 py-4 sm:px-6 lg:pl-8 lg:pr-10">
+    <div class="ml-auto overflow-x-auto max-w-6xl px-4 py-4 sm:px-6 lg:pl-8 lg:pr-10">
         {% if page %}
             {% if page.visible or user.is_superuser %}
                     <h1 class="text-text-light dark:text-text-dark text-3xl font-bold mt-4 mb-8">{{page.page_name}}</h1>
@@ -26,10 +26,9 @@
                     {% if page.guide and page.guide.visible %}
                         <a
                             class="red-link"
-                            href="{% url 'guide' guide=page.guide.url_name %}">Back to guide</a>
+                            href="{% url 'guide'
+                            guide=page.guide.url_name %}">Back to guide</a>
                     {% endif %}
-                    {% comment %}
-                    {% endcomment %}
             {% else %}
                 <p class="text-text-light mt-1 dark:text-text-dark"
                 >You do not have access to this page.</p>
