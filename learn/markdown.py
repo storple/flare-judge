@@ -16,7 +16,7 @@ def _code_custom_formatter(source, language, class_name, options, md, **kwargs):
     attrs = ' ' + ' '.join(f'{k}="{v}"' for k, v in attrs.items()) if attrs else ''
 
     clipboard_button = """\
-<button class="code-clipboard hover:text-accent-400 active:text-accent-700 transition-colors absolute top-2.5 right-0 md:right-3.5">\
+<button class="text-text-500 code-clipboard hover:text-accent-400 active:text-accent-700 transition-colors absolute top-2.5 right-0 md:right-3.5">\
 <i class="fa-regular fa-copy"></i>\
 </button>"""
 

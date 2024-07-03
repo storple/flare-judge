@@ -3,12 +3,6 @@
 
 {% block title %}Profile{% endblock %}
 
-{% block styles %}
-	<!-- <link rel="stylesheet" href="{% static 'problems/solved_problems.css' %}"> -->
-	<!-- <link rel="stylesheet" href="{% static 'accounts/profile.css' %}"> -->
-{{block.super}}
-{% endblock %}
-
 {% block content %}
 	{% if form.errors %}
 		{{ form.errors }}
