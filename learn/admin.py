@@ -5,7 +5,7 @@ from django.db import models
 from .widgets import MarkdownEditor
 
 class PageAdmin(admin.ModelAdmin):
-    fields = ["page_name", "authors","guide","visible","in_main_page","markdown"]
+    fields = ["page_name", "authors","guide","page_order","visible","in_main_page","markdown"]
     formfield_overrides = {
         models.TextField: {"widget": MarkdownEditor(attrs={"class":"hidden-textarea"})},
     }
