@@ -35,7 +35,7 @@
             style="display: none;"
         ></textarea>
         <button
-            class="bg-accent-50 dark:bg-accent-800/30 text-text-light dark:text-accent-300 font-semibold text-2xl rounded-xl px-6 py-3 ring-1 ring-accent-400/30 mt-6"
+            class="bg-accent-50 dark:bg-accent-800/30 text-text-light dark:text-accent-300 font-semibold text-2xl rounded-xl px-6 py-3 ring-1 ring-accent-400/30 mt-7"
             type="submit"
             >Generate Preview</button>
     </form>
@@ -65,7 +65,7 @@
     <div class="htmx_req">
     {% include "learn/components/language_switcher.html" %}
     </div>
-    <div class="markdown htmx_req"></div>
+    <div :class="$store.language.language" class="markdown htmx_req"></div>
 </div>
 {% include "learn/components/clipboard_notification.html" %}
 {% endif %}

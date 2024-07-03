@@ -7,14 +7,20 @@ def _code_custom_formatter(source, language, class_name, options, md, **kwargs):
         source, language, options, md, **kwargs
     )
 
+    classes = kwargs['classes']
+    id_value = kwargs['id_value']
+    attrs = kwargs['attrs']
+
+    classes = ' ' + ' '.join(classes) if classes else ''
+    id_value = f'id="{id_value}" ' if id_value else ''
+    attrs = ' ' + ' '.join(f'{k}="{v}"' for k, v in attrs.items()) if attrs else ''
+
     clipboard_button = """\
 <button class="code-clipboard hover:text-accent-400 active:text-accent-700 transition-colors absolute top-2.5 right-0 md:right-3.5">\
 <i class="fa-regular fa-copy"></i>\
 </button>"""
-    if language in main_languages:
-        left_div = f"""<div :class="{{ 'hidden' : $store.language.language != '{language}'}}" class="relative hidden {language}">"""
-    else:
-        left_div = f"""<div class="relative {language}">"""
+
+    left_div = f"""<div {id_value}class="relative lang {language}{classes}"{attrs}>"""
 
     return f"""{left_div}{clipboard_button}{code_block}</div>"""
 

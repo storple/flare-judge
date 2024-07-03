@@ -75,6 +75,13 @@
         @apply pb-0.5;
     }
 
+    /* this allows for the same element to appear in different languages while not setting the display mode */
+    .markdown.cpp .lang:not(.cpp),
+    .markdown.python .lang:not(.python),
+    .markdown.java .lang:not(.java) {
+        @apply hidden;
+    }
+
   :root {
     --text-50: 0 0% 95%;
     --text-100: 0 0% 90%;

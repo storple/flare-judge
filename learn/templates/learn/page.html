@@ -21,7 +21,7 @@
             {% if page.visible or user.is_superuser %}
                     <h1 class="text-text-light dark:text-text-dark text-3xl font-bold mt-4 mb-8">{{page.page_name}}</h1>
                     {% include "learn/components/language_switcher.html" %}
-                    <div class="markdown">
+                    <div :class="$store.language.language" class="markdown">
                         {% include page.html_template_name %}
                     </div>
                     {% if page.guide and page.guide.visible %}
