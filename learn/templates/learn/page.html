@@ -19,7 +19,7 @@
     <div class="ml-auto overflow-x-auto max-w-6xl px-4 py-4 sm:px-6 lg:pl-8 lg:pr-10">
         {% if page %}
             {% if page.visible or user.is_superuser %}
-                    <h1 class="text-text-light dark:text-text-dark text-3xl font-bold mt-4 mb-8">{{page.page_name}}</h1>
+                    <h1 id="article_heading" class="text-text-light dark:text-text-dark text-3xl font-bold mt-4 mb-8">{{page.page_name}}</h1>
                     {% include "learn/components/language_switcher.html" %}
                     <div :class="$store.language.language" class="markdown">
                         {% include page.html_template_name %}
@@ -30,6 +30,21 @@
                             href="{% url 'guide' guide=page.guide.url_name %}"
                             hx-get="{% url 'guide' guide=page.guide.url_name %}" hx-target="main" hx-push-url="true"
                             >Back to guide</a>
+                        {% if previous_page %}
+                        <a
+                            class="red-link"
+                            href="{% url 'page' page=previous_page.url_name %}"
+                            hx-get="{% url 'page' page=previous_page.url_name %}" hx-target="main" hx-swap="show:window:top" hx-push-url="true"
+                            >Previous Page</a>
+                        {% endif %}
+                        {% if next_page %}
+                        <a
+                            class="red-link"
+                            href="{% url 'page' page=next_page.url_name %}"
+                            hx-get="{% url 'page' page=next_page.url_name %}" hx-target="main" hx-swap="show:window:top" hx-push-url="true"
+                            >Next Page</a>
+                        {% endif %}
+
                     {% endif %}
             {% else %}
                 <p class="text-text-light mt-1 dark:text-text-dark"
@@ -41,14 +56,34 @@
         {% endif %}
     </div>
 
+
+    {% if page %}
     <!-- toc -->
-    {% autoescape off %}
     <div class="hidden lg:block pr-8 w-60 min-w-60 mr-auto">
         <div class="sticky top-0 pt-8">
-        {{ page.toc }}
+            <ul>
+                {% for currentPage in pages %}
+                    <li class="my-3">
+                    {% if currentPage == page %}
+                        <a href="#article_heading"
+                            class="red-link"
+                            >{{page.page_name}}</a>
+                        {% autoescape off %}
+                        {{ page.toc }}
+                        {% endautoescape %}
+                    {% else %}
+                        <a
+                            class="red-link"
+                            href="{% url 'page' page=currentPage.url_name %}"
+                            hx-get="{% url 'page' page=currentPage.url_name %}" hx-target="main" hx-swap="show:window:top" hx-push-url="true"
+                            >{{currentPage.page_name}}</a>
+                    {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
-    {% endautoescape %}
+    {% endif %}
 
     </div>
 

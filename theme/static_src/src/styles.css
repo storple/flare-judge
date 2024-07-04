@@ -65,6 +65,9 @@
     .markdown tbody tr td {
         @apply py-3 px-4;
     }
+    .toc {
+        @apply ml-4;
+    }
     .toc a {
         @apply text-sm red-link font-medium;
     }

@@ -62,8 +62,18 @@ def page(request,page=None):
         except:
             currentPage = None
 
+        if currentPage is not None:
+            page_order = currentPage.page_order
+            guide = currentPage.guide
+            pages = guide.page_set.filter(visible=True)
+            previous_page = pages.filter(page_order__lt=page_order).last()
+            next_page = pages.filter(page_order__gt=page_order).first()
+
         context = {
             "page": currentPage,
+            "pages": pages,
+            "next_page": next_page,
+            "previous_page": previous_page,
             "problems": problems
         }
         return htmx_render(request, "learn/page.html", context ,page="learn")
