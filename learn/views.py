@@ -51,7 +51,6 @@ def guide_page(request,guide=None):
             "guide": currentGuide,
             "pages": pages
         }
-        print(currentGuide.visible)
         return htmx_render(request, "learn/guide_page.html", context, page="learn")
 
 def page(request,page=None):
