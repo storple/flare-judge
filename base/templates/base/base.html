@@ -1,7 +1,7 @@
 {% load static tailwind_tags %}
 
 <!DOCTYPE html>
-<html class="h-full bg-background-50 dark:bg-background-900 text-text-light dark:text-text-dark" lang="en">
+<html class="h-full min-h-full bg-background-50 dark:bg-background-900 text-text-light dark:text-text-dark" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,7 +43,9 @@
     <link rel="shortcut icon" href="{% static 'base/favicon.png' %}"/>
     {% tailwind_css %}
 </head>
-	<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'x-init="$store.language.update_language_text()">
+	<body
+        class="h-full"
+        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'x-init="$store.language.update_language_text()">
     {% block body %}{% endblock %}
 	</body>
 </html>
