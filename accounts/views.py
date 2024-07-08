@@ -3,10 +3,21 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import logout, login
 from django.urls import reverse
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import redirect
+from django.shortcuts import redirect,render
 
 from .models import Profile
 from flare.shortcuts import htmx_render, htmx_redirect
+from django_htmx.http import HttpResponseClientRedirect
+
+def make_error_dict(form):
+    # only send errors without full page reload and keep current form state
+    fields = form.fields.keys()
+    errors_dict = form.errors
+
+    # dict containing all fields and their errors if they have any
+    errors = {field : errors_dict.get(field,"") for field in fields}
+
+    return errors.items()
 
 @login_required
 def profile(request):
@@ -20,6 +31,17 @@ def create_profile(request):
             p = Profile(user=user)
             p.save()
             return htmx_redirect(request,reverse("login"))
+        else:
+            # this form has errors
+            if request.htmx:
+                errors = make_error_dict(form)
+
+                context = {
+                    "errors": errors
+                }
+                response = render(request,"accounts/errors.html",context)
+                response.headers["HX-Reswap"] = "none"
+                return response
     else:
         form = UserCreationForm()
     context = {
@@ -42,12 +64,25 @@ def login_view(request):
             user = form.get_user()
             if user is not None:
                 login(request, user)
-
-                # return htmx_redirect(request,reverse("profile"))
-                # full page load to update the profile dropdown / profile links
-                return redirect(reverse("profile"))
+                # do a full redirect either way
+                if request.htmx:
+                    return HttpResponseClientRedirect(reverse("profile"))
+                else:
+                    return redirect(reverse("profile"))
             else:
                 raise PermissionDenied
+        else:
+            # this form has errors
+            if request.htmx:
+                errors = {"all": "Your username and password didn't match. Please try again."}
+                errors = errors.items()
+
+                context = {
+                    "errors": errors
+                }
+                response = render(request,"accounts/errors.html",context)
+                response.headers["HX-Reswap"] = "none"
+                return response
     else:
         form = AuthenticationForm()
     context = {

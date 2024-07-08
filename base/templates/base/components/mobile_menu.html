@@ -40,12 +40,12 @@
                 class="block rounded-md px-3 py-2 text-base font-medium text-text-700 dark:text-text-300 hover:bg-accent-200 dark:hover:bg-accent-800 dark:hover:text-text-100"
                 >Settings</a>
             <a href="{% url 'logout' %}"
-                class="block rounded-md px-3 py-2 text-base font-medium text-text-700 dark:text-text-300 hover:bg-accent-200 dark:hover:bg-accent-800 dark:hover:text-text-100" >Sign out</a>
+                class="block rounded-md px-3 py-2 text-base font-medium text-text-700 dark:text-text-300 hover:bg-accent-200 dark:hover:bg-accent-800 dark:hover:text-text-100" >Sign Out</a>
         {% else %}
             <a href="{% url 'login' %}"
                 hx-get="{% url 'login' %}" hx-target="main" hx-push-url="true"
                 class="block rounded-md px-3 py-2 text-base font-medium text-text-700 dark:text-text-300 hover:bg-accent-200 dark:hover:bg-accent-800 dark:hover:text-text-100"
-                >Log In</a>
+                >Login</a>
             <a href="{% url 'create_profile' %}"
                 hx-get="{% url 'create_profile' %}" hx-target="main" hx-push-url="true"
                 class="block rounded-md px-3 py-2 text-base font-medium text-text-700 dark:text-text-300 hover:bg-accent-200 dark:hover:bg-accent-800 dark:hover:text-text-100"
