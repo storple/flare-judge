@@ -10,7 +10,6 @@ from flare.shortcuts import htmx_render, htmx_redirect
 from django_htmx.http import HttpResponseClientRedirect
 
 def make_error_dict(form):
-    # only send errors without full page reload and keep current form state
     fields = form.fields.keys()
     errors_dict = form.errors
 
@@ -34,6 +33,7 @@ def create_profile(request):
         else:
             # this form has errors
             if request.htmx:
+                # only send errors without full page reload and keep current form state
                 errors = make_error_dict(form)
 
                 context = {
@@ -42,10 +42,12 @@ def create_profile(request):
                 response = render(request,"accounts/errors.html",context)
                 response.headers["HX-Reswap"] = "none"
                 return response
+            # if not htmx then do normal form rendering
     else:
         form = UserCreationForm()
+
     context = {
-        "form": form
+        "form": form,
     }
     return htmx_render(request,"accounts/create_profile.html",context)
 
@@ -83,6 +85,7 @@ def login_view(request):
                 response = render(request,"accounts/errors.html",context)
                 response.headers["HX-Reswap"] = "none"
                 return response
+            # if not htmx then do normal form rendering
     else:
         form = AuthenticationForm()
     context = {

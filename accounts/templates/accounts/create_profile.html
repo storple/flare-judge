@@ -4,80 +4,148 @@
 
 {% block content %}
 <div
-    class="flex flex-col h-full justify-center mx-auto min-w-56 sm:max-w-lg px-6">
+    class="flex flex-col h-full justify-center mx-auto min-w-56 sm:max-w-lg px-6 py-2">
     <div>
         <h1
             class="pb-6 text-2xl font-semibold text-center"
             >Sign Up</h1>
     </div>
 
-
     <form method="post" action="{% url 'create_profile' %}"
         hx-post="{% url 'create_profile' %}" hx-target="#main" hx-push-url="true">
     {% csrf_token %}
-        <div class="my-4 flex flex-col gap-6">
-            <div class="flex flex-col">
-                <label
-                    class="pb-2 font-medium"
-                    for="id_username"
-                    >Username</label>
-
-                {% comment %}
-                <div class="helptext" id="id_username_helptext">
-                    Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+        <div class="my-1 flex flex-col gap-6">
+            <div class="flex flex-col"
+                x-data="{ invalid: false, tooltip: false }">
+                <div class="flex flex-row justify-between items-center">
+                    <label
+                        class="font-medium"
+                        for="id_username"
+                        >Username
+                    </label>
+                    <div
+                        class="flex items-center justify-center"
+                        @mouseover="tooltip=true"
+                        @mouseleave="tooltip=false"
+                        >
+                        <i class="fa-solid fa-circle-info p-3"></i>
+                    </div>
                 </div>
-                {% endcomment %}
+                <div class="relative mr-5">
+                    <div
+                        class="helptext absolute bg-background-800 top-0.5 -right-28 w-56 text-center px-4 py-2 rounded z-auto
+                        after:border-background-800 after:absolute after:-top-2 after:rotate-45 after:-ml-2 after:left-1/2 after:border-8 after:border-solid"
+                        x-show="tooltip"
+                        x-transition:enter="transition ease-out duration-100 origin-top"
+                        x-transition:enter-start="transform opacity-0 scale-90"
+                        x-transition:enter-end="transform opacity-100 scale-100"
+
+                        x-transition:leave="transition ease-in duration-150 origin-top"
+                        x-transition:leave-start="transform opacity-100 scale-100"
+                        x-transition:leave-end="transform opacity-0 scale-90"
+                        id="id_username_helptext">
+                        Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+                    </div>
+                </div>
                 
                 <input
-                    class="dark:text-text-dark dark:bg-background-900 border-background-800 border-1 focus:ring-accent-600 focus:border-accent-600 rounded"
-                    type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" aria-describedby="id_username_helptext" id="id_username">
+                    class="dark:bg-background-800 border-1 focus:ring-accent-600 focus:border-accent-600 rounded"
+                    type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" aria-describedby="id_username_helptext"
+                    id="id_username"
+                    :aria-invalid="invalid"
+                    :class="invalid ? 'text-accent-300 border-accent-300' : 'dark:text-text-dark border-background-800'"
+                    >
                 <div id="username_error"></div>
-                <!-- <input -->
-                <!-- class="dark:text-text-dark dark:bg-background-900 border-background-800 border-1 focus:ring-accent-600 focus:border-accent-600 rounded" -->
-                <!-- type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username"> -->
             </div>
-            <div
-                class="flex flex-col"
-                >
-                <label
-                    class="pb-2 font-medium"
-                    for="id_password1">Password</label>
-                {% comment %}
-                  
-                <ul class="text-sm">
-                    <li>Your password can’t be too similar to your other personal information.</li>
-                    <li>Your password must contain at least 8 characters.</li>
-                    <li>Your password can’t be a commonly used password.</li>
-                    <li>Your password can’t be entirely numeric.</li>
-                </ul>
-                {% endcomment %}
-                
+            <div class="flex flex-col"
+                x-data="{ invalid: false, tooltip: false }">
+                <div class="flex flex-row justify-between items-center">
+                    <label
+                        class="font-medium"
+                        for="id_username"
+                        >Password
+                    </label>
+                    <div
+                        class="flex items-center justify-center"
+                        @mouseover="tooltip=true"
+                        @mouseleave="tooltip=false"
+                        >
+                        <i class="fa-solid fa-circle-info p-3"></i>
+                    </div>
+                </div>
+                <div class="relative mr-5">
+                    <div
+                        class="helptext absolute bg-background-800 top-0.5 -right-28 w-56 px-4 py-2 rounded z-auto
+                        after:border-background-800 after:absolute after:-top-2 after:rotate-45 after:-ml-2 after:left-1/2 after:border-8 after:border-solid"
+                        x-show="tooltip"
+                        x-transition:enter="transition ease-out duration-100 origin-top"
+                        x-transition:enter-start="transform opacity-0 scale-90"
+                        x-transition:enter-end="transform opacity-100 scale-100"
+
+                        x-transition:leave="transition ease-in duration-150 origin-top"
+                        x-transition:leave-start="transform opacity-100 scale-100"
+                        x-transition:leave-end="transform opacity-0 scale-90"
+                        id="id_password_helptext">
+                        <p class="mb-2">Your password must meet the following requirements:</p>
+                        <ul class="text-left text-sm list-disc list-inside">
+                            <li>contains at least 8 characters.</li>
+                            <li>isn't too similar to your other personal information.</li>
+                            <li>isn't a commonly used password.</li>
+                            <li>isn't entirely numeric.</li>
+                        </ul>
+                    </div>
+                </div>
                 <input
-                    class="dark:text-text-dark dark:bg-background-900 border-background-800 border-1 focus:ring-accent-600 focus:border-accent-600 rounded"
-                    type="password" name="password1" autocomplete="new-password" required="" aria-describedby="id_password1_helptext" id="id_password1">
+                    class="dark:bg-background-800 border-1 focus:ring-accent-600 focus:border-accent-600 rounded"
+                    type="password" name="password1" autocomplete="new-password" required="" aria-describedby="id_password1_helptext"
+                    id="id_password1"
+                    :aria-invalid="invalid"
+                    :class="invalid ? 'text-accent-300 border-accent-300' : 'dark:text-text-dark border-background-800'"
+                    >
                 <div id="password1_error"></div>
             </div>
-            <div
-                class="flex flex-col"
-                >
-                <label
-                    class="pb-2 font-medium"
-                    for="id_password2">Password confirmation</label>
-
-                {% comment %}
-                <div class="helptext" id="id_password2_helptext">
-                    Enter the same password as before, for verification. 
+            <div class="flex flex-col"
+                x-data="{ invalid: false, tooltip: false }">
+                <div class="flex flex-row justify-between items-center">
+                    <label
+                        class="font-medium"
+                        for="id_username"
+                        >Password confirmation
+                    </label>
+                    <div
+                        class="flex items-center justify-center"
+                        @mouseover="tooltip=true"
+                        @mouseleave="tooltip=false"
+                        >
+                        <i class="fa-solid fa-circle-info p-3"></i>
+                    </div>
                 </div>
-                {% endcomment %}
+                <div class="relative mr-5">
+                    <div
+                        class="helptext absolute bg-background-800 top-0.5 -right-28 w-56 text-center px-4 py-2 rounded z-auto
+                        after:border-background-800 after:absolute after:-top-2 after:rotate-45 after:-ml-2 after:left-1/2 after:border-8 after:border-solid"
+                        x-show="tooltip"
+                        x-transition:enter="transition ease-out duration-100 origin-top"
+                        x-transition:enter-start="transform opacity-0 scale-90"
+                        x-transition:enter-end="transform opacity-100 scale-100"
+
+                        x-transition:leave="transition ease-in duration-150 origin-top"
+                        x-transition:leave-start="transform opacity-100 scale-100"
+                        x-transition:leave-end="transform opacity-0 scale-90"
+                        id="id_password2_helptext">
+                        Enter the same password as before, for verification. 
+                    </div>
+                </div>
                 
                 <input
-                    class="dark:text-text-dark dark:bg-background-900 border-background-800 border-1 focus:ring-accent-600 focus:border-accent-600 rounded"
-                    type="password" name="password2" autocomplete="new-password" required="" aria-describedby="id_password2_helptext" id="id_password2">
+                    class="dark:bg-background-800 border-1 focus:ring-accent-600 focus:border-accent-600 rounded"
+                    type="password" name="password2" autocomplete="new-password" required="" aria-describedby="id_password2_helptext"
+                    id="id_password2"
+                    :aria-invalid="invalid"
+                    :class="invalid ? 'text-accent-300 border-accent-300' : 'dark:text-text-dark border-background-800'"
+                    >
                 <div id="password2_error"></div>
             </div>
-            {% if form.password2.errors %}
-                {{form.password2.errors}}
-            {% endif %}
             <button class="bg-accent-600 py-2 rounded font-semibold" type="submit">Sign Up</button>
         </div>
     </form>
