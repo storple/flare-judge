@@ -22,23 +22,27 @@
 <div id="editor_preview"
     class="mx-auto max-w-5xl px-4 py-4 sm:px-6 lg:px-8">
 	<div id="editor" class="-mx-4 sm:-mx-6 h-[60vh]"></div>
-    <form
-        hx-post="{% url 'markdown_generator' %}"
-        hx-swap="innerHTML"
-        hx-target=".markdown"
-        hx-indicator=".htmx_req"
+    <div
         class="flex flex-col items-center"
         >
+        <button
+            hx-post="{% url 'markdown_generator' %}"
+            hx-swap="innerHTML"
+            hx-target=".markdown"
+            hx-indicator=".htmx_req"
+            hx-trigger="click, keyup[ctrlKey && (key == 'Enter')] from:window"
+            hx-include="[name='editor']"
+            class="bg-accent-50 dark:bg-accent-800/30 text-text-light dark:text-accent-300 font-semibold text-2xl rounded-xl px-6 py-3 ring-1 ring-accent-400/30 mt-7"
+            >Generate Preview
+            <br>
+            <span class="text-lg">(Ctrl + Enter)</span>
+        </button>
         <textarea
             name="editor"
             class="hidden-textarea"
             style="display: none;"
         ></textarea>
-        <button
-            class="bg-accent-50 dark:bg-accent-800/30 text-text-light dark:text-accent-300 font-semibold text-2xl rounded-xl px-6 py-3 ring-1 ring-accent-400/30 mt-7"
-            type="submit"
-            >Generate Preview</button>
-    </form>
+    </div>
     <div class="flex flex-col items-center pt-12 htmx-indicator htmx_req">
         <svg class="text-text-light dark:text-text-dark" width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
             <defs>
