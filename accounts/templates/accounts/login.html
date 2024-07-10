@@ -24,6 +24,11 @@
             </div>
         {% endif %}
     {% endif %}
+    {% if from_signup %}
+        <p
+            class="dark:text-accent-400 mt-1 text-md text-center"
+            >Account successfully created! You may now login.</p>
+    {% endif %}
     <form
         method="post" action="{% url 'login' %}"
         hx-post="{% url 'login' %}" hx-target="#main"

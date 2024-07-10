@@ -49,11 +49,18 @@
                 </div>
                 
                 <input
-                    class="dark:bg-background-800 border-1 focus:ring-accent-600 focus:border-accent-600 rounded"
+                    class="dark:bg-background-800 dark:text-text-dark dark:border-background-800 border-1 focus:ring-accent-600 focus:border-accent-600 rounded"
                     type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" aria-describedby="id_username_helptext"
                     id="id_username"
                     :aria-invalid="invalid"
-                    :class="invalid ? 'text-accent-300 border-accent-300' : 'dark:text-text-dark border-background-800'"
+                    :class="
+                    {
+                    'text-accent-300' : invalid,
+                    'border-accent-300' : invalid,
+
+                    'dark:text-text-dark' : ! invalid,
+                    'dark:border-background-800' : ! invalid,
+                    }"
                     >
                 <div id="username_error"></div>
             </div>
@@ -85,7 +92,7 @@
                         x-transition:leave="transition ease-in duration-150 origin-top"
                         x-transition:leave-start="transform opacity-100 scale-100"
                         x-transition:leave-end="transform opacity-0 scale-90"
-                        id="id_password_helptext">
+                        id="id_password1_helptext">
                         <p class="mb-2">Your password must meet the following requirements:</p>
                         <ul class="text-left text-sm list-disc list-inside">
                             <li>contains at least 8 characters.</li>
@@ -96,11 +103,18 @@
                     </div>
                 </div>
                 <input
-                    class="dark:bg-background-800 border-1 focus:ring-accent-600 focus:border-accent-600 rounded"
+                    class="dark:bg-background-800 dark:text-text-dark dark:border-background-800 border-1 focus:ring-accent-600 focus:border-accent-600 rounded"
                     type="password" name="password1" autocomplete="new-password" required="" aria-describedby="id_password1_helptext"
                     id="id_password1"
                     :aria-invalid="invalid"
-                    :class="invalid ? 'text-accent-300 border-accent-300' : 'dark:text-text-dark border-background-800'"
+                    :class="
+                    {
+                    'text-accent-300' : invalid,
+                    'border-accent-300' : invalid,
+
+                    'dark:text-text-dark' : ! invalid,
+                    'dark:border-background-800' : ! invalid,
+                    }"
                     >
                 <div id="password1_error"></div>
             </div>
@@ -138,11 +152,18 @@
                 </div>
                 
                 <input
-                    class="dark:bg-background-800 border-1 focus:ring-accent-600 focus:border-accent-600 rounded"
+                    class="dark:bg-background-800 dark:text-text-dark dark:border-background-800 border-1 focus:ring-accent-600 focus:border-accent-600 rounded"
                     type="password" name="password2" autocomplete="new-password" required="" aria-describedby="id_password2_helptext"
                     id="id_password2"
                     :aria-invalid="invalid"
-                    :class="invalid ? 'text-accent-300 border-accent-300' : 'dark:text-text-dark border-background-800'"
+                    :class="
+                    {
+                    'text-accent-300' : invalid,
+                    'border-accent-300' : invalid,
+
+                    'dark:text-text-dark' : ! invalid,
+                    'dark:border-background-800' : ! invalid,
+                    }"
                     >
                 <div id="password2_error"></div>
             </div>

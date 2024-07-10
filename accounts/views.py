@@ -29,7 +29,9 @@ def create_profile(request):
             user = form.save()
             p = Profile(user=user)
             p.save()
-            return htmx_redirect(request,reverse("login"))
+            url = reverse("login")
+            url = "{}?signup=true".format(url)
+            return htmx_redirect(request,url)
         else:
             # this form has errors
             if request.htmx:
@@ -59,6 +61,8 @@ def logout_view(request):
     return redirect(reverse("login"))
 
 def login_view(request):
+    from_signup = False
+
     if request.method == "POST":
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
@@ -88,7 +92,16 @@ def login_view(request):
             # if not htmx then do normal form rendering
     else:
         form = AuthenticationForm()
+
+    signup = request.GET.get("signup","")
+
+    if signup != "":
+        from_signup = True
+    else:
+        from_signup = False
+
     context = {
-        "form": form
+        "form": form,
+        "from_signup": from_signup
     }
     return htmx_render(request,"accounts/login.html",context)
