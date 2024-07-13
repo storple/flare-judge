@@ -1,67 +1,83 @@
-<div class="container" id="right_bar">
+<div>
+    {% comment %}
+    <h1 class="font-semibold ">Filter</h1>
+    {% endcomment %}
 	<form
-		class="container"
-		id="filter_form"
+		class="flex flex-row flex-wrap border dark:border-background-700 rounded justify-between px-2" id="filter_form"
 		hx-get="{% url 'problems_page' problem_page=problem_page %}"
-		hx-target="#problems_body_container"
+		hx-target="#problems_table"
 		hx-swap="outerHTML"
 		hx-trigger="change from:.filter_input delay:500ms"
         hx-push-url="true"
 		>
-		<h1 class="title_header">Filter</h1>
-		Difficulty: 
-		<label for="elo">
-			<input
-			type="text"
-			name="min_elo"
-			id="min_elo"
-			class="filter_input"
-			placeholder="MIN"
-			class="faded-text"
-			{% if min_elo %}
-				value="{{min_elo}}"
-			{% endif %}
-			>
-			-
-			<input
-			type="text"
-			name="max_elo"
-			id="max_elo"
-			class="filter_input"
-			placeholder="MAX"
-			class="faded-text"
-			{% if max_elo %}
-				value="{{max_elo}}"
-			{% endif %}
-			>
-		</label>
+        <div class="flex flex-row flex-wrap items-center mx-4 my-3 gap-2">
+            Difficulty: 
+            <input
+            type="text"
+            name="min_elo"
+            id="min_elo"
+            class="filter_input max-w-20
+            dark:dark:text-text-dark dark:bg-background-800 dark:border-background-800
+            border-1 focus:ring-accent-600 focus:border-accent-600 rounded
+            placeholder-background-600 placeholder:text-center"
+            placeholder="MIN"
+            class="faded-text"
+            {% if min_elo %}
+                value="{{min_elo}}"
+            {% endif %}
+            >
+            -
+            <input
+            type="text"
+            name="max_elo"
+            id="max_elo"
+            class="filter_input max-w-20
+            dark:dark:text-text-dark dark:bg-background-800 dark:border-background-800
+            border-1 focus:ring-accent-600 focus:border-accent-600 rounded
+            placeholder-background-600 placeholder:text-center"
+            placeholder="MAX"
+            class="faded-text"
+            {% if max_elo %}
+                value="{{max_elo}}"
+            {% endif %}
+            >
+        </div>
 
+        <div class="flex flex-row flex-wrap items-center mx-4 my-3 gap-2">
 		<label for="Tags">
 			Tags:
-			<input
-			type="text"
-			name="tags"
-			id="tags"
-			class="filter_input"
-			{% if tags %}
-				value="{{tags}}"
-			{% endif %}
-			>
 		</label>
+        <input
+        type="text"
+        name="tags"
+        id="tags"
+        class="filter_input
+        dark:dark:text-text-dark dark:bg-background-800 dark:border-background-800
+        border-1 focus:ring-accent-600 focus:border-accent-600 rounded
+        placeholder-background-600 placeholder:text-center"
+        {% if tags %}
+        value="{{tags}}"
+        {% endif %}
+        >
+        </div>
 
 		{% if user.is_authenticated %}
+        <div class="flex flex-row items-center mx-4 gap-2">
 			<label for="checkbox">
 				Completed:
-				<input
-				type="checkbox"
-				name="completed"
-				id="completed"
-				class="filter_input"
-				{% if completed %}
-					checked
-				{% endif %}>
 			</label>
+            <input
+            type="checkbox"
+            name="completed"
+            id="completed"
+            class="filter_input text-accent-600 my-3"
+            {% if completed %}
+                checked
+            {% endif %}>
+        </div>
 		{% endif %}
 	</form>
+        {% comment %}
 	{% include "problems/components/page_navigation.html" %}
+    {% endcomment %}
 </div>

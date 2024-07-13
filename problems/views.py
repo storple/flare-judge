@@ -54,18 +54,18 @@ def filter_problems(request: HttpRequest,data: QueryDict, page):
         }
         return context
 
-def problems_view(request: HttpRequest, page=1):
+def problems_view(request: HttpRequest, problem_page=1):
     if request.method == "GET":
         data = request.GET
 
         data_present = len(data) != 0
 
         if data_present:
-            context = filter_problems(request,data,page)
+            context = filter_problems(request,data,problem_page)
 
             if request.htmx:
                 # on filter url with htmx: only return the table
-                return render(request, "problems/problems&filter.html", context)
+                return render(request, "problems/components/problems_table.html", context)
             else:
                 # on filter url without htmx: return the whole page with the filtering
                 return full_page_render(request, "problems/problems.html", context)
@@ -74,7 +74,7 @@ def problems_view(request: HttpRequest, page=1):
 
             current_max_pages = max_pages(problems)
 
-            page = min(current_max_pages, page)
+            page = min(current_max_pages, problem_page)
 
             problems = problems_by_page(problems,page)
 

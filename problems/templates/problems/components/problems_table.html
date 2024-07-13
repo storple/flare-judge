@@ -1,16 +1,7 @@
 <table
     id="problems_table"
-    class="w-full text-text-light dark:text-text-dark dark:bg-background-800"
+    class="dark:bg-background-800 overflow-x-auto"
     >
-	<!-- <colgroup> -->
-	<!-- 	<col style="width: 400px"> -->
-	<!-- 	<col style="width: 70px"> -->
-	<!-- 	<col style="width: 180px"> -->
-	<!-- 	<col style="width: 130px"> -->
-	<!-- 	{% if user.is_authenticated %} -->
-	<!-- 		<col style="width: 10px"> -->
-	<!-- 	{% endif %} -->
-	<!-- </colgroup> -->
 	<thead>
         <tr class="bg-background-50 dark:bg-background-950">
             <th class="text-left pl-4 py-2 text-base font-bold">
@@ -42,7 +33,8 @@
             {% endif %}
             </tr>
 	</thead>
-	<tbody>
+	<tbody class="divide-y divide-background-700">
+	<!-- <tbody> -->
 		{% if problems %}
 			{% for problem in problems %}
                 {% with solved_problems=user.profile.problems_solved.all %}

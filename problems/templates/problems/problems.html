@@ -5,9 +5,10 @@
 {% block title %}Problems{% endblock %}
 
 {% block content %}
-	<div class="mx-auto max-w-5xl px-4 py-4 sm:px-6 lg:px-8">
+	<div class="mx-auto max-w-6xl px-4 py-4 sm:px-6 lg:px-8">
 		<h1 class="text-text-light dark:text-text-dark text-3xl font-bold">Problems</h1>
 	</div>
+    {% comment %}
 	<div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
 		<p class="text-text-light dark:text-text-dark">
 			Here, you will be able to find a list of problems that are ranked by their difficulty, which is great if you are trying to look for 
@@ -16,6 +17,15 @@
 			from LMCodeQuest, Codeforces, and AtCoder (make accounts for these so you will be able to submit your problems and check your answers).
 		<p>
 	</div>
+    {% endcomment %}
 
-	{% include 'problems/components/problems&filter.html' %}
+    <!-- <div class="container" id="problems_body_container"> -->
+    <div class="mx-auto overflow-x-auto max-w-6xl px-4 sm:px-6 lg:px-8 mt-8 mb-8 flex flex-col gap-6">
+        <!-- problems -->
+        {% include "problems/components/filter.html" %}
+        {% include "problems/components/problems_table.html" %}
+        <!-- filter -->
+        {% comment %}
+        {% endcomment %}
+    </div>
 {% endblock %}
