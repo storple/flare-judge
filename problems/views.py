@@ -17,21 +17,27 @@ def max_pages(problems: Problem, problems_per_page=50):
 
 
 def filter_problems(request: HttpRequest,data: QueryDict, page):
-        problems = Problem.objects.all()
-
         min_elo = data.get("min_elo","")
         max_elo = data.get("max_elo","")
         tags = data.get("tags","")
-        completed = data.get("completed")
+        not_completed = data.get("not_completed","") != ""
+        completed = data.get("completed","") != ""
 
-        if completed is not None:
-            user = request.user
-            if user.is_authenticated:
+        user = request.user
+        if user.is_authenticated:
                 currentprofile = user.profile
-                problems = currentprofile.problems_solved.all()
-                # problems = problems.filter(profile=currentprofile)
-        # else:
-            # problems = problems.objects.exclude(profile=currentprofile)
+                if completed and not_completed:
+                    # no filtering
+                    problems = Problem.objects.all()
+                elif completed:
+                    # only show completed ones
+                    problems = currentprofile.problems_solved.all()
+                elif not_completed:
+                    # only show not completed problems
+                    problems = Problem.objects.exclude(profile=currentprofile)
+                else:
+                    # no problems
+                    problems = Problem.objects.none()
 
         if min_elo != "": problems = problems.filter(elo__gte=min_elo)
         if max_elo != "": problems = problems.filter(elo__lte=max_elo)
@@ -48,6 +54,7 @@ def filter_problems(request: HttpRequest,data: QueryDict, page):
             "min_elo": min_elo,
             "max_elo": max_elo,
             "tags": tags,
+            "not_completed": not_completed,
             "completed": completed,
             "problem_page": page,
             "max_pages": current_max_pages,
@@ -68,7 +75,8 @@ def problems_view(request: HttpRequest, problem_page=1):
                 return render(request, "problems/components/problems_table.html", context)
             else:
                 # on filter url without htmx: return the whole page with the filtering
-                return full_page_render(request, "problems/problems.html", context)
+                print("doing this thing")
+                return full_page_render(request, "problems/problems.html", context, page = "problems")
         else:
             problems = Problem.objects.all()
 
@@ -81,6 +89,8 @@ def problems_view(request: HttpRequest, problem_page=1):
             context = {
                 "problems": problems,
                 "problem_page": page,
+                "not_completed": True,
+                "completed": True,
                 "max_pages": current_max_pages,
             }
             # render page without filtering

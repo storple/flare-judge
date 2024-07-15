@@ -7,7 +7,7 @@
 		hx-get="{% url 'problems_page' problem_page=problem_page %}"
 		hx-target="#problems_table"
 		hx-swap="outerHTML"
-		hx-trigger="change from:.filter_input delay:500ms"
+		hx-trigger="change from:.filter_text delay:500ms, change from:.filter_input"
         hx-push-url="true"
 		>
         <div class="flex flex-row flex-wrap items-center mx-4 my-3 gap-2">
@@ -16,7 +16,7 @@
             type="text"
             name="min_elo"
             id="min_elo"
-            class="filter_input max-w-20
+            class="filter_text max-w-20
             dark:dark:text-text-dark dark:bg-background-800 dark:border-background-800
             border-1 focus:ring-accent-600 focus:border-accent-600 rounded
             placeholder-background-600 placeholder:text-center"
@@ -31,7 +31,7 @@
             type="text"
             name="max_elo"
             id="max_elo"
-            class="filter_input max-w-20
+            class="filter_text max-w-20
             dark:dark:text-text-dark dark:bg-background-800 dark:border-background-800
             border-1 focus:ring-accent-600 focus:border-accent-600 rounded
             placeholder-background-600 placeholder:text-center"
@@ -51,7 +51,7 @@
         type="text"
         name="tags"
         id="tags"
-        class="filter_input
+        class="filter_text w-full max-w-40
         dark:dark:text-text-dark dark:bg-background-800 dark:border-background-800
         border-1 focus:ring-accent-600 focus:border-accent-600 rounded
         placeholder-background-600 placeholder:text-center"
@@ -62,10 +62,24 @@
         </div>
 
 		{% if user.is_authenticated %}
-        <div class="flex flex-row items-center mx-4 gap-2">
-			<label for="checkbox">
-				Completed:
-			</label>
+        <div class="flex flex-row items-center mx-4 my-3 gap-2">
+            <label for="not_completed">
+                Not completed
+            </label>
+            <input
+            type="checkbox"
+            name="not_completed"
+            id="not_completed"
+            class="filter_input text-accent-600 my-3"
+            {% if not_completed %}
+                checked
+            {% endif %}>
+        </div>
+
+        <div class="flex flex-row items-center mx-4 my-3 gap-2">
+            <label for="completed">
+                Completed
+            </label>
             <input
             type="checkbox"
             name="completed"

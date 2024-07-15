@@ -2,24 +2,27 @@ from django.shortcuts import render, redirect
 from django_htmx.http import HttpResponseLocation
 
 # template is only content (body) if the page, while full template is the whole page
-def partial_page_render(request,template,context={}):
+def partial_page_render(request,template,context={}, **kwargs):
     base_template = "_partial.html"
-    context.update({ "base_template": base_template })
+    current_page = kwargs.get("page","")
+
+    context.update({ "base_template": base_template, "current_page": current_page})
+
     return render(request,template,context)
 
-def full_page_render(request,template,context={}):
+def full_page_render(request,template,context={}, **kwargs):
     base_template = "base/base_navbar.html"
-    context.update({ "base_template": base_template })
+    current_page = kwargs.get("page","")
+
+    context.update({ "base_template": base_template, "current_page": current_page})
+
     return render(request,template,context)
 
 def htmx_render(request,template,context={}, **kwargs):
-    current_page = kwargs.get("page","")
-    context.update({"current_page":current_page})
-
     if request.htmx:
-        return partial_page_render(request,template,context)
+        return partial_page_render(request,template,context, **kwargs)
     else:
-        return full_page_render(request,template,context)
+        return full_page_render(request,template,context, **kwargs)
 
 # template is only content (body) if the page, to is for the redirect
 def htmx_redirect(request,redirect_to, **kwargs):
