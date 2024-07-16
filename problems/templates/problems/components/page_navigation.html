@@ -1,40 +1,40 @@
 {% if max_pages > 1 %}
-<nav
-	class="container"
-	id="page_navigation"
-	hx-target="#problems_body_container"
-	hx-swap="outerHTML"
-	hx-push-url="true"
-	hx-include="#filter_form"
-	>
-	{% with problem_page=problem_page|add:-1 %}
-		{% if problem_page >= 1 %}
-			<a id="last_page_link" class="page_link" hx-post="{% url 'problems_page' page=page %}">←</a>
-		{% else %}
-			<a id="last_page_link" class="page_link disabled">←</a>
-		{% endif %}
-	{% endwith %}
-	<div id="page_numbers" class="container">
-		{% with problem_page=problem_page|add:-1 %}
-			{% if problem_page >= 1 %}
-			<a id="last_page_number" class="page_link" hx-post="{% url 'problems_page' page=page %}">{{page}}</a>
-			{% endif %}
-		{% endwith %}
+{% if not oob_swap %}
+<div
+    x-data="{
+        page: {{problem_page}},
+        set_page(new_page){
+            this.page = new_page;
+            $refs.page_input.value = this.page;
+            $dispatch('filter_page');
+        },
+    }">
+    <input id="page_input" x-ref="page_input" type="hidden" name="page">
+{% endif %}
 
-		<a id="current_page_number" class="page_link disabled" hx-post="{% url 'problems_page' page=page %}" >{{page}}</a>
+    <nav
+        id="problem_page_navigation"
+        {% if oob_swap %}
+        hx-swap-oob="true"
+        {% endif %}
+        class="flex flex-row justify-start gap-2"
+        >
+        {% for page in page_range %}
+            {% if page != "…" %}
+            <button
+                {% if page == problem_page %}
+                disabled
+                {% endif %}
+                class="filter_page dark:bg-background-800 px-2 py-1 rounded-sm disabled:dark:bg-background-800/50 disabled:text-text-dark/20"
+                @click="set_page({{page}})">{{page}}</button>
+            {% else %}
+            <div class="mx-1 flex flex-col justify-end">{{page}}</div>
+            {% endif %}
+        {% endfor %}
+    </nav>
 
-		{% with problem_page=problem_page|add:1 %}
-			{% if page <= max_pages %}
-				<a id="next_page_number" class="page_link" hx-post="{% url 'problems_page' page=page %}">{{page}}</a>
-			{% endif %}
-		{% endwith %}
-	</div>
-	{% with problem_page=problem_page|add:1 %}
-		{% if problem_page <= max_pages %}
-			<a id="next_page_link" class="page_link" hx-post="{% url 'problems_page' page=page %}">→</a>
-		{% else %}
-			<a id="last_page_link" class="page_link disabled">→</a>
-		{% endif %}
-	{% endwith %}
-</nav>
+{% if not oob_swap %}
+</div>
+{% endif %}
+
 {% endif %}

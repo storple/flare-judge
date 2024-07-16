@@ -4,21 +4,48 @@
     class="dark:bg-background-800 w-full"
     >
 	<thead>
-        <tr class="bg-background-50 dark:bg-background-950">
+        <tr class="bg-background-50 dark:bg-background-950"
+            x-data="{
+                name_sort: {{name_sort}},
+                elo_sort: {{elo_sort}},
+                name_change(){
+                    this.name_sort = this.name_sort + 1;
+                    this.name_sort = this.name_sort == 3 ? 0 : this.name_sort;
+                    this.elo_sort = 0;
+                },
+                elo_change(){
+                    this.elo_sort = this.elo_sort + 1;
+                    this.elo_sort = this.elo_sort == 3 ? 0 : this.elo_sort;
+                    this.name_sort = 0;
+                },
+            }"
+            >
             <th class="text-left pl-4 py-2 text-base font-bold">
                 <a class="flex flex-row gap-1 items-center"
                     >Name
-                    <i class="fa-solid fa-sort"></i>
-                    <!-- <i class="fa-solid fa-sort-up"></i> -->
-                    <!-- <i class="fa-solid fa-sort-down"></i> -->
+                    <button
+                        @click="name_change()"
+                        class="filter_sort"
+                        >
+                        <input type="hidden" name="name_sort" :value="name_sort"></input>
+                        <i class="fa-solid fa-sort"
+                            :class="{'fa-sort': name_sort == 0, 'fa-sort-down': name_sort == 1, 'fa-sort-up': name_sort == 2}"
+                            ></i>
+                    </button>
                 </a>
             </th>
             <th class="text-left pl-4 py-2 text-base font-bold">
-                <a class="flex flex-row gap-1 items-center text-base"
+                <a class="flex flex-row gap-1 items-center"
                     >Difficulty
-                    <i class="fa-solid fa-sort"></i>
-                    <!-- <i class="fa-solid fa-sort-up"></i> -->
-                    <!-- <i class="fa-solid fa-sort-down"></i> -->
+                    <button
+                        @click="elo_change()"
+                        class="filter_sort"
+                        >
+                        <input type="hidden" name="elo_sort" :value="elo_sort"></input>
+                        <i class="fa-solid fa-sort"
+                            :class="{'fa-sort': elo_sort == 0, 'fa-sort-down': elo_sort == 1, 'fa-sort-up': elo_sort == 2}"
+                            ></i>
+                    </button>
                 </a>
             </th>
             <th class="text-left pl-4 py-2 text-base font-bold"
@@ -34,15 +61,6 @@
             {% endif %}
             </tr>
 	</thead>
-	<tbody class="divide-y divide-background-700">
-	<!-- <tbody> -->
-		{% if problems %}
-			{% for problem in problems %}
-                {% with solved_problems=user.profile.problems_solved.all %}
-                    {% include "problems/components/problem.html" with problem=problem %}
-                {% endwith %}
-			{% endfor %}
-		{% endif %}
-	</tbody>
+    {% include "problems/components/problems_body.html" %}
 </table>
 </div>

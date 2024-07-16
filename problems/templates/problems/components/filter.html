@@ -1,13 +1,15 @@
 <div>
     {% comment %}
-    <h1 class="font-semibold ">Filter</h1>
+    <h1 class="font-semibold">Filter</h1>
     {% endcomment %}
 	<form
-		class="flex flex-row flex-wrap border dark:border-background-700 rounded justify-between px-2" id="filter_form"
-		hx-get="{% url 'problems_page' problem_page=problem_page %}"
-		hx-target="#problems_table"
+		class="flex flex-row flex-wrap border dark:border-background-700 rounded justify-between px-2"
+        id="filter_form"
+		hx-get="{% url 'problems' %}"
+		hx-target="#problem_body"
 		hx-swap="outerHTML"
-		hx-trigger="change from:.filter_text delay:500ms, change from:.filter_input"
+        hx-trigger="change from:.filter_text delay:500ms, change from:.filter_input, click from:.filter_sort, filter_page from:window"
+        hx-include=".filter_sort input, #page_input"
         hx-push-url="true"
 		>
         <div class="flex flex-row flex-wrap items-center mx-4 my-3 gap-2">
@@ -91,7 +93,4 @@
         </div>
 		{% endif %}
 	</form>
-        {% comment %}
-	{% include "problems/components/page_navigation.html" %}
-    {% endcomment %}
 </div>

@@ -1,0 +1,10 @@
+<!-- <tbody> -->
+<tbody id="problem_body" class="divide-y divide-background-700">
+    {% if problems %}
+        {% for problem in problems %}
+            {% with solved_problems=user.profile.problems_solved.all %}
+                {% include "problems/components/problem.html" with problem=problem %}
+            {% endwith %}
+        {% endfor %}
+    {% endif %}
+</tbody>
