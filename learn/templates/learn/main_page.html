@@ -14,7 +14,6 @@
 					{% for guide in guides %}
 						<a class="overflow-auto h-32 sm:h-36 bg-accent-800/30 rounded-lg ring-1 ring-accent-400/30 px-3 py-2"
                             href="{% url 'guide' guide=guide.url_name %}"
-                            hx-get="{% url 'guide' guide=guide.url_name %}" hx-target="main" hx-push-url="true"
                             >
 							<h1 class="text-text-light dark:text-accent-300 font-semibold text-xl">{{guide.guide_name}}</h1>
 							<p class="text-text-light dark:text-text-100 pt-2">{{guide.short_description}}</p>
@@ -30,7 +29,6 @@
 					{% for page in pages %}
                         <a class="red-link mt-1"
                             href="{% url 'page' page=page.url_name %}"
-                            hx-get="{% url 'page' page=page.url_name %}" hx-target="main" hx-push-url="true"
                             >{{page.page_name}}</a>
 					{% endfor %}
 				</div>

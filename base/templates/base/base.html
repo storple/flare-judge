@@ -46,7 +46,10 @@
 </head>
 	<body
         class="h-full"
-        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'x-init="$store.language.update_language_text()">
+        hx-boost="true"
+        hx-target="#main"
+        hx-push-url="true"
+        hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' x-init="$store.language.update_language_text()">
     {% block body %}{% endblock %}
 	</body>
 </html>

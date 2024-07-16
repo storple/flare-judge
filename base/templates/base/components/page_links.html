@@ -5,7 +5,6 @@
     >
     <div class="ml-10 flex items-baseline space-x-4">
         <a href="{% url 'problems' %}"
-            hx-get="{% url 'problems' %}" hx-target="main" hx-push-url="true"
             {% if current_page == "problems" %}
                 class="
                 bg-accent-100 text-text-100
@@ -21,7 +20,6 @@
             {% endif %}
             >Problems</a>
         <a href="{% url 'learn' %}"
-            hx-get="{% url 'learn' %}" hx-target="main" hx-push-url="true"
             {% if current_page == "learn" %}
                 class="
                 bg-accent-100 text-text-100

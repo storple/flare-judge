@@ -5,12 +5,12 @@
 	<form
 		class="flex flex-row flex-wrap border dark:border-background-700 rounded justify-between px-2"
         id="filter_form"
-		hx-get="{% url 'problems' %}"
+        action="{% url 'problems' %}"
+        method="get"
 		hx-target="#problem_body"
 		hx-swap="outerHTML"
         hx-trigger="change from:.filter_text delay:500ms, change from:.filter_input, click from:.filter_sort, filter_page from:window"
         hx-include=".filter_sort input, #page_input"
-        hx-push-url="true"
 		>
         <div class="flex flex-row flex-wrap items-center mx-4 my-3 gap-2">
             Difficulty: 

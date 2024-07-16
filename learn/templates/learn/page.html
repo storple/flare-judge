@@ -28,8 +28,7 @@
                     {% if previous_page %}
                     <a
                         class="red-link px-4 py-2 text-lg ml-0 md:ml-5 lg:ml-10"
-                        href="{% url 'page' page=previous_page.url_name %}"
-                        hx-get="{% url 'page' page=previous_page.url_name %}" hx-target="main" hx-swap="show:window:top" hx-push-url="true"
+                        href="{% url 'page' page=previous_page.url_name %}" hx-swap="show:window:top"
                         >
                         <i class="fa-solid fa-chevron-left"></i>
                         Previous: {{previous_page.page_name}}
@@ -38,8 +37,7 @@
                     {% if next_page %}
                     <a
                         class="red-link px-4 py-2 text-lg mr-0 md:mr-5 lg:mr-10"
-                        href="{% url 'page' page=next_page.url_name %}"
-                        hx-get="{% url 'page' page=next_page.url_name %}" hx-target="main" hx-swap="show:window:top" hx-push-url="true"
+                        href="{% url 'page' page=next_page.url_name %}" hx-swap="show:window:top"
                         >Next: {{next_page.page_name}}
                         <i class="fa-solid fa-chevron-right"></i>
                     </a>
@@ -59,32 +57,30 @@
     {% if page %}
     <!-- toc -->
     <div class="hidden lg:block pr-8 w-60 min-w-60 mr-auto">
-        <div class="sticky top-0 pt-8">
-            <ul>
+        <div class="sticky top-0 pt-12">
+            <ul class="max-h-[80vh] overflow-x-auto">
                 {% for currentPage in pages %}
                     <li class="my-3">
                     {% if currentPage == page %}
                         <a href="#article_heading"
-                            class="red-link"
+                            class="dark:text-accent-400 hover:underline"
                             >{{page.page_name}}</a>
                         {% autoescape off %}
                         {{ page.toc }}
                         {% endautoescape %}
                     {% else %}
                         <a
-                            class="red-link"
-                            href="{% url 'page' page=currentPage.url_name %}"
-                            hx-get="{% url 'page' page=currentPage.url_name %}" hx-target="main" hx-swap="show:window:top" hx-push-url="true"
+                            class="dark:text-text-400 hover:text-accent-400"
+                            href="{% url 'page' page=currentPage.url_name %}" hx-swap="show:window:top"
                             >{{currentPage.page_name}}</a>
                     {% endif %}
                     </li>
                 {% endfor %}
                     {% if page.guide and page.guide.visible %}
-                    <li class="mt-8">
+                    <li class="mt-10">
                         <a
-                            class="red-link"
-                            href="{% url 'guide' guide=page.guide.url_name %}"
-                            hx-get="{% url 'guide' guide=page.guide.url_name %}" hx-target="main" hx-swap="show:window:top" hx-push-url="true"
+                            class="dark:text-text-400 hover:text-accent-400"
+                            href="{% url 'guide' guide=page.guide.url_name %}" hx-swap="show:window:top"
                             >Back to Guide</a>
                     </li>
                     {% endif %}

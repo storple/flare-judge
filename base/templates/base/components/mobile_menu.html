@@ -25,29 +25,24 @@
             </div>
             <div class="ml-3">
                 <div class="text-base font-medium leading-none text-text-100">{{ user.username }}</div>
-                <!-- <div class="text-sm font-medium leading-none text-gray-400">{{ user.email }}</div> -->
             </div>
         </div>
         {% endif %}
         <div class="mt-3 space-y-1 px-2">
         {% if user.is_authenticated %}
             <a href="{% url 'profile' %}"
-                hx-get="{% url 'profile' %}" hx-target="main" hx-push-url="true"
                 class="block rounded-md px-3 py-2 text-base font-medium text-text-700 dark:text-text-300 hover:bg-accent-200 dark:hover:bg-accent-800 dark:hover:text-text-100"
                 >Your Profile</a>
             <a href="{% url 'profile' %}"
-                hx-get="{% url 'profile' %}" hx-target="main" hx-push-url="true"
                 class="block rounded-md px-3 py-2 text-base font-medium text-text-700 dark:text-text-300 hover:bg-accent-200 dark:hover:bg-accent-800 dark:hover:text-text-100"
                 >Settings</a>
-            <a href="{% url 'logout' %}"
+            <a href="{% url 'logout' %}" hx-boost="false"
                 class="block rounded-md px-3 py-2 text-base font-medium text-text-700 dark:text-text-300 hover:bg-accent-200 dark:hover:bg-accent-800 dark:hover:text-text-100" >Sign Out</a>
         {% else %}
             <a href="{% url 'login' %}"
-                hx-get="{% url 'login' %}" hx-target="main" hx-push-url="true"
                 class="block rounded-md px-3 py-2 text-base font-medium text-text-700 dark:text-text-300 hover:bg-accent-200 dark:hover:bg-accent-800 dark:hover:text-text-100"
                 >Login</a>
             <a href="{% url 'create_profile' %}"
-                hx-get="{% url 'create_profile' %}" hx-target="main" hx-push-url="true"
                 class="block rounded-md px-3 py-2 text-base font-medium text-text-700 dark:text-text-300 hover:bg-accent-200 dark:hover:bg-accent-800 dark:hover:text-text-100"
                 >Sign Up</a>
         {% endif %}

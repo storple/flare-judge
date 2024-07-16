@@ -24,7 +24,6 @@
                     {% for page in pages %}
                         <a class="red-link mt-1"
                             href="{% url 'page' page=page.url_name %}"
-                            hx-get="{% url 'page' page=page.url_name %}" hx-target="main" hx-push-url="true"
                             >{{page.page_name}}</a>
                     {% empty %}
                         <p class="text-text-light mt-1 dark:text-text-dark"

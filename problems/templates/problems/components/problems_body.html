@@ -1,5 +1,5 @@
 <!-- <tbody> -->
-<tbody id="problem_body" class="divide-y divide-background-700">
+<tbody id="problem_body" class="divide-y divide-background-700" hx-push-url="false">
     {% if problems %}
         {% for problem in problems %}
             {% with solved_problems=user.profile.problems_solved.all %}
