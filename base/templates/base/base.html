@@ -1,7 +1,10 @@
 {% load static tailwind_tags %}
 
 <!DOCTYPE html>
-<html class="h-full min-h-full bg-background-50 dark:bg-background-900 text-text-light dark:text-text-dark" lang="en">
+<html class="h-full min-h-full bg-background-50 dark:bg-background-900 text-text-light dark:text-text-dark dark"
+    x-data
+    :class="{'dark' : $store.dark_theme.dark_theme }"
+    lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,6 +29,12 @@
                     set_language(language){
                         this.language = language;
                         this.update_language_text();
+                    }
+                });
+                Alpine.store('dark_theme', {
+                    dark_theme: Alpine.$persist(true).as('dark_theme'),
+                    toggle(){
+                        this.dark_theme = !this.dark_theme;
                     },
                 });
             });

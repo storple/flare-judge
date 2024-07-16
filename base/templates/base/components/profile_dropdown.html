@@ -44,9 +44,11 @@
         <a href="{% url 'profile' %}"
             class="block px-4 py-2 text-sm text-text-800 dark:text-text-200 dark:focus:bg-background-700 hover:bg-background-200 dark:hover:bg-background-800"
             >Profile</a>
-        <a href="{% url 'profile' %}"
-            class="block px-4 py-2 text-sm text-text-800 dark:text-text-200 dark:focus:bg-background-700 hover:bg-background-200 dark:hover:bg-background-800"
-            >Settings</a>
+        <button href="{% url 'profile' %}"
+            class="px-4 py-2 text-sm w-full text-left text-text-800 dark:text-text-200 dark:focus:bg-background-700 hover:bg-background-200 dark:hover:bg-background-800"
+            x-text="$store.dark_theme.dark_theme ? 'Light Mode' : 'Dark Mode'"
+            @click="$store.dark_theme.toggle()"
+></button>
         <a href="{% url 'logout' %}"
             hx-boost="false"
             class="block px-4 py-2 text-sm text-text-800 dark:text-text-200 dark:focus:bg-background-700 hover:bg-background-200 dark:hover:bg-background-800"
