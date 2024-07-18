@@ -57,6 +57,8 @@ def filter_problems(request: HttpRequest,data: QueryDict):
         else:
             # no problems
             problems = Problem.objects.none()
+    else:
+        problems = Problem.objects.all()
 
     if min_elo != "": problems = problems.filter(elo__gte=min_elo)
     if max_elo != "": problems = problems.filter(elo__lte=max_elo)
