@@ -1,0 +1,96 @@
+<div>
+    {% comment %}
+    <h1 class="font-semibold">Filter</h1>
+    {% endcomment %}
+	<form
+		class="flex flex-row flex-wrap border dark:border-background-700 rounded justify-between px-2"
+        id="filter_form"
+        action="{% url 'problems' %}"
+        method="get"
+		hx-target="#problem_body"
+		hx-swap="outerHTML"
+        hx-trigger="change from:.filter_text delay:500ms, change from:.filter_input, click from:.filter_sort, filter_page from:window"
+        hx-include=".filter_sort input, #page_input"
+		>
+        <div class="flex flex-row flex-wrap items-center mx-4 my-3 gap-2">
+            Difficulty: 
+            <input
+            type="text"
+            name="min_elo"
+            id="min_elo"
+            class="filter_text max-w-20
+            dark:dark:text-text-dark dark:bg-background-800 dark:border-background-800
+            border-1 focus:ring-accent-600 focus:border-accent-600 rounded
+            placeholder-background-600 placeholder:text-center"
+            placeholder="MIN"
+            class="faded-text"
+            {% if min_elo %}
+                value="{{min_elo}}"
+            {% endif %}
+            >
+            -
+            <input
+            type="text"
+            name="max_elo"
+            id="max_elo"
+            class="filter_text max-w-20
+            dark:dark:text-text-dark dark:bg-background-800 dark:border-background-800
+            border-1 focus:ring-accent-600 focus:border-accent-600 rounded
+            placeholder-background-600 placeholder:text-center"
+            placeholder="MAX"
+            class="faded-text"
+            {% if max_elo %}
+                value="{{max_elo}}"
+            {% endif %}
+            >
+        </div>
+
+        <div class="flex flex-row flex-wrap items-center mx-4 my-3 gap-2">
+		<label for="Tags">
+			Tags:
+		</label>
+        <input
+        type="text"
+        name="tags"
+        id="tags"
+        class="filter_text w-full max-w-40
+        dark:dark:text-text-dark dark:bg-background-800 dark:border-background-800
+        border-1 focus:ring-accent-600 focus:border-accent-600 rounded
+        placeholder-background-600 placeholder:text-center"
+        {% if tags %}
+        value="{{tags}}"
+        {% endif %}
+        >
+        </div>
+
+		{% if user.is_authenticated %}
+        <div class="flex flex-row items-center mx-4 my-3 gap-2">
+            <label for="not_completed">
+                Not completed
+            </label>
+            <input
+            type="checkbox"
+            name="not_completed"
+            id="not_completed"
+            class="filter_input text-accent-600 my-3"
+            {% if not_completed %}
+                checked
+            {% endif %}>
+        </div>
+
+        <div class="flex flex-row items-center mx-4 my-3 gap-2">
+            <label for="completed">
+                Completed
+            </label>
+            <input
+            type="checkbox"
+            name="completed"
+            id="completed"
+            class="filter_input text-accent-600 my-3"
+            {% if completed %}
+                checked
+            {% endif %}>
+        </div>
+		{% endif %}
+	</form>
+</div>

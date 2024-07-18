@@ -1,0 +1,13 @@
+{% for field,error in errors %}
+<div
+    class="dark:text-accent-300 mt-1 text-sm"
+    id="{{field}}_error"
+    hx-swap-oob="true"
+    {% if error != "" %}
+    x-init="invalid = true"
+    {% else %}
+    x-init="invalid = false"
+    {% endif %}
+    >{{error}}
+</div>
+{% endfor %}

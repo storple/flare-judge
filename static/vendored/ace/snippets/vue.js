@@ -1,4 +1,3 @@
-
 ;                (function() {
                     ace.require(["ace/snippets/vue"], function(m) {
                         if (typeof module == "object" && typeof exports == "object" && module) {

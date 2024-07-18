@@ -5,7 +5,7 @@ from django.template.defaultfilters import slugify
 
 from accounts.models import Profile
 
-import markdown
+from .markdown import md
 
 learn_page_fs = FileSystemStorage(location="learn/templates/generated")
 
@@ -43,6 +43,23 @@ class Page(models.Model):
         blank=True,
         null=True
     )
+    page_order = models.PositiveIntegerField(default=1)
+
+    class Meta:
+        ordering = ["page_order"]
+        unique_together = ['guide','page_order']
+        # order_with_respect_to = "guide"
+    # previous_page = models.ForeignKey(
+    #     "Page",
+    #     null=True
+    # )
+    # next_page = models.ForeignKey(
+    #     "Page",
+    #     on_delete=models.SET_NULL,
+    #     blank=True,
+    #     null=True
+    # )
+
     def __str__(self):
         return self.page_name
 
@@ -62,7 +79,6 @@ class Page(models.Model):
             filename = "{}.html".format(self.url_name)
 
         #saves the generated markdown
-        md = markdown.Markdown(output_format="html", extensions=['extra','toc','nl2br'])
         html_generated = md.convert(self.markdown)
         self.toc = md.toc
 
@@ -70,3 +86,23 @@ class Page(models.Model):
 
         self.html_template_name = "generated/{}".format(self.html_generated_file.name)
         super().save(*args, **kwargs)
+
+# class PageOrder(models.Model):
+#     page = models.ForeignKey(Page, on_delete=models.CASCADE)
+#     order = models.PositiveIntegerField()
+#
+# class PageList(models.Model):
+#     name = models.CharField(max_length=100)
+#     items = models.ManyToManyField(Page, through=PageOrder, through_fields=('list', 'page'))
+#
+
+
+# Page:
+
+# Guide:
+# models.ManyToManyField(Page, through="Relationship")
+
+# Relationship:
+# Page = models.ForeignKey(Page, on_delete=models.CASCADE)
+# Guide = models.ForeignKey(Guide, on_delete=models.CASCADE)
+# order = models.PositiveIntegerField()

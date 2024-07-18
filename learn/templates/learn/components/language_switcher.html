@@ -1,0 +1,60 @@
+<div class="relative mb-4"
+    x-data="{
+        open: false,
+        toggle() {
+            this.open = ! this.open
+        },
+        close(focusAfter) {
+            this.open = false
+
+            focusAfter && focusAfter.focus()
+        }
+    }"
+    @keydown.escape.prevent.stop="close($refs.language_switcher_button)"
+    @focusin.window="! $refs.language_switcher_items.contains($event.target) && close()"
+    >
+    <button
+        class="px-4 py-1 text-lg rounded-md
+        bg-background-50
+        dark:bg-background-900 dark:shadow-background-800 dark:ring-background-700 ring-1 ring-opacity-5"
+        @click="toggle()"
+
+        type="button"
+        x-bind:aria-expanded="open"
+        x-ref="language_switcher_button"
+        aria-haspopup="true"
+        id="language_switcher_button"
+        >Language: <span x-text="$store.language.language_text"></span><i :class="{ 'fa-angle-down' : ! open, 'fa-angle-up' : open }" class="ml-4 fa-solid fa-angle-down"></i></button>
+    <!-- panel -->
+    <div
+        x-ref="language_switcher_items"
+        x-show="open"
+        @click.outside="close($refs.language_switcher_button)"
+        style="display: none"
+
+        x-transition:enter="transition ease-out duration-100"
+        x-transition:enter-start="transform opacity-0 scale-95"
+        x-transition:enter-end="transform opacity-100 scale-100"
+
+        x-transition:leave="transition ease-in duration-75"
+        x-transition:leave-start="transform opacity-100 scale-100"
+        x-transition:leave-end="transform opacity-0 scale-95"
+
+        {% comment %}
+        class="right-8 bottom-8 pl-6 pr-20 py-4 rounded-md shadow-md
+        bg-background-50 dark:bg-background-900 dark:shadow-background-800 ring-1 dark:ring-background-700 ring-opacity-5 fixed"
+        {% endcomment %}
+        class="absolute flex flex-col left-0 w-48 z-10 mt-2 origin-top-left rounded-md
+        bg-background-50  
+        dark:bg-background-900 dark:shadow-background-800 dark:ring-background-700
+        ring-1 ring-opacity-5 focus:outline-none py-1 shadow-lg"
+
+        role="menu"
+        aria-orientation="vertical"
+        aria-labelledby="language_switcher_button"
+        >
+        <button @click="close($refs.language_switcher_button); $store.language.set_language('cpp')"      class="text-left pl-4 py-1">C++</button>
+        <button @click="close($refs.language_switcher_button); $store.language.set_language('python')"   class="text-left pl-4 py-1">Python</button>
+        <button @click="close($refs.language_switcher_button); $store.language.set_language('java')"     class="text-left pl-4 py-1">Java</button>
+    </div>
+</div>

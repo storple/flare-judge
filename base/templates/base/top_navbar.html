@@ -1,24 +1,49 @@
 {% load static %}
-<header class="container">
-	<a href="{% url 'home' %}" id="logo_link">
-		<img src="{% static 'base/flarelogo.png' %}" alt="Flare Logo" class="logo">
-		<h1 id="website_title">Flare</h1>
-	</a>
-	<nav id="main_links">
-		<a href="{% url 'problems' %}" id="problem_link">Problems</a>
-		<a href="{% url 'learn' %}" id="learn_link">Learn</a>
-		{% comment %}
-		<a href="{% url 'contests' %}" id="learn_link">Contests</a>
-		{% endcomment %}
-	</nav>
-	{% if user.is_authenticated %}
-		<nav id="profile_links">
-			<a href="{% url 'profile' %}">{{ user.username }}</a>
-		</nav>
-	{% else %}
-		<nav id="profile_links">
-			<a href="{% url 'login' %}" id="login_link">Log In</a>
-			<a href="{% url 'create_profile' %}" id="signup_link">Sign Up</a>
-		</nav>
-	{% endif %}
+<header>
+<!-- <header class="min-w-full" -->
+    <nav
+        class="bg-background-900"
+        x-data="{
+            mobile_menu_open: false,
+            toggle_mobile() {
+                this.mobile_menu_open = ! this.mobile_menu_open
+            },
+            close_mobile(focusAfter) {
+                this.mobile_menu_open = false
+
+                focusAfter && focusAfter.focus()
+            }
+        }"
+        >
+        <div class="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-20 items-center justify-between">
+                <div class="flex items-center">
+                    <a href="{% url 'home' %}"
+                        class="flex items-center"
+                        >
+                        <img src="{% static 'base/flarelogo.png' %}" alt="Flare Logo" class="h-16 w-16">
+                        <h1 class="text-xl font-bold text-text-100 ml-1" >Flare</h1>
+                    </a>
+                    {% include "base/components/page_links.html" %}
+                </div>
+                <div class="hidden md:block"
+                    x-data="{
+                        open: false,
+                        toggle() {
+                            this.open = ! this.open
+                        },
+                        close(focusAfter) {
+                            this.open = false
+
+                            focusAfter && focusAfter.focus()
+                        }
+                    }"
+                    >
+                    {% include "base/components/profile_navigation.html" %}
+                </div>
+                {% include "base/components/mobile_menu_button.html" %}
+            </div>
+        </div>
+        {% include "base/components/mobile_menu.html" %}
+    </nav>
 </header>

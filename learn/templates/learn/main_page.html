@@ -1,25 +1,22 @@
-{% extends "base/base_navbar.html" %}
+{% extends base_template %}
 
 {% load static %}
-
-{% block styles %}
-	<link rel="stylesheet" href="{% static 'learn/main_page.css' %}">
-{{ block.super }}
-{% endblock %}
 
 {% block title %}Guides and Tutorials{% endblock %}
 
 {% block content %}
 	{% if guides or pages %}
-		<div id="resource_container" class="container">
+        <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
 			{% if guides %}
 				<!-- guides -->
-				<h1>Guides:</h1>
-				<div id="guide_container" class="container">
+                <h1 class="text-text-light dark:text-text-dark text-3xl font-bold mb-2">Guides</h1>
+				<div id="guide_container" class="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3">
 					{% for guide in guides %}
-						<a class="guide_box" href="{% url 'guide' guide=guide.url_name %}">
-							<h1>{{guide.guide_name}}</h1>
-							<p>{{guide.short_description}}</p>
+						<a class="overflow-auto h-32 sm:h-36 bg-accent-800/30 rounded-lg ring-1 ring-accent-400/30 px-3 py-2"
+                            href="{% url 'guide' guide=guide.url_name %}"
+                            >
+							<h1 class="text-text-light dark:text-accent-300 font-semibold text-xl">{{guide.guide_name}}</h1>
+							<p class="text-text-light dark:text-text-100 pt-2">{{guide.short_description}}</p>
 						</a>
 					{% endfor %}
 				</div>
@@ -27,15 +24,18 @@
 
 			{% if pages %}
 				<!-- pages -->
-				<h1>Pages:</h1>
-				<div id="page_container" class="container">
+                <h1 class="text-text-light dark:text-text-dark text-3xl font-bold mt-4">Featured Pages</h1>
+                <div class="flex flex-col mt-2">
 					{% for page in pages %}
-						<a href="{% url 'page' page=page.url_name %}">{{page.page_name}}</a>
+                        <a class="red-link mt-1"
+                            href="{% url 'page' page=page.url_name %}"
+                            >{{page.page_name}}</a>
 					{% endfor %}
 				</div>
 			{% endif %}
 		</div>
 	{% else %}
-		<p>no content to display at this time.</p>
+        <p class="text-text-light mt-1 dark:text-text-dark"
+        >no content to display at this time.</p>
 	{% endif %}
 {% endblock %}

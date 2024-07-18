@@ -1,16 +1,87 @@
+{% extends base_template %}
 {% load static %}
 
-<div id="editor_preview">
-	<div id="editor">{% if widget.value %}{{ widget.value }}{% endif %}</div>
-	<div id="generated-content">nothing to preview</div>
-	<textarea
-		name="{{ widget.name }}"
-		{% include "django/forms/widgets/attrs.html" %}
-		style="display: none;"
-	></textarea>
-</div>
+{% block title %}Markdown Editor{% endblock %}
 
-<script src="{% static 'vendored/showdown.min.js' %}"></script>
-<script src="{% static 'vendored/ace/ace.js' %}"></script>
-<script src="{% static 'vendored/ace/ext-language_tools.js' %}"></script>
-<script src="{% static 'learn/markdown_editor.js' %}"></script>
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'vendored/katex/katex.min.css' %}"/>
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
+{% if user.is_superuser %}
+<style>
+    .htmx-indicator, .htmx-request {
+        display:none;
+    }
+    .htmx-request.htmx-indicator {
+        display:flex;
+    }
+
+</style>
+<div id="editor_preview"
+    class="mx-auto max-w-5xl px-4 py-4 sm:px-6 lg:px-8">
+	<div id="editor" class="-mx-4 sm:-mx-6 h-[60vh]"></div>
+    <div
+        class="flex flex-col items-center"
+        >
+        <button
+            hx-post="{% url 'markdown_generator' %}"
+            hx-swap="innerHTML"
+            hx-target=".markdown"
+            hx-indicator=".htmx_req"
+            hx-trigger="click, keyup[ctrlKey && (key == 'Enter')] from:window"
+            hx-include="[name='editor']"
+            class="bg-accent-50 dark:bg-accent-800/30 text-text-light dark:text-accent-300 font-semibold text-2xl rounded-xl px-6 py-3 ring-1 ring-accent-400/30 mt-7"
+            >Generate Preview
+            <br>
+            <span class="text-lg">(Ctrl + Enter)</span>
+        </button>
+        <textarea
+            name="editor"
+            class="hidden-textarea"
+            style="display: none;"
+        ></textarea>
+    </div>
+    <div class="flex flex-col items-center pt-12 htmx-indicator htmx_req">
+        <svg class="text-text-light dark:text-text-dark" width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient x1="8.042%" y1="0%" x2="65.682%" y2="23.865%" id="a">
+                    <stop stop-color="currentColor" stop-opacity="0" offset="0%"/>
+                    <stop stop-color="currentColor" stop-opacity=".631" offset="63.146%"/>
+                    <stop stop-color="currentColor" offset="100%"/>
+                </linearGradient>
+            </defs>
+            <g fill="none" fill-rule="evenodd">
+                <g transform="translate(1 1)">
+                    <path d="M36 18c0-9.94-8.06-18-18-18" id="Oval-2" stroke="url(#a)" stroke-width="2">
+                        <animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="0.9s" repeatCount="indefinite" />
+                    </path>
+                        <circle fill="currentColor" cx="36" cy="18" r="1">
+                        <animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="0.9s" repeatCount="indefinite" />
+                    </circle>
+                </g>
+            </g>
+        </svg>
+
+    </div>
+    <h1 class="text-text-light dark:text-text-dark text-3xl font-bold my-8 htmx_req">Article Name</h1>
+    <div class="htmx_req">
+    {% include "learn/components/language_switcher.html" %}
+    </div>
+    <div :class="$store.language.language" class="markdown htmx_req"></div>
+</div>
+{% include "learn/components/clipboard_notification.html" %}
+{% endif %}
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'vendored/clipboard.min.js' %}" defer></script>
+    <script src="{% static 'learn/clipboard.js' %}" defer></script>
+
+    <script src="{% static 'vendored/ace/ace.js' %}" defer></script>
+    <script src="{% static 'vendored/ace/ext-language_tools.js' %}" defer></script>
+
+    <script src="{% static 'learn/markdown_editor.js' %}" defer></script>
+{% endblock %}

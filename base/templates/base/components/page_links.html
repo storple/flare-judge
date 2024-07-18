@@ -1,0 +1,38 @@
+<div class="hidden md:block" id="page_links"
+    {% if oob_swap %}
+    hx-swap-oob="true"
+    {% endif %}
+    >
+    <div class="ml-10 flex items-baseline space-x-4">
+        <a href="{% url 'problems' %}"
+            {% if current_page == "problems" %}
+                class="
+                bg-accent-100 text-text-100
+                dark:bg-accent-600 dark:text-text-100
+                rounded-md px-3 py-2 text-sm font-bold
+                "
+                aria-current="page"
+            {% else %}
+                class="
+                text-text-100
+                dark:text-text-300 dark:hover:bg-accent-800 dark:hover:text-text-100 rounded-md px-3 py-2 text-sm font-medium
+                " 
+            {% endif %}
+            >Problems</a>
+        <a href="{% url 'learn' %}"
+            {% if current_page == "learn" %}
+                class="
+                bg-accent-100 text-text-100
+                dark:bg-accent-600 dark:text-text-100
+                rounded-md px-3 py-2 text-sm font-bold
+                "
+                aria-current="page"
+            {% else %}
+                class="
+                text-text-100
+                dark:text-text-300 dark:hover:bg-accent-800 dark:hover:text-text-100 rounded-md px-3 py-2 text-sm font-medium
+                " 
+            {% endif %}
+            >Learn</a>
+    </div>
+</div>

@@ -1,26 +1,27 @@
-{% extends "base/base_navbar.html" %}
+{% extends base_template %}
 
 {% load static %}
 
 {% block title %}Problems{% endblock %}
 
-{% block styles %}
-<link rel="stylesheet" href="{% static 'problems/problems.css' %}">
-{{block.super}}
-{% endblock %}
-
 {% block content %}
-	<div class="container" id="top_bar_section">
-		<h1>Problems</h1>
+	<div class="mx-auto max-w-6xl px-4 py-4 sm:px-6 lg:px-8">
+		<h1 class="text-text-light dark:text-text-dark text-3xl font-bold">Problems</h1>
 	</div>
-	<div class="container" id="informationText">
-		<p>
+    {% comment %}
+	<div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+		<p class="text-text-light dark:text-text-dark">
 			Here, you will be able to find a list of problems that are ranked by their difficulty, which is great if you are trying to look for 
 			problems that will challenge you. Some recommendations to make the maximum use of this problem list are to do problems that are 
 			around or higher than your overall skill level or work on topics (Strings, Math, etc.) that you are you struggling on. We use problems
 			from LMCodeQuest, Codeforces, and AtCoder (make accounts for these so you will be able to submit your problems and check your answers).
 		<p>
 	</div>
+    {% endcomment %}
 
-	{% include 'problems/problems&filter.html' %}
+    <div class="mx-auto overflow-x-auto max-w-6xl px-4 sm:px-6 lg:px-8 mt-8 mb-8 flex flex-col gap-6">
+        {% include "problems/components/filter.html" %}
+        {% include "problems/components/problems_table.html" %}
+        {% include "problems/components/page_navigation.html" %}
+    </div>
 {% endblock %}

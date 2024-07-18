@@ -1,16 +1,6 @@
-{% extends "base/base_navbar.html" %}
+{% extends base_template %}
 
 {% load static %}
-
-{% block styles %}
-	<link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/tokyo-night-light.min.css">
-	{{ block.super }}
-{% endblock %}
-
-{% block javascript %}
-	<script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
-	{{ block.super }}
-{% endblock %}
 
 {% block title %}
 {% if page %}{% if page.visible or user.is_superuser %}{{page.page_name}}
@@ -18,29 +8,94 @@
 {% else %}Doesn't Exist{% endif %}
 {% endblock %}
 
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'vendored/katex/katex.min.css' %}"/>
+{{ block.super }}
+{% endblock %}
+
 {% block content %}
-	{% if page %}
-		{% if page.visible or user.is_superuser %}
-			<div id="page" class="container">
-				<div id="generated-content">
-					<h1> {{page.page_name}} </h1>
-					{% include page.html_template_name %}
-					{% if page.guide and page.guide.visible %}
-						<a href="{% url 'guide' guide=page.guide.url_name %}">Back to guide</a>
-					{% endif %}
-				</div>
-				{% comment %}
-				<!-- toc -->
-				{% autoescape off %}
-					{{ page.toc }}
-				{% endautoescape %}
-				{% endcomment %}
-			</div>
-		{% else %}
-			<p>You do not have access to this page.</p>
-		{% endif %}
-	{% else %}
-		<p>The requested page does not exist.</p>
-	{% endif %}
-	<script>hljs.highlightAll();</script>
+    <div class="flex flex-row">
+    <div class="ml-auto overflow-x-auto max-w-6xl px-4 py-4 sm:px-6 lg:pl-8 lg:pr-10">
+        {% if page %}
+            {% if page.visible or user.is_superuser %}
+                    <h1 id="article_heading" class="text-text-light dark:text-text-dark text-3xl font-bold mt-4 mb-8">{{page.page_name}}</h1>
+                    {% include "learn/components/language_switcher.html" %}
+                    <div :class="$store.language.language" class="markdown">
+                        {% include page.html_template_name %}
+                    </div>
+                    <div class="flex flex-row justify-between mt-10">
+                    {% if previous_page %}
+                    <a
+                        class="red-link px-4 py-2 text-lg ml-0 md:ml-5 lg:ml-10"
+                        href="{% url 'page' page=previous_page.url_name %}" hx-swap="show:window:top"
+                        >
+                        <i class="fa-solid fa-chevron-left"></i>
+                        Previous: {{previous_page.page_name}}
+                    </a>
+                    {% endif %}
+                    {% if next_page %}
+                    <a
+                        class="red-link px-4 py-2 text-lg mr-0 md:mr-5 lg:mr-10"
+                        href="{% url 'page' page=next_page.url_name %}" hx-swap="show:window:top"
+                        >Next: {{next_page.page_name}}
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                    {% endif %}
+                    </div>
+            {% else %}
+                <p class="text-text-light mt-1 dark:text-text-dark"
+                >You do not have access to this page.</p>
+            {% endif %}
+        {% else %}
+            <p class="text-text-light mt-1 dark:text-text-dark"
+            >The requested page does not exist.</p>
+        {% endif %}
+    </div>
+
+
+    {% if page %}
+    <!-- toc -->
+    <div class="hidden lg:block pr-8 w-60 min-w-60 mr-auto">
+        <div class="sticky top-0 pt-12">
+            <ul class="max-h-[80vh] overflow-x-auto">
+                {% for currentPage in pages %}
+                    <li class="my-3">
+                    {% if currentPage == page %}
+                        <a href="#article_heading"
+                            class="dark:text-accent-400 hover:underline"
+                            >{{page.page_name}}</a>
+                        {% autoescape off %}
+                        {{ page.toc }}
+                        {% endautoescape %}
+                    {% else %}
+                        <a
+                            class="dark:text-text-400 hover:text-accent-400"
+                            href="{% url 'page' page=currentPage.url_name %}" hx-swap="show:window:top"
+                            >{{currentPage.page_name}}</a>
+                    {% endif %}
+                    </li>
+                {% endfor %}
+                    {% if page.guide and page.guide.visible %}
+                    <li class="mt-10">
+                        <a
+                            class="dark:text-text-400 hover:text-accent-400"
+                            href="{% url 'guide' guide=page.guide.url_name %}" hx-swap="show:window:top"
+                            >Back to Guide</a>
+                    </li>
+                    {% endif %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+
+    </div>
+
+    {% include "learn/components/clipboard_notification.html" %}
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'vendored/clipboard.min.js' %}" defer></script>
+    <script src="{% static 'learn/clipboard.js' %}" defer></script>
 {% endblock %}
