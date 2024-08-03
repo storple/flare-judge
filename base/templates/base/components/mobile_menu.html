@@ -33,9 +33,13 @@
             <a href="{% url 'profile' %}"
                 class="block rounded-md px-3 py-2 text-base font-medium text-text-700 dark:text-text-300 hover:bg-accent-200 dark:hover:bg-accent-800 dark:hover:text-text-100"
                 >Your Profile</a>
-            <a href="{% url 'profile' %}"
-                class="block rounded-md px-3 py-2 text-base font-medium text-text-700 dark:text-text-300 hover:bg-accent-200 dark:hover:bg-accent-800 dark:hover:text-text-100"
-                >Settings</a>
+	    {% comment %}
+            <button
+            class="block rounded-md px-3 py-2 text-base font-medium text-text-700 dark:text-text-300 hover:bg-accent-200 dark:hover:bg-accent-800 dark:hover:text-text-100"
+	    x-text="$store.dark_theme.dark_theme ? 'Light Mode' : 'Dark Mode'"
+	    @click="$store.dark_theme.toggle()"
+	    ></button>
+	    {% endcomment %}
             <a href="{% url 'logout' %}" hx-boost="false"
                 class="block rounded-md px-3 py-2 text-base font-medium text-text-700 dark:text-text-300 hover:bg-accent-200 dark:hover:bg-accent-800 dark:hover:text-text-100" >Sign Out</a>
         {% else %}

@@ -13,37 +13,34 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 
 #loads and gets fron .env file
-from dotenv import load_dotenv
 import os
+import environ
 
-load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+default_env_filepath = BASE_DIR / '.env.dev'
+
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+
+# reading .env file
+env.read_env(env.str('ENV_FILE',default_env_filepath))
+
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
-if SECRET_KEY is None:
-    print("SECRET_KEY not set in .env file.")
-    exit()
-if SECRET_KEY == "KEY HERE":
+SECRET_KEY = env("SECRET_KEY")
+
+if SECRET_KEY == "KEY_HERE":
     print("Setting SECRET_KEY to default is a security risk! Change SECRET_KEY to something else.")
-    exit()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-ENV_DEBUG = os.getenv("DEBUG").lower()
+DEBUG = env("DEBUG")
 
-if ENV_DEBUG is None:
-    print("DEBUG not set in .env file")
-    exit()
-
-if ENV_DEBUG == "true": DEBUG = True
-elif ENV_DEBUG == "false": DEBUG = False
-else:
-    print("Bad DEBUG value in .env file:", ENV_DEBUG)
-    exit()
-
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS").split(" ")
 
 # Application definition
 
@@ -89,7 +86,7 @@ ROOT_URLCONF = 'flare.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -117,7 +114,7 @@ WSGI_APPLICATION = 'flare.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db/db.sqlite3',
     }
 }
 
@@ -152,6 +149,24 @@ USE_I18N = True
 
 USE_TZ = True
 
+# https settings
+# SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+# CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS").split(" ")
+# SECURE_SSL_REDIRECT = True
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+# Allows for empty value during development
+if env("CSRF_TRUSTED_ORIGINS") == '':
+    CSRF_TRUSTED_ORIGINS = []
+else:
+    CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS").split(" ")
+
+SECURE_SSL_REDIRECT = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
+SESSION_COOKIE_SECURE = not DEBUG
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -171,3 +186,20 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+WHITENOISE_ROOT = BASE_DIR / "static_special"
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "WARNING",
+    },
+}
+

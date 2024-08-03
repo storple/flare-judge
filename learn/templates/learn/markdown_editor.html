@@ -9,7 +9,6 @@
 {% endblock %}
 
 {% block content %}
-{% if user.is_superuser %}
 <style>
     .htmx-indicator, .htmx-request {
         display:none;
@@ -32,6 +31,7 @@
             hx-indicator=".htmx_req"
             hx-trigger="click, keyup[ctrlKey && (key == 'Enter')] from:window"
             hx-include="[name='editor']"
+	    hx-push-url="false"
             class="bg-accent-50 dark:bg-accent-800/30 text-text-light dark:text-accent-300 font-semibold text-2xl rounded-xl px-6 py-3 ring-1 ring-accent-400/30 mt-7"
             >Generate Preview
             <br>
@@ -72,7 +72,6 @@
     <div :class="$store.language.language" class="markdown htmx_req"></div>
 </div>
 {% include "learn/components/clipboard_notification.html" %}
-{% endif %}
 {% endblock %}
 
 {% block javascript %}

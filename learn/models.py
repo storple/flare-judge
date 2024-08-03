@@ -7,7 +7,7 @@ from accounts.models import Profile
 
 from .markdown import md
 
-learn_page_fs = FileSystemStorage(location="learn/templates/generated")
+learn_page_fs = FileSystemStorage(location="templates/generated")
 
 class Guide(models.Model):
     guide_name = models.CharField(default="",max_length=200)
@@ -86,23 +86,3 @@ class Page(models.Model):
 
         self.html_template_name = "generated/{}".format(self.html_generated_file.name)
         super().save(*args, **kwargs)
-
-# class PageOrder(models.Model):
-#     page = models.ForeignKey(Page, on_delete=models.CASCADE)
-#     order = models.PositiveIntegerField()
-#
-# class PageList(models.Model):
-#     name = models.CharField(max_length=100)
-#     items = models.ManyToManyField(Page, through=PageOrder, through_fields=('list', 'page'))
-#
-
-
-# Page:
-
-# Guide:
-# models.ManyToManyField(Page, through="Relationship")
-
-# Relationship:
-# Page = models.ForeignKey(Page, on_delete=models.CASCADE)
-# Guide = models.ForeignKey(Guide, on_delete=models.CASCADE)
-# order = models.PositiveIntegerField()

@@ -24,8 +24,8 @@ Create a ```.env``` file in the root directory
 
 Example .env file:
 ```python
-SECRET_KEY = "KEY HERE"
-DEBUG = False
+DEBUG=True
+SECRET_KEY=KEY_HERE
 ```
 
 Start the server

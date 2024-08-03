@@ -8,6 +8,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block meta %}{% endblock meta %}
+
     {% block titletag %}
     <title>{% block title %} Default title {% endblock title %} | Flare</title>
     {% endblock titletag %}
@@ -41,12 +44,32 @@
             });
         </script>
         <script src="{% static 'vendored/alpinejs/alpinejs.min.js' %}" defer></script>
+	{% comment %}
         <script src="https://kit.fontawesome.com/7bc532d61e.js" crossorigin="anonymous" defer></script>
-	{% endblock %}
+	{% endcomment %}
+    {% endblock %}
 
-    <link rel="stylesheet" href="{% static "learn/highlight_theme.css" %}">
-    <link rel="shortcut icon" href="{% static 'base/favicon.png' %}"/>
+    {% tailwind_preload_css %}
     {% tailwind_css %}
+
+    {% comment %}
+    <link href="{% static 'vendored/fontawesome/css/regular.css' %}" rel="stylesheet" />
+    {% endcomment %}
+
+    <link rel="icon" href="{% static 'favicon/favicon-32.png' %}" sizes="32x32">
+    <link rel="icon" href="{% static 'favicon/favicon-128.png' %}" sizes="128x128">
+    <link rel="icon apple-touch-icon" href="{% static 'favicon/favicon-180.png' %}" sizes="180x180">
+    <link rel="icon shortcut" href="{% static 'favicon/favicon-192.png' %}" sizes="192x192">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link href="{% static 'vendored/fontawesome/css/fontawesome.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'vendored/fontawesome/css/brands.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'vendored/fontawesome/css/solid.min.css' %}" rel="stylesheet" />
+
+
     <meta name="htmx-config" content='{"useTemplateFragments":"true"}'>
 </head>
 	<body

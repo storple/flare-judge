@@ -1,0 +1,50 @@
+services:
+  web:
+    container_name: django
+    build:
+      context: .
+      secrets:
+        - web_env_build
+      args:
+        - ENV_FILE=/run/secrets/web_env_build
+    expose:
+      - 8000
+    env_file:
+      - ./.env.prod
+    volumes:
+      - db:/home/appuser/app/db
+      - generated:/home/appuser/app/templates/generated
+
+  nginx:
+    container_name: nginx
+    build:
+      context: ./nginx
+    ports:
+      - 80:80
+      - 443:443
+    env_file:
+      - ./.env.nginx
+    secrets:
+      - source: server_cert_pem
+        target: /etc/ssl/${DOMAIN_NAME}.pem
+
+      - source: server_cert_key
+        target: /etc/ssl/${DOMAIN_NAME}.key
+    volumes:
+      - /opt/flare_nginx/logs:/var/log/nginx
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    depends_on:
+      - web
+
+secrets:
+  server_cert_pem:
+    file: ./certs/${DOMAIN_NAME}.pem
+  server_cert_key:
+    file: ./certs/${DOMAIN_NAME}.key
+  web_env_build:
+    file: ./.env.prod
+
+volumes:
+  db:
+  generated:

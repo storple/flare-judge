@@ -73,7 +73,6 @@ def filter_problems(request: HttpRequest,data: QueryDict):
     max_pages = paginator.num_pages
 
     page = min(max_pages, page)
-    print(page)
 
     problems = paginator.get_page(page)
 
@@ -121,7 +120,6 @@ def problems_view(request: HttpRequest):
             max_pages = paginator.num_pages
 
             page = 1
-            print(page)
             problems = paginator.get_page(page)
 
             page_range = paginator.get_elided_page_range(page,on_each_side=1, on_ends=1)

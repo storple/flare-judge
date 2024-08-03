@@ -2,10 +2,28 @@
 
 {% load static %}
 
+{% block meta %}
+<meta name="description" content="Flare is an all-in-one educational platform full of high quality resources and practice problems on competitive programming.">
+{% endblock meta %}
+
 {% block titletag %}
 <title>Flare</title>
 {% endblock titletag %}
 
 {% block content %}
-<p> hero page goes here</p>
+<div class="">
+    <div class="mx-auto mt-12 items-start px-6 sm:px-4 sm:mt-20 flex flex-col sm:items-center">
+        <h1 class="text-5xl sm:text-7xl tracking-tight font-semibold sm:text-center font-['Work_Sans']">Competitive Programming</h1>
+        <h1 class="text-7xl sm:text-8xl tracking-tight font-semibold font-['Work_Sans']">
+            Made <span class="text-accent-400 font-['JetBrains_Mono'] italic">Easy</span>
+        </h1>
+
+        <h2 class="text-left sm:text-center tracking-tight mt-24 text-2xl sm:text-3xl max-w-xl sm:max-w-2xl font-['Work_Sans'] font-medium"><span class="text-accent-400">Flare</span> is an all-in-one educational platform full of high quality resources and practice problems on competitive programming.</h2>
+    </div>
+    {% comment %}
+    <div class="mx-auto mt-12 items-start px-6 sm:px-4 sm:mt-20 flex flex-col sm:items-center">
+    </div>
+    {% endcomment %}
+
+</div>
 {% endblock %}
