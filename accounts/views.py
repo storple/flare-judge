@@ -1,5 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from django.contrib.auth import logout, login
 from django.urls import reverse
 from django.core.exceptions import PermissionDenied
@@ -60,6 +64,10 @@ def logout_view(request):
     # full page load to update the profile dropdown / profile links
     return redirect(reverse("login"))
 
+class ChangePasswordView(LoginRequiredMixin,PasswordChangeView):
+    template_name = "accounts/change_password.html"
+    success_url = "/accounts/login"
+
 def login_view(request):
     from_signup = False
 
@@ -68,15 +76,14 @@ def login_view(request):
         if form.is_valid():
             form.clean()
             user = form.get_user()
-            if user is not None:
-                login(request, user)
-                # do a full redirect either way
-                if request.htmx:
-                    return HttpResponseClientRedirect(reverse("profile"))
-                else:
-                    return redirect(reverse("profile"))
-            else:
+            if user is None:
                 raise PermissionDenied
+            login(request, user)
+            # do a full redirect either way
+            if request.htmx:
+                return HttpResponseClientRedirect(reverse("profile"))
+            else:
+                return redirect(reverse("profile"))
         else:
             # this form has errors
             if request.htmx:
