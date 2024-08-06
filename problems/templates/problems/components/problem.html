@@ -18,11 +18,12 @@
 			{% if tags %}
                 {% for tag in tags %}
                     <span
-                        class="inline-flex items-center rounded-md bg-accent-800/30 text-xs font-medium text-accent-300 px-2 py-1 mr-1 mb-1"
+                        class="inline-flex items-center rounded-md bg-accent-800/30 text-xs font-medium text-accent-300 px-2 py-1 mr-1 my-0.5"
                         >{{tag}}</span>
                 {% endfor %}
             {% else %}
-                None
+                {% comment %} this makes all the colums even {% endcomment %}
+                <span class="inline-flex items-center rounded-md bg-accent-800/30 text-xs font-medium text-accent-300 px-0 py-3 my-0.5" ></span>
 			{% endif %}
 		{% endwith %}
 	</td>
@@ -32,8 +33,6 @@
             >
             {% if problem.editorial %}
                 <a target="_blank" href="{{problem.editorial}}">Editorial</a>
-            {% else %}
-                None
             {% endif %}
         </td>
 

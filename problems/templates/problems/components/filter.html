@@ -8,7 +8,7 @@
         action="{% url 'problems' %}"
         method="get"
 		hx-target="#problem_body"
-		hx-swap="outerHTML"
+		hx-swap="outerHTML show:window:top"
         hx-trigger="change from:.filter_text delay:500ms, change from:.filter_input, click from:.filter_sort, filter_page from:window"
         hx-include=".filter_sort input, #page_input"
 		>
