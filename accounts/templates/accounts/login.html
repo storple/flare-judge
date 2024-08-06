@@ -11,18 +11,10 @@
             >Login to Flare</h1>
     </div>
     {% if next %}
-        {% if user.is_authenticated %}
-            <div>
-                <p class="dark:text-accent-300"
-                >To proceed, please login with an account that has access to this page.
-                </p>
-            </div>
-        {% else %}
-            <div>
-                <p class="dark:text-accent-300"
-                >Please login to see this page.</p>
-            </div>
-        {% endif %}
+        <div>
+            <p class="dark:text-accent-300"
+            >Please login to see this page.</p>
+        </div>
     {% endif %}
     {% if from_signup %}
         <p
@@ -54,8 +46,9 @@
         </div>
         <button class="bg-accent-600 py-2 rounded font-semibold" type="submit">Login</button>
     </div>
-
+    {% if next %}
     <input type="hidden" name="next" value="{{ next }}">
+    {% endif %}
     </form>
 
 </div>

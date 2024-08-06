@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required,permission_required
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse, Http404, HttpResponseNotAllowed, HttpResponseBadRequest, HttpResponseForbidden
 from django.shortcuts import get_object_or_404
@@ -17,19 +17,17 @@ def markdown_generator(request):
             return HttpResponseForbidden()
 
         data = request.POST
-        markdown = data.get("editor","")
+        markdown = data.get("editor",None)
 
-        if markdown == "": return HttpResponseBadRequest()
+        if markdown is None: return HttpResponseBadRequest()
 
         html_generated = md.convert(markdown)
         return HttpResponse(html_generated)
     else:
         return HttpResponseNotAllowed(['POST'])
 
-@login_required
+@permission_required("learn.change_page", raise_exception=True)
 def markdown_editor(request):
-    if not request.user.has_perm('learn.change_page'):
-        raise PermissionDenied
     return htmx_render(request, "learn/markdown_editor.html", page="learn")
 
 def main_page(request):

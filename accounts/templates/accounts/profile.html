@@ -12,7 +12,9 @@
             <h1 class="text-text-light dark:text-text-dark text-3xl font-bold">{{user.username}}</h1>
             <h2 class="dark:text-text-400 mb-4">{{ user.profile.problems_solved.count }} Completed Problems</h2>
             <a href="{% url 'change_password' %}" class="red-link" hx-boost="false">Change Password</a>
+            {% comment %}
             <a href="" class="red-link">Change Username</a>
+            {% endcomment %}
         </div>
     </div>
 </div>
