@@ -1,11 +1,12 @@
 {% extends "base/base_navbar.html" %}
 {% load static %}
 
-{% block title %}Not Found{% endblock %}
+{% block title %}Server Error{% endblock %}
 
 {% block content %}
-<p>500: Server Error</p>
-<p>Seems like my code has bugs, sorry!</p>
-<br>
-<p>(or you are trying to hack my site, in which case, don't!</p>
+<div class="flex flex-col items-center justify-center h-full">
+<h1 class="font-semibold text-6xl mb-6">500: Server Error</h1>
+<h2 class="font-medium text-2xl mb-32">Seems like my code has bugs, sorry!</h2>
+<p>(or you are trying to hack my site, in which case, don't!)</p>
+</div>
 {% endblock %}

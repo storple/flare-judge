@@ -39,16 +39,20 @@
     .markdown p {
         @apply text-lg mb-4 leading-7;
     }
-    /* doesn't affect inline code */
+    /* code blocks (top div with the .highlight class) */
     .markdown .highlight:not(code.highlight) {
         @apply mb-4 overflow-x-auto -mx-4 sm:-mx-6 md:mx-0;
     }
     .markdown pre {
         @apply p-4;
     }
-    /* doesn't affect codeblocks */
+    /* inline code */
     .markdown code:not(pre code) {
-        @apply px-1 pt-1 rounded;
+        @apply px-1 py-0.5 rounded;
+    }
+    /* apply font to all code */
+    .markdown code {
+        @apply font-['JetBrains_Mono'];
     }
     .markdown .katex-display {
         @apply overflow-x-auto overflow-y-hidden;
@@ -81,7 +85,7 @@
         @apply pb-0.5;
     }
 
-    /* this allows for the same element to appear in different languages while not setting the display mode */
+    /* this allows for the same element to appear for every language class present on that element */
     .markdown.cpp .lang:not(.cpp),
     .markdown.python .lang:not(.python),
     .markdown.java .lang:not(.java) {

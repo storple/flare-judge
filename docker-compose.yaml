@@ -32,7 +32,6 @@ services:
         target: /etc/ssl/${DOMAIN_NAME}.key
     volumes:
       - /opt/flare_nginx/logs:/var/log/nginx
-      - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     depends_on:
       - web
