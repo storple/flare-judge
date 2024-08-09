@@ -12,11 +12,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+# be able to get path to npm
+from shutil import which
+
 #loads and gets fron .env file
-import os
 import environ
-
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -180,6 +180,9 @@ STATIC_URL = 'static/'
 
 #tailwind settings
 TAILWIND_APP_NAME = 'theme'
+
+# allows development on windows
+NPM_BIN_PATH = which("npm")
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
