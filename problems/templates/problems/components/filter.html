@@ -3,7 +3,7 @@
     <h1 class="font-semibold">Filter</h1>
     {% endcomment %}
 	<form
-		class="flex flex-row flex-wrap border dark:border-background-700 rounded justify-between px-2"
+		class="dark:border-background-700 flex flex-row flex-wrap justify-between rounded border px-2"
         id="filter_form"
         action="{% url 'problems' %}"
         method="get"
@@ -12,7 +12,7 @@
         hx-trigger="change from:.filter_text delay:500ms, change from:.filter_input, click from:.filter_sort, filter_page from:window"
         hx-include=".filter_sort input, #page_input"
 		>
-        <div class="flex flex-row flex-wrap items-center mx-4 my-3 gap-2">
+        <div class="mx-4 my-3 flex flex-row flex-wrap items-center gap-2">
             Difficulty: 
             <input
             type="text"
@@ -20,8 +20,8 @@
             id="min_elo"
             class="filter_text max-w-20
             dark:dark:text-text-dark dark:bg-background-800 dark:border-background-800
-            border-1 focus:ring-accent-600 focus:border-accent-600 rounded
-            placeholder-background-600 placeholder:text-center"
+            border-1 focus:ring-accent-600 focus:border-accent-600 placeholder-background-600
+            rounded placeholder:text-center"
             placeholder="MIN"
             class="faded-text"
             {% if min_elo %}
@@ -35,8 +35,8 @@
             id="max_elo"
             class="filter_text max-w-20
             dark:dark:text-text-dark dark:bg-background-800 dark:border-background-800
-            border-1 focus:ring-accent-600 focus:border-accent-600 rounded
-            placeholder-background-600 placeholder:text-center"
+            border-1 focus:ring-accent-600 focus:border-accent-600 placeholder-background-600
+            rounded placeholder:text-center"
             placeholder="MAX"
             class="faded-text"
             {% if max_elo %}
@@ -45,7 +45,7 @@
             >
         </div>
 
-        <div class="flex flex-row flex-wrap items-center mx-4 my-3 gap-2">
+        <div class="mx-4 my-3 flex flex-row flex-wrap items-center gap-2">
 		<label for="Tags">
 			Tags:
 		</label>
@@ -53,10 +53,10 @@
         type="text"
         name="tags"
         id="tags"
-        class="filter_text w-full max-w-40
-        dark:dark:text-text-dark dark:bg-background-800 dark:border-background-800
-        border-1 focus:ring-accent-600 focus:border-accent-600 rounded
-        placeholder-background-600 placeholder:text-center"
+        class="filter_text max-w-40 dark:dark:text-text-dark
+        dark:bg-background-800 dark:border-background-800 border-1
+        focus:ring-accent-600 focus:border-accent-600 placeholder-background-600 w-full
+        rounded placeholder:text-center"
         {% if tags %}
         value="{{tags}}"
         {% endif %}
@@ -64,7 +64,7 @@
         </div>
 
 		{% if user.is_authenticated %}
-        <div class="flex flex-row items-center mx-4 my-3 gap-2">
+        <div class="mx-4 my-3 flex flex-row items-center gap-2">
             <label for="not_completed">
                 Not completed
             </label>
@@ -78,7 +78,7 @@
             {% endif %}>
         </div>
 
-        <div class="flex flex-row items-center mx-4 my-3 gap-2">
+        <div class="mx-4 my-3 flex flex-row items-center gap-2">
             <label for="completed">
                 Completed
             </label>

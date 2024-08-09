@@ -1,6 +1,6 @@
 <tr class="dark:bg-background-800 dark:even:bg-background-900/40">
 	<td
-        class="text-sm font-medium text-left pl-4 py-3"
+        class="py-3 pl-4 text-left text-sm font-medium"
         >
         <a target="_blank" href="{{problem.link}}"
             class="red-link"
@@ -8,28 +8,28 @@
     </td>
 
 	<td
-        class="text-sm font-medium text-left pl-4 py-3"
+        class="py-3 pl-4 text-left text-sm font-medium"
         >{{problem.elo}}</td>
 
 	<td
-        class="text-sm font-medium text-left pl-4 py-3"
+        class="py-3 pl-4 text-left text-sm font-medium"
         >
 		{% with tags=problem.tags.all %}
 			{% if tags %}
                 {% for tag in tags %}
                     <span
-                        class="inline-flex items-center rounded-md bg-accent-800/30 text-xs font-medium text-accent-300 px-2 py-1 mr-1 my-0.5"
+                        class="bg-accent-800/30 text-accent-300 my-0.5 mr-1 inline-flex items-center rounded-md px-2 py-1 text-xs font-medium"
                         >{{tag}}</span>
                 {% endfor %}
             {% else %}
                 {% comment %} this makes all the colums even {% endcomment %}
-                <span class="inline-flex items-center rounded-md bg-accent-800/30 text-xs font-medium text-accent-300 px-0 py-3 my-0.5" ></span>
+                <span class="bg-accent-800/30 text-accent-300 my-0.5 inline-flex items-center rounded-md px-0 py-3 text-xs font-medium" ></span>
 			{% endif %}
 		{% endwith %}
 	</td>
 
         <td
-            class="text-sm font-medium text-left pl-4 py-3"
+            class="py-3 pl-4 text-left text-sm font-medium"
             >
             {% if problem.editorial %}
                 <a target="_blank" href="{{problem.editorial}}">Editorial</a>
@@ -38,7 +38,7 @@
 
     {% if user.is_authenticated %}
         <td
-            class="text-sm font-medium text-center px-4 py-3"
+            class="px-4 py-3 text-center text-sm font-medium"
             >
             <input type="checkbox"
                 name="{{problem.problem_name}}"

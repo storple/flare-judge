@@ -20,7 +20,7 @@
 </style>
 <div id="editor_preview"
     class="mx-auto max-w-5xl px-4 py-4 sm:px-6 lg:px-8">
-	<div id="editor" class="-mx-4 sm:-mx-6 h-[60vh]"></div>
+	<div id="editor" class="-mx-4 h-[60vh] sm:-mx-6"></div>
     <div
         class="flex flex-col items-center"
         >
@@ -32,7 +32,7 @@
             hx-trigger="click, keyup[ctrlKey && (key == 'Enter')] from:window"
             hx-include="[name='editor']"
 	    hx-push-url="false"
-            class="bg-accent-50 dark:bg-accent-800/30 text-text-light dark:text-accent-300 font-semibold text-2xl rounded-xl px-6 py-3 ring-1 ring-accent-400/30 mt-7"
+            class="bg-accent-50 dark:bg-accent-800/30 text-text-light dark:text-accent-300 ring-accent-400/30 mt-7 rounded-xl px-6 py-3 text-2xl font-semibold ring-1"
             >Generate Preview
             <br>
             <span class="text-lg">(Ctrl + Enter)</span>
@@ -43,7 +43,7 @@
             style="display: none;"
         ></textarea>
     </div>
-    <div class="flex flex-col items-center pt-12 htmx-indicator htmx_req">
+    <div class="htmx-indicator htmx_req flex flex-col items-center pt-12">
         <svg class="text-text-light dark:text-text-dark" width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <linearGradient x1="8.042%" y1="0%" x2="65.682%" y2="23.865%" id="a">
@@ -65,7 +65,7 @@
         </svg>
 
     </div>
-    <h1 class="text-text-light dark:text-text-dark text-3xl font-bold my-8 htmx_req">Article Name</h1>
+    <h1 class="text-text-light dark:text-text-dark htmx_req my-8 text-3xl font-bold">Article Name</h1>
     <div class="htmx_req">
     {% include "learn/components/language_switcher.html" %}
     </div>

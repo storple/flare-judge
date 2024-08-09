@@ -25,7 +25,7 @@
                 {% if page == problem_page %}
                 disabled
                 {% endif %}
-                class="filter_page dark:bg-background-800 px-2 py-1 rounded-sm disabled:dark:bg-background-800/50 disabled:text-text-dark/20"
+                class="filter_page dark:bg-background-800 disabled:dark:bg-background-800/50 disabled:text-text-dark/20 rounded-sm px-2 py-1"
                 @click="set_page({{page}})">{{page}}</button>
             {% else %}
             <div class="mx-1 flex flex-col justify-end">{{page}}</div>

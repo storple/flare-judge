@@ -20,8 +20,8 @@
                 },
             }"
             >
-            <th class="text-left pl-4 py-2 text-base font-bold">
-                <a class="flex flex-row gap-1 items-center"
+            <th class="py-2 pl-4 text-left text-base font-bold">
+                <a class="flex flex-row items-center gap-1"
                     >Name
                     <button
                         @click="name_change()"
@@ -34,8 +34,8 @@
                     </button>
                 </a>
             </th>
-            <th class="text-left pl-4 py-2 text-base font-bold">
-                <a class="flex flex-row gap-1 items-center"
+            <th class="py-2 pl-4 text-left text-base font-bold">
+                <a class="flex flex-row items-center gap-1"
                     >Difficulty
                     <button
                         @click="elo_change()"
@@ -48,14 +48,14 @@
                     </button>
                 </a>
             </th>
-            <th class="text-left pl-4 py-2 text-base font-bold"
+            <th class="py-2 pl-4 text-left text-base font-bold"
                 >Tags
             </th>
-            <th class="text-left pl-4 py-2 text-base font-bold"
+            <th class="py-2 pl-4 text-left text-base font-bold"
                 >Editorial
             </th>
             {% if user.is_authenticated %}
-                <th class="text-center py-2 px-4 text-base font-bold"
+                <th class="px-4 py-2 text-center text-base font-bold"
                     >Solved
                 </th>
             {% endif %}

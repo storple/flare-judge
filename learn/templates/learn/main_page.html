@@ -13,13 +13,13 @@
         <div class="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
 			{% if guides %}
 				<!-- guides -->
-                <h1 class="text-text-light dark:text-text-dark text-3xl font-bold mb-2">Guides</h1>
-				<div id="guide_container" class="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3">
+                <h1 class="text-text-light dark:text-text-dark mb-2 text-3xl font-bold">Guides</h1>
+				<div id="guide_container" class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 					{% for guide in guides %}
-						<a class="overflow-auto h-32 sm:h-36 bg-accent-800/30 rounded-lg ring-1 ring-accent-400/30 px-3 py-2"
+						<a class="bg-accent-800/30 ring-accent-400/30 h-32 overflow-auto rounded-lg px-3 py-2 ring-1 sm:h-36"
                             href="{% url 'guide' guide=guide.url_name %}"
                             >
-							<h1 class="text-text-light dark:text-accent-300 font-semibold text-xl">{{guide.guide_name}}</h1>
+							<h1 class="text-text-light dark:text-accent-300 text-xl font-semibold">{{guide.guide_name}}</h1>
 							<p class="text-text-light dark:text-text-100 pt-2">{{guide.short_description}}</p>
 						</a>
 					{% endfor %}
@@ -28,8 +28,8 @@
 
 			{% if pages %}
 				<!-- pages -->
-                <h1 class="text-text-light dark:text-text-dark text-3xl font-bold mt-4">Featured Pages</h1>
-                <div class="flex flex-col mt-2">
+                <h1 class="text-text-light dark:text-text-dark mt-4 text-3xl font-bold">Featured Pages</h1>
+                <div class="mt-2 flex flex-col">
 					{% for page in pages %}
                         <a class="red-link mt-1"
                             href="{% url 'page' page=page.url_name %}"
@@ -39,7 +39,7 @@
 			{% endif %}
 		</div>
 	{% else %}
-        <p class="text-text-light mt-1 dark:text-text-dark"
+        <p class="text-text-light dark:text-text-dark mt-1"
         >no content to display at this time.</p>
 	{% endif %}
 {% endblock %}

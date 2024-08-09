@@ -14,9 +14,9 @@
     @focusin.window="! $refs.language_switcher_items.contains($event.target) && close()"
     >
     <button
-        class="px-4 py-1 text-lg rounded-md
-        bg-background-50
-        dark:bg-background-900 dark:shadow-background-800 dark:ring-background-700 ring-1 ring-opacity-5"
+        class="bg-background-50 dark:bg-background-900 dark:shadow-background-800 dark:ring-background-700
+        rounded-md
+        px-4 py-1 text-lg ring-1 ring-opacity-5"
         @click="toggle()"
 
         type="button"
@@ -24,7 +24,7 @@
         x-ref="language_switcher_button"
         aria-haspopup="true"
         id="language_switcher_button"
-        >Language: <span x-text="$store.language.language_text"></span><i :class="{ 'fa-angle-down' : ! open, 'fa-angle-up' : open }" class="ml-4 fa-solid fa-angle-down"></i></button>
+        >Language: <span x-text="$store.language.language_text"></span><i :class="{ 'fa-angle-down' : ! open, 'fa-angle-up' : open }" class="fa-solid fa-angle-down ml-4"></i></button>
     <!-- panel -->
     <div
         x-ref="language_switcher_items"
@@ -32,29 +32,29 @@
         @click.outside="close($refs.language_switcher_button)"
         style="display: none"
 
-        x-transition:enter="transition ease-out duration-100"
-        x-transition:enter-start="transform opacity-0 scale-95"
-        x-transition:enter-end="transform opacity-100 scale-100"
+        x-transition:enter="transition duration-100 ease-out"
+        x-transition:enter-start="scale-95 transform opacity-0"
+        x-transition:enter-end="scale-100 transform opacity-100"
 
-        x-transition:leave="transition ease-in duration-75"
-        x-transition:leave-start="transform opacity-100 scale-100"
-        x-transition:leave-end="transform opacity-0 scale-95"
+        x-transition:leave="transition duration-75 ease-in"
+        x-transition:leave-start="scale-100 transform opacity-100"
+        x-transition:leave-end="scale-95 transform opacity-0"
 
         {% comment %}
-        class="right-8 bottom-8 pl-6 pr-20 py-4 rounded-md shadow-md
-        bg-background-50 dark:bg-background-900 dark:shadow-background-800 ring-1 dark:ring-background-700 ring-opacity-5 fixed"
+        class="bg-background-50 dark:bg-background-900 dark:shadow-background-800 dark:ring-background-700 fixed bottom-8 right-8
+        rounded-md py-4 pl-6 pr-20 shadow-md ring-1 ring-opacity-5"
         {% endcomment %}
-        class="absolute flex flex-col left-0 w-48 z-10 mt-2 origin-top-left rounded-md
-        bg-background-50  
-        dark:bg-background-900 dark:shadow-background-800 dark:ring-background-700
-        ring-1 ring-opacity-5 focus:outline-none py-1 shadow-lg"
+        class="bg-background-50 dark:bg-background-900 dark:shadow-background-800 dark:ring-background-700 absolute left-0 z-10 mt-2 flex
+        w-48  
+        origin-top-left flex-col rounded-md
+        py-1 shadow-lg ring-1 ring-opacity-5 focus:outline-none"
 
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="language_switcher_button"
         >
-        <button @click="close($refs.language_switcher_button); $store.language.set_language('cpp')"      class="text-left pl-4 py-1">C++</button>
-        <button @click="close($refs.language_switcher_button); $store.language.set_language('python')"   class="text-left pl-4 py-1">Python</button>
-        <button @click="close($refs.language_switcher_button); $store.language.set_language('java')"     class="text-left pl-4 py-1">Java</button>
+        <button @click="close($refs.language_switcher_button); $store.language.set_language('cpp')"      class="py-1 pl-4 text-left">C++</button>
+        <button @click="close($refs.language_switcher_button); $store.language.set_language('python')"   class="py-1 pl-4 text-left">Python</button>
+        <button @click="close($refs.language_switcher_button); $store.language.set_language('java')"     class="py-1 pl-4 text-left">Java</button>
     </div>
 </div>

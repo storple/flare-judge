@@ -4,10 +4,10 @@
 
 {% block content %}
 <div
-    class="flex flex-col h-full justify-center mx-auto min-w-56 sm:max-w-lg px-6">
+    class="min-w-56 mx-auto flex h-full flex-col justify-center px-6 sm:max-w-lg">
     <div>
         <h1
-            class="pb-6 text-2xl font-semibold text-center"
+            class="pb-6 text-center text-2xl font-semibold"
             >Login to Flare</h1>
     </div>
     {% if next %}
@@ -18,7 +18,7 @@
     {% endif %}
     {% if from_signup %}
         <p
-            class="dark:text-accent-400 mt-1 text-md text-center"
+            class="dark:text-accent-400 text-md mt-1 text-center"
             >Account successfully created! You may now login.</p>
     {% endif %}
     <form
@@ -42,14 +42,14 @@
             <div class="relative"
                 x-data="{ visible: false }">
                 <input
-                    class="dark:bg-background-800 dark:border-background-800 relative w-full border-1 focus:ring-accent-600 focus:border-accent-600 rounded"
+                    class="dark:bg-background-800 dark:border-background-800 border-1 focus:ring-accent-600 focus:border-accent-600 relative w-full rounded"
                     :type="visible ? 'text' : 'password'"
                     type="password"
                     name="password" autocomplete="new-password" required=""
                     id="id_password"
                     >
                 <div class="absolute inset-y-0 right-0 flex items-center">
-                    <button type="button" class="px-2 py-2 mr-1" @click="visible = ! visible">
+                    <button type="button" class="mr-1 px-2 py-2" @click="visible = ! visible">
                     <i class="fa-solid fa-eye text-text-500"
                         :class="{'fa-eye': ! visible, 'fa-eye-slash': visible }"
                         ></i>
@@ -58,7 +58,7 @@
             </div>
             <div id="all_error"></div>
         </div>
-        <button class="bg-accent-600 py-2 rounded font-semibold" type="submit">Login</button>
+        <button class="bg-accent-600 rounded py-2 font-semibold" type="submit">Login</button>
     </div>
     {% if next %}
     <input type="hidden" name="next" value="{{ next }}">

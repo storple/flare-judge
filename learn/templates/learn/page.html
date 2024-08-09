@@ -17,16 +17,16 @@
 
 {% block content %}
     <div class="flex flex-row">
-        <div class="ml-auto overflow-x-auto max-w-6xl px-4 py-4 sm:px-6 lg:pl-8 lg:pr-10">
-            <h1 id="article_heading" class="text-text-light dark:text-text-dark text-3xl font-bold mt-4 mb-8">{{page.page_name}}</h1>
+        <div class="ml-auto max-w-6xl overflow-x-auto px-4 py-4 sm:px-6 lg:pl-8 lg:pr-10">
+            <h1 id="article_heading" class="text-text-light dark:text-text-dark mb-8 mt-4 text-3xl font-bold">{{page.page_name}}</h1>
             {% include "learn/components/language_switcher.html" %}
             <div :class="$store.language.language" class="markdown">
                 {% include page.html_template_name %}
             </div>
-            <div class="flex flex-row justify-between mt-10">
+            <div class="mt-10 flex flex-row justify-between">
             {% if previous_page %}
             <a
-                class="red-link px-4 py-2 text-lg ml-0 md:ml-5 lg:ml-10"
+                class="red-link ml-0 px-4 py-2 text-lg md:ml-5 lg:ml-10"
                 href="{% url 'page' page=previous_page.url_name %}" hx-swap="show:window:top"
                 >
                 <i class="fa-solid fa-chevron-left"></i>
@@ -35,7 +35,7 @@
             {% endif %}
             {% if next_page %}
             <a
-                class="red-link px-4 py-2 text-lg mr-0 md:mr-5 lg:mr-10"
+                class="red-link mr-0 px-4 py-2 text-lg md:mr-5 lg:mr-10"
                 href="{% url 'page' page=next_page.url_name %}" hx-swap="show:window:top"
                 >Next: {{next_page.page_name}}
                 <i class="fa-solid fa-chevron-right"></i>
@@ -45,7 +45,7 @@
         </div>
 
         <!-- toc -->
-        <div class="hidden lg:block pr-8 w-60 min-w-60 mr-auto">
+        <div class="min-w-60 mr-auto hidden w-60 pr-8 lg:block">
             <div class="sticky top-0 pt-12">
                 <ul class="max-h-[80vh] overflow-x-auto">
                     {% for currentPage in pages %}
