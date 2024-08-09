@@ -1,6 +1,5 @@
-asgiref==3.8.1
 Brotli==1.1.0
-Django==5.0.7
+Django==5.1
 django-browser-reload==1.13.0
 django-environ==0.11.2
 django-htmx==1.18.0
@@ -10,6 +9,4 @@ Markdown==3.6
 markdown-katex==202406.1035
 Pygments==2.18.0
 pymdown-extensions==10.8.1
-PyYAML==6.0.1
-sqlparse==0.5.1
 whitenoise==6.7.0
