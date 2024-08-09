@@ -1,0 +1,28 @@
+### generated pages ###
+templates/generated/
+
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db/
+media/
+staticfiles/
+
+### tailwind ###
+**/node_modules
+
+# server certificates
+certs/
+
+# Environments
+.env
+.env.*
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
