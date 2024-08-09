@@ -2,11 +2,7 @@
 
 {% load static %}
 
-{% block title %}
-{% if page %}{% if page.visible or user.is_superuser %}{{page.page_name}}
-{% else %}Cannot Access{% endif %}
-{% else %}Doesn't Exist{% endif %}
-{% endblock %}
+{% block title %}{{page.page_name}}{% endblock %}
 
 
 {% block styles %}
