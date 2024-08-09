@@ -2,7 +2,7 @@ services:
   web:
     container_name: django
     build:
-      context: .
+      context: ./app
       secrets:
         - web_env_build
       args:

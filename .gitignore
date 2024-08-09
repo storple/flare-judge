@@ -1,8 +1,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/django,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,python
 
-### project stuff ###
-templates/generated/
+### generated pages ###
+app/templates/generated/
 
 ### Django ###
 *.log
@@ -10,10 +10,10 @@ templates/generated/
 *.pyc
 __pycache__/
 local_settings.py
-db/
-db.sqlite3-journal
-media
-staticfiles
+app/db/
+app/db/db.sqlite3-journal
+app/media
+app/staticfiles
 
 # server certificates
 certs/

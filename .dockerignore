@@ -1,15 +1,15 @@
-### project stuff ###
-templates/generated/
+### generated pages ###
+app/templates/generated/
 
 ### Django ###
 *.log
 *.pot
 *.pyc
 __pycache__/
-local_settings.py
-db/
-media/
-staticfiles/
+app/local_settings.py
+app/db/
+app/media/
+app/staticfiles/
 
 ### tailwind ###
 **/node_modules
