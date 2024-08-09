@@ -1,2 +1,2 @@
 # excludes libraries from inflating language stats
-static/vendored/** linguist-vendored
+app/static/vendored/** linguist-vendored
