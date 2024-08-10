@@ -4,6 +4,7 @@
  * If you need the full config, get it from here:
  * https://unpkg.com/browse/tailwindcss@latest/stubs/defaultConfig.stub.js
  */
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
     darkMode: 'selector',
@@ -47,6 +48,9 @@ module.exports = {
     ],
 	theme: {
         extend: {
+        fontFamily: {
+            mono: [ 'JetBrains\\ Mono', ...defaultTheme.fontFamily.mono ],
+        },
 		colors: {
 			transparent: 'transparent',
 			current: 'currentColor',

@@ -52,7 +52,7 @@
     }
     /* apply font to all code */
     .markdown code {
-        @apply font-['JetBrains_Mono'];
+        @apply font-mono;
     }
     .markdown .katex-display {
         @apply overflow-x-auto overflow-y-hidden;
