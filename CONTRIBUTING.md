@@ -7,14 +7,9 @@ You may use a global install or use a [virtual environment](https://docs.python.
 Clone the project:
 ```bash
 git clone https://github.com/storple/flare-judge
-cd flare-judge/app
+cd flare-judge
 ```
-
-Then, install the required python dependencies:
-```bash
-python -m pip install -r requirements.txt
-```
-Create a ```.env.dev``` file in the root directory
+Create a ```.env.dev``` file in the root directory (i.e. ```flare-judge/.env.dev```)
 
 Example .env.dev file:
 ```python
@@ -22,6 +17,12 @@ DEBUG=True
 SECRET_KEY=KEY_HERE
 DJANGO_ALLOWED_HOSTS=*
 CSRF_TRUSTED_ORIGINS=
+```
+
+Then, install the required python dependencies:
+```bash
+cd app
+python -m pip install -r requirements.txt
 ```
 
 Install tailwind and its dependencies:
@@ -39,10 +40,11 @@ npm install -g katex
 
 Then you can start the server:
 ```bash
+# if the following fails, create a folder called db
 python manage.py migrate
 
 # the following two commands should be run in different terminals
-python manage.py tailwind install
+python manage.py tailwind start
 python manage.py runserver
 ```
 
