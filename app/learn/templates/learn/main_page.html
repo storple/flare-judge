@@ -16,7 +16,7 @@
                 <h1 class="text-text-light dark:text-text-dark mb-2 text-3xl font-bold">Guides</h1>
 				<div id="guide_container" class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 					{% for guide in guides %}
-						<a class="bg-accent-800/30 ring-accent-400/30 h-32 overflow-auto rounded-lg px-3 py-2 ring-1 sm:h-36"
+						<a class="bg-accent-800/30 ring-accent-400/30 h-32 overflow-auto rounded-lg px-3 py-2 ring-1 sm:h-40"
                             href="{% url 'guide' guide=guide.url_name %}"
                             >
 							<h1 class="text-text-light dark:text-accent-300 text-xl font-semibold">{{guide.guide_name}}</h1>
