@@ -20,10 +20,31 @@
 
         <h2 class="mt-24 max-w-xl text-left font-['Work_Sans'] text-2xl font-medium tracking-tight sm:max-w-2xl sm:text-center sm:text-3xl"><span class="text-accent-400">Flare</span> is an all-in-one educational platform full of high quality resources and practice problems on competitive programming.</h2>
     </div>
-    {% comment %}
     <div class="mx-auto mt-12 items-start px-6 sm:px-4 sm:mt-20 flex flex-col sm:items-center">
+        <a href="{% url 'learn' %}"
+            class="
+            group transition 
+            hover:shadow-accent-700 shadow-lg
+            bg-white-200 text-text-900
+            dark:bg-gray-200 dark:text-text-900
+            rounded-md px-14 py-4 text-2xl font-semibold
+            hover:-translate-y-1
+            flex flex-row items-center
+            "
+            ><div class="
+                    transition ease-out duration-300
+                    translate-x-3
+                    group-hover:-translate-x-1
+                    ">Get Started</div>
+                <i
+                    class="
+                    pl-2
+                    transition ease-out duration-300
+                    opacity-0 scale-90 -translate-x-2
+                    group-hover:opacity-100 group-hover:scale-100 group-hover:translate-x-1
+                    fa-solid fa-arrow-right-long"
+                ></i>
+        </a>
     </div>
-    {% endcomment %}
-
 </div>
 {% endblock %}
